@@ -7,7 +7,41 @@ create_clock -name {MAIN_CLOCK} -period 10.000 -waveform { 0.000 5.000 } [get_po
 create_clock -name {TOD_CLOCK} -period 6.400 -waveform { 0.000 3.200 } [get_ports {ftile_master_todclk_ref}]
 create_clock -name {FTILE_CLOCK} -period 6.400 -waveform { 0.000 3.200 } [get_ports {ftile_clk_ref}]
 create_clock -name {EMIF_REF_CLOCK} -period 6.666 -waveform { 0.000 3.333 } [get_ports {emif_hps_pll_ref_clk}]
-#create_clock -name {hps_i2c_internal} -period 2500.000 -waveform { 0.000 1250.000 } [get_registers {soc_inst|agilex_hps|intel_agilex_hps_inst|fpga_interfaces|*~l4_sp_clk.reg}]
+
+set zl_clk hps_i2c_internal
+set qsfp_0_clk MAIN_CLOCK
+
+set_false_path -from [get_ports {ref_pps_in}] -to *
+set_false_path -from * -to [get_ports {qsfpdd_1_initmode}]
+set_false_path -from * -to [get_ports {qsfpdd_0_initmode}]
+set_false_path -from * -to [get_ports {qsfpdd_0_resetn}]
+set_false_path -from * -to [get_ports {qsfpdd_0_modseln}]
+set_false_path -from * -to [get_ports {master_tod_top_0_pulse_per_second}]
+set_false_path -from * -to [get_ports {uart1_TX}]
+set_false_path -from [get_ports {uart1_RX}] -to *
+set_false_path -from [get_ports {qsfpdd_1_modprsn}] -to *
+set_false_path -from [get_ports {qsfpdd_0_modprsn}] -to *
+set_false_path -from [get_ports {qsfpdd_1_intn}] -to *
+set_false_path -from [get_ports {qsfpdd_0_intn}] -to *
+set_false_path -from [get_ports {qsfpdd_0_i2c_sda}] -to *
+set_false_path -from * -to [get_ports {qsfpdd_0_i2c_sda}]
+set_false_path -from [get_ports {qsfpdd_0_i2c_scl}] -to *
+set_false_path -from * -to [get_ports {qsfpdd_0_i2c_scl}]
+set_false_path -from [get_ports {qsfpdd_1_i2c_sda}] -to *
+set_false_path -from * -to [get_ports {qsfpdd_1_i2c_sda}]
+set_false_path -from [get_ports {qsfpdd_1_i2c_scl}] -to *
+set_false_path -from * -to [get_ports {qsfpdd_1_i2c_scl}]
+set_false_path -from [get_ports {zl_i2c_sda}] -to *
+set_false_path -from * -to [get_ports {zl_i2c_sda}]
+set_false_path -from [get_ports {zl_i2c_scl}] -to *
+set_false_path -from * -to [get_ports {zl_i2c_scl}]
+
+set_input_delay   -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_0_i2c_sda]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_0_i2c_scl]
+set_input_delay   -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_1_i2c_sda]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk [get_ports qsfpdd_1_i2c_scl]
+set_input_delay   -source_latency_included 1 -clock $qsfp_0_clk  [get_ports zl_i2c_sda]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk [get_ports zl_i2c_scl]
 
 
 set_false_path -from {soc_inst|*axi_bridge_for_acp_0|csr_*} -to {*agilex_hps|intel_agilex_hps_inst|*}
