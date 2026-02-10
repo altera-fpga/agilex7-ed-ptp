@@ -244,7 +244,12 @@ https://fpgasoftware.intel.com/eula.-->
             &lt;key&gt;csr&lt;/key&gt;
             &lt;value&gt;
                 &lt;connectionPointName&gt;csr&lt;/connectionPointName&gt;
-                &lt;suppliedSystemInfos/&gt;
+                &lt;suppliedSystemInfos&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
@@ -323,7 +328,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                        &lt;value&gt;230000814&lt;/value&gt;
+                        &lt;value&gt;230216980&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
@@ -340,7 +345,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                        &lt;value&gt;21&lt;/value&gt;
+                        &lt;value&gt;23&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -348,7 +353,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                        &lt;value&gt;21&lt;/value&gt;
+                        &lt;value&gt;23&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos/&gt;
@@ -3096,7 +3101,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;6&lt;/value&gt;
+                            &lt;value&gt;7&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -3104,7 +3109,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;6&lt;/value&gt;
+                            &lt;value&gt;7&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -3117,7 +3122,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;7&lt;/value&gt;
+                            &lt;value&gt;8&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -3125,7 +3130,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;7&lt;/value&gt;
+                            &lt;value&gt;8&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -4897,7 +4902,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;6&lt;/value&gt;
+                            &lt;value&gt;7&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -4905,7 +4910,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;6&lt;/value&gt;
+                            &lt;value&gt;7&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -4918,7 +4923,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;7&lt;/value&gt;
+                            &lt;value&gt;8&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -4926,7 +4931,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;7&lt;/value&gt;
+                            &lt;value&gt;8&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -7713,7 +7718,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;

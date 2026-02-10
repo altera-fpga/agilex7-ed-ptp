@@ -453,6 +453,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
@@ -478,6 +479,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
@@ -503,6 +505,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
@@ -528,6 +531,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
@@ -553,6 +557,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
@@ -578,6 +583,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
@@ -874,7 +880,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -1528,7 +1534,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -6599,7 +6605,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -6616,7 +6622,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -6633,7 +6639,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -6650,15 +6656,15 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -6671,7 +6677,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;6&lt;/value&gt;
+                            &lt;value&gt;21&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -6679,7 +6685,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;6&lt;/value&gt;
+                            &lt;value&gt;21&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -6692,7 +6698,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -6709,7 +6715,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -6726,7 +6732,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -9720,7 +9726,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -9737,7 +9743,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -9754,7 +9760,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -9771,15 +9777,15 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -9792,7 +9798,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;7&lt;/value&gt;
+                            &lt;value&gt;22&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -9800,7 +9806,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;7&lt;/value&gt;
+                            &lt;value&gt;22&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -9813,7 +9819,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -9830,7 +9836,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -9847,7 +9853,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -12841,7 +12847,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -12858,7 +12864,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -12875,7 +12881,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -12892,15 +12898,15 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -12913,7 +12919,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;8&lt;/value&gt;
+                            &lt;value&gt;23&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -12921,7 +12927,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;8&lt;/value&gt;
+                            &lt;value&gt;23&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -12934,7 +12940,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -12951,7 +12957,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -12968,7 +12974,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -15962,7 +15968,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -15979,7 +15985,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -15996,7 +16002,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -16013,15 +16019,15 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -16034,7 +16040,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;9&lt;/value&gt;
+                            &lt;value&gt;24&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -16042,7 +16048,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;9&lt;/value&gt;
+                            &lt;value&gt;24&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -16055,7 +16061,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -16072,7 +16078,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -16089,7 +16095,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -19083,7 +19089,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -19100,7 +19106,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -19117,7 +19123,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -19134,15 +19140,15 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -19155,7 +19161,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;10&lt;/value&gt;
+                            &lt;value&gt;25&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -19163,7 +19169,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;10&lt;/value&gt;
+                            &lt;value&gt;25&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -19176,7 +19182,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -19193,7 +19199,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -19210,7 +19216,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -22204,7 +22210,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -22221,7 +22227,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -22238,7 +22244,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -22255,15 +22261,15 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;19&lt;/value&gt;
+                            &lt;value&gt;20&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -22276,7 +22282,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;11&lt;/value&gt;
+                            &lt;value&gt;26&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -22284,7 +22290,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;11&lt;/value&gt;
+                            &lt;value&gt;26&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -22297,7 +22303,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -22314,7 +22320,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -22331,7 +22337,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='dma_ss_master.s0' start='0x0' end='0x400000000' datawidth='128' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='parent/hps_sub_sys/agilex_hps.f2h_axi_slave' start='0x0' end='0x400000000' datawidth='512' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -22617,7 +22623,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;clockRate&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;clockRateKnown&lt;/key&gt;
@@ -22686,7 +22692,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;suppliedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/suppliedSystemInfos&gt;
                     &lt;consumedSystemInfos/&gt;
@@ -22855,7 +22861,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;clockRate&lt;/key&gt;
-                        &lt;value&gt;230000814&lt;/value&gt;
+                        &lt;value&gt;230216980&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;clockRateKnown&lt;/key&gt;
@@ -27306,7 +27312,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;230000814&lt;/value&gt;
+                            &lt;value&gt;230216980&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;

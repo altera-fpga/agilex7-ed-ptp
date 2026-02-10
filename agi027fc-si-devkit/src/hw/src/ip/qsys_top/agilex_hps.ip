@@ -2655,7 +2655,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:fileSetRef>
           <ipxact:localName>QUARTUS_SYNTH</ipxact:localName>
         </ipxact:fileSetRef>
-        <ipxact:parameters></ipxact:parameters>
       </ipxact:componentInstantiation>
     </ipxact:instantiations>
     <ipxact:ports>
@@ -2663,7 +2662,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_watchdog_rst</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2712,7 +2710,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>hps_emif_emif_to_gp</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2743,7 +2740,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_cts_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2756,7 +2752,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_dsr_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2769,7 +2764,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_dcd_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2782,7 +2776,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_ri_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2795,7 +2788,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_rx</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2808,7 +2800,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_dtr_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2821,7 +2812,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_rts_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2834,7 +2824,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_out1_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2847,7 +2836,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_out2_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2860,7 +2848,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>uart1_tx</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2873,7 +2860,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>i2c0_scl_i</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2886,7 +2872,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>i2c0_scl_oe</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2899,7 +2884,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>i2c0_sda_i</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2912,7 +2896,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>i2c0_sda_oe</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2925,7 +2908,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>i2c1_scl_i</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2938,7 +2920,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>i2c1_scl_oe</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2951,7 +2932,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>i2c1_sda_i</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2964,7 +2944,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>i2c1_sda_oe</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2977,7 +2956,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_TX_CLK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -2990,7 +2968,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_TXD0</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3003,7 +2980,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_TXD1</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3016,7 +2992,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_TXD2</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3029,7 +3004,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_TXD3</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3042,7 +3016,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_RX_CTL</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3055,7 +3028,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_TX_CTL</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3068,7 +3040,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_RX_CLK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3081,7 +3052,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_RXD0</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3094,7 +3064,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_RXD1</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3107,7 +3076,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_RXD2</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3120,7 +3088,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_RXD3</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3133,7 +3100,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_MDIO</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3146,7 +3112,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>EMAC0_MDC</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3159,7 +3124,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>SDMMC_CMD</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3172,7 +3136,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>SDMMC_D0</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3185,7 +3148,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>SDMMC_D1</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3198,7 +3160,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>SDMMC_D2</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3211,7 +3172,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>SDMMC_D3</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3224,7 +3184,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>SDMMC_CCLK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3237,7 +3196,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DATA0</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3250,7 +3208,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DATA1</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3263,7 +3220,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DATA2</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3276,7 +3232,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DATA3</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3289,7 +3244,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DATA4</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3302,7 +3256,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DATA5</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3315,7 +3268,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DATA6</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3328,7 +3280,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DATA7</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3341,7 +3292,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_CLK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3354,7 +3304,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_STP</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3367,7 +3316,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_DIR</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3380,7 +3328,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>USB0_NXT</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3393,7 +3340,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>UART0_RX</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3406,7 +3352,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>UART0_TX</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3419,7 +3364,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io0</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3432,7 +3376,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io1</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3445,7 +3388,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io4</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3458,7 +3400,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io5</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3471,7 +3412,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io6</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3484,7 +3424,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io7</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3497,7 +3436,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>jtag_tck</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3510,7 +3448,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>jtag_tms</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3523,7 +3460,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>jtag_tdo</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3536,7 +3472,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>jtag_tdi</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3549,7 +3484,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>hps_osc_clk</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3562,7 +3496,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io19</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3575,7 +3508,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io20</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3588,7 +3520,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>gpio1_io21</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>inout</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3601,7 +3532,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_rst</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3614,7 +3544,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_axi_clk</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3627,7 +3556,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_axi_rst_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3730,7 +3658,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_AWLOCK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3779,7 +3706,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_AWVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3792,7 +3718,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_AWREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3841,7 +3766,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_WLAST</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3854,7 +3778,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_WVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3867,7 +3790,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_WREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3916,7 +3838,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_BVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -3929,7 +3850,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_BREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4032,7 +3952,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_ARLOCK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4081,7 +4000,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_ARVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4094,7 +4012,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_ARREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4161,7 +4078,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_RLAST</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4174,7 +4090,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_RVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4187,7 +4102,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_RREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4200,7 +4114,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_axi_clk</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4213,7 +4126,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_axi_rst_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4316,7 +4228,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_AWLOCK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4365,7 +4276,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_AWVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4378,7 +4288,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_AWREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4427,7 +4336,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_WLAST</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4440,7 +4348,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_WVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4453,7 +4360,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_WREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4502,7 +4408,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_BVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4515,7 +4420,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_BREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4618,7 +4522,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_ARLOCK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4667,7 +4570,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_ARVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4680,7 +4582,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_ARREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4747,7 +4648,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_RLAST</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4760,7 +4660,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_RVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4773,7 +4672,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>h2f_lw_RREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4786,7 +4684,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_axi_clk</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4799,7 +4696,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_axi_rst_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4902,7 +4798,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_AWLOCK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4951,7 +4846,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_AWVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -4964,7 +4858,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_AWREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5031,7 +4924,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_WLAST</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5044,7 +4936,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_WVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5057,7 +4948,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_WREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5106,7 +4996,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_BVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5119,7 +5008,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_BREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5222,7 +5110,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_ARLOCK</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5271,7 +5158,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_ARVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5284,7 +5170,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_ARREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5369,7 +5254,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_RLAST</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5382,7 +5266,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_RVALID</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -5395,7 +5278,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>f2h_RREADY</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -7434,14 +7316,6 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:displayName>bonusData</ipxact:displayName>
           <ipxact:value>bonusData 
 {
-   element $system
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Agilex 7";
-         type = "String";
-      }
-   }
    element intel_agilex_hps_inst
    {
       datum _sortIndex

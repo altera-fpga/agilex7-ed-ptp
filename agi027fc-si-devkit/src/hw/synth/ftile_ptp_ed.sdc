@@ -39,9 +39,15 @@ set_false_path -from * -to [get_ports {zl_i2c_scl}]
 set_input_delay   -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_0_i2c_sda]
 set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_0_i2c_scl]
 set_input_delay   -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_1_i2c_sda]
-set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk [get_ports qsfpdd_1_i2c_scl]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_1_i2c_scl]
 set_input_delay   -source_latency_included 1 -clock $qsfp_0_clk  [get_ports zl_i2c_sda]
-set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk [get_ports zl_i2c_scl]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports zl_i2c_scl]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_1_initmode]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_0_initmode]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_0_resetn]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports qsfpdd_0_modseln]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports master_tod_top_0_pulse_per_second]
+set_output_delay  -source_latency_included 1 -clock $qsfp_0_clk  [get_ports uart1_TX]
 
 
 set_false_path -from {soc_inst|*axi_bridge_for_acp_0|csr_*} -to {*agilex_hps|intel_agilex_hps_inst|*}
