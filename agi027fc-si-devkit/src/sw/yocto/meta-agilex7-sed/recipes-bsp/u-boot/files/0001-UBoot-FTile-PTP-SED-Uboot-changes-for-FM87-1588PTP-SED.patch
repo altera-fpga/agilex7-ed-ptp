@@ -149,15 +149,15 @@ index 81e6d8ffc0b..a36a356afbd 100644
 +	/*get link speed from dts*/
 +	switch (design_info) {
 +	case PTP_SYS_ED_10G:
++	case PTP_SYS_ED_50G:
++	case PTP_SYS_ED_100G:
++	case PTP_SYS_ED_200G:
++	case PTP_SYS_ED_400G:
 +				printf("\n\r Target image speed: %dMbps. Using 26MHz configuration", design_info);
 +				ptr_cmd_tbl = &mfg_i2c_cmd_tbl_26MHZ[0];
 +				total_cmd_list = ARRAY_SIZE(mfg_i2c_cmd_tbl_26MHZ);
 +				break;
 +	case PTP_SYS_ED_25G:
-+	case PTP_SYS_ED_50G:
-+	case PTP_SYS_ED_100G:
-+	case PTP_SYS_ED_200G:
-+	case PTP_SYS_ED_400G:
 +				printf("\n\r Target image speed: %dMbps. Using 39MHz configuration", design_info);
 +				ptr_cmd_tbl = &mfg_i2c_cmd_tbl_39MHZ[0];
 +				total_cmd_list = ARRAY_SIZE(mfg_i2c_cmd_tbl_39MHZ);
