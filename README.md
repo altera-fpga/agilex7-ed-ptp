@@ -1,2 +1,1 @@
-# agilex7-ed-ptp
-Altera Agilex 7 PTP System Example Design
+agilex7-ed-ptp-mcqos-25g
