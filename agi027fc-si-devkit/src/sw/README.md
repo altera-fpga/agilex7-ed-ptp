@@ -1,4 +1,4 @@
-# Agilex&trade; 7 Multi-Channel 25GbE Precision Time Protocol System Example Design - Software
+# Agilex&trade; 7 Precision Time Protocol System Example Design - Software
 
 ## Description
 
@@ -13,25 +13,32 @@ This repository is based out of the GSRD Yocto repository. A particular Yocto ve
 Directory Structure used in this example design:
 
  ```bash
-    |--- artifacts
-    	|--- u-boot-spl-dtb.hex
-   	|-- .config
-    |--- yocto
-		|--- meta-agilex7-sed
-		|--- meta-clang
-		|--- meta-intel-fpga
-		|--- meta-intel-fpga-refdes
-		|--- meta-openembedded
-		|--- poky
-		|--- agilex7_dk_si_agi027fc-PTP_2P25G_MCQ-build.sh
-		|--- build.sh
+ .
+├── artifacts
+│   └── u-boot-spl-dtb.hex
+└── yocto
+    ├── meta-agilex7-sed
+    ├── meta-clang
+    ├── meta-intel-fpga
+    ├── meta-intel-fpga-refdes
+    ├── meta-openembedded
+    ├── poky
+    ├── agilex7_dk_si_agi027fc-PTP_2P100G_MCQ_ANLT-build.sh -> build.sh
+    ├── agilex7_dk_si_agi027fc-PTP_2P100G_MCQ-build.sh -> build.sh
+    ├── agilex7_dk_si_agi027fc-PTP_2P10G_MCQ_ANLT-build.sh -> build.sh
+    ├── agilex7_dk_si_agi027fc-PTP_2P10G_MCQ-build.sh -> build.sh
+    ├── agilex7_dk_si_agi027fc-PTP_2P25G_MCQ_ANLT-build.sh -> build.sh
+    ├── agilex7_dk_si_agi027fc-PTP_2P25G_MCQ-build.sh -> build.sh
+    ├── agilex7_dk_si_agi027fc-PTP_2P50G_MCQ_ANLT-build.sh -> build.sh
+    ├── agilex7_dk_si_agi027fc-PTP_2P50G_MCQ-build.sh -> build.sh
+    ├── build.sh
  ```
 
 ## Getting Started
 
 ### Configuring the Board
 
-Please refer to [Running the GSRD](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/#running-the-gsrd) to get details on how to setup the board. At the end of this setup, the system needs to be a HPS first boot system with its SD card programmed to boot the design after a power cycle. The link provides description to do the following
+Please refer to [Running the GSRD](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/#running-the-gsrd) to get details on how to setup the board. At the end of this setup, the system needs to be a HPS first boot system with its SD card programmed to boot the design after a power cycle. The link provides description to do the following
 
 - Burn the HPS first jic file to the QSFP flash to setup HPS first boot system
 - Burn the sd card wic image to the bootable SD card.
@@ -40,15 +47,35 @@ Please use the specific file provided in the release directory tag to burn the i
 
 ### Yocto Build
 
-As described earlier, the Yocto builds everything required for a boot of the devkit with the design. To start building please use the devkit specific script
+As described earlier, the Yocto builds everything required for a boot of the devkit with the design. To start building please use the devkit and configuration specific script based on the Datarate and ANLT option.
+
+Start the Yocto build process by executing the following command:
+
+For an ANLT configuration(10GbE),
 
 ``` bash
-$ cd <BASEDIR>/agi027fc-si-devkit/src/sw/yocto/
-$ . agilex7_dk_si_agi027fc-PTP_2P25G_MCQ-build.sh
-$ build_default
+cd <BASEDIR>/src/sw/yocto
+. agilex7_dk_si_agi027fc-PTP_2P10G_MCQ_ANLT-build.sh
+build_default
 ```
 
-All the required images are captured in the agilex7_dk_si_agi027fc-gsrd-images directory after a successful build.
+For a non-ANLT configuration, use the following commands instead:
+
+``` bash
+cd <BASEDIR>/src/sw/yocto
+. agilex7_dk_si_agi027fc-PTP_2P10G_MCQ-build.sh
+build_default
+```
+
+After a successful build, all required images are stored in the `<BASEDIR>/src/sw/yocto/agilex7_dk_si_agi027fc-gsrd-image`s` directory. Build time varies depending on the host system's resource specifications.
+
+You can use below scripts for other datarates for configuration specific compilation.
+- For 100GbE with ANLT : `agilex7_dk_si_agi027fc-PTP_2P100G_MCQ_ANLT-build.sh `.
+- For 100GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P100G_MCQ-build.sh `.
+- For 50GbE with ANLT : `agilex7_dk_si_agi027fc-PTP_2P50G_MCQ_ANLT-build.sh `
+- For 50GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P50G_MCQ-build.sh `
+- For 25GbE with ANLT : `agilex7_dk_si_agi027fc-PTP_2P25G_MCQ_ANLT-build.sh `
+- For 25GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P25G_MCQ-build.sh `
 
 ### Linux kernel build
 

@@ -1,10 +1,17 @@
-# Agilex&trade; 7 Multi-Channel 25GbE Precision Time Protocol System Example Design
+# Agilex&trade; 7 Precision Time Protocol System Example Design
 
 ## Description
 
-The Multi-Channel 25G Precision Time Protocol System Example Design includes two Ethernet ports with built-in 2-step hardware PTP timestamping capabilities. The integrated Agilex&trade; 7 Hard Processor System (HPS) operates a PTP software stack that complements the hardware-based timestamping functionality.
+The Agilex&trade; 7 Precision Time Protocol System Example Design includes two Ethernet ports with built-in 2-step hardware PTP timestamping capabilities. The integrated Agilex&trade; 7 Hard Processor System (HPS) operates a PTP software stack that complements the hardware-based timestamping functionality.
 
 The System Example Design (SED) provides the necessary drivers and user applications to support the Linux Network stack, the Linux PTP stack, and network Quality of Service (QoS) through the Linux kernel Traffic Control (TC) system.
+
+This System Example Design supports multiple Ethernet link data rates along with ANLT(Auto-Negotiation and Link Training) feature.
+
+1. 10GbE.
+2. 25GbE.
+3. 50GbE.
+4. 100GbE.
 
 The system's primary components include:
 
@@ -16,7 +23,9 @@ The system's primary components include:
   - Linux Drivers
   - User Space Applications
 
-![](./mcqos_25g_high_arch.png)
+The block diagram below illustrates the architecture for a 25G design. This architecture is also applicable to other data rates (10GbE, 50GbE, and 100GbE); the only notable change is that the Ethernet subsystem will be replaced with the corresponding IP modules for each data rate.
+
+![](./ptp_sed_high_arch.png)
 
 ## Repository Structure
 
@@ -33,20 +42,21 @@ Directory Structure Used in This Example Design:
 ## Project Details
 
 - **Family**: Agilex&trade; 7 I-Series
-- **Quartus Version**: 25.1.1
-- **Development Kit**: Agilex&trade; I-Series Transceiver-SoC Development Kit (4x F-Tile) ([DK-SI-AGI027FC](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agi027.html))
+- **Quartus Version**: 25.3.1
+- **Development Kit**: Agilex&trade 7; I-Series Transceiver-SoC Development Kit (4x F-Tile) ([DK-SI-AGI027FC](https://www.altera.com/products/devkit/po-3013/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile))
 - **Device Part**: AGIB027R31B1E1VB
+- **Documentation**: [Agilex&trade; 7Precision Time Protocol System Example Design](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt/)
 
 ## Getting Started
 
 Building the design is easy with the scripts provided in the repo. Clone the repository to get the source files
 
 ``` bash
-git clone https://github.com/altera-fpga/agilex7-ed-ptp-mcqos-25g.git
-cd agilex7-ed-ptp-mcqos-25g
+git clone https://github.com/altera-fpga/agilex7-ed-ptp.git
+cd agilex7-ed-ptp
 ```
 
 Follow the below procedure to build the HW and the Software artifacts.
 
-- [Building the hardware](https://github.com/altera-fpga/agilex7-ed-ptp-mcqos-25g/tree/main/agi027fc-si-devkit/src/hw)
-- [Building the software](https://github.com/altera-fpga/agilex7-ed-ptp-mcqos-25g/tree/main/agi027fc-si-devkit/src/sw)
+- [Building the hardware](https://github.com/altera-fpga/agilex7-ed-ptp/tree/main/agi027fc-si-devkit/src/hw)
+- [Building the software](https://github.com/altera-fpga/agilex7-ed-ptp/tree/main/agi027fc-si-devkit/src/sw)
