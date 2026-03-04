@@ -54,7 +54,7 @@ Building the design is easy with the scripts provided in the repo. Clone the rep
 ``` bash
 git clone https://github.com/altera-fpga/agilex7-ed-ptp.git
 cd agilex7-ed-ptp
-git checkout <tag>
+git checkout SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1
 ```
 
 Follow the below procedure to build the HW and the Software artifacts.

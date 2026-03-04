@@ -87,7 +87,7 @@ $ export ARCH=arm64;
 $ export CROSS_COMPILE=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
 $ git clone https://github.com/altera-fpga/linux-socfpga.git -b socfpga-6.12.19-lts-ethernet-sed
 $ cd linux-socfpga/
-$ git checkout <tag>
+$ git checkout SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1
 $ make defconfig
 $ make menuconfig
 ```

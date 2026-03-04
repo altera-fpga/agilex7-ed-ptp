@@ -1,6 +1,6 @@
 KERNEL_REPO = "git://github.com/altera-fpga/linux-socfpga.git"
-#SRCREV = "SED-ALL-agilex7_dk_si_agi027fc-Q25.1.1-Rel-2.1"
-SRCREV = "${AUTOREV}"
+SRCREV = "SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1"
+#SRCREV = "${AUTOREV}"
 LINUX_VERSION = "6.12.19"
 KBRANCH = "socfpga-6.12.19-lts-ethernet-sed"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
