@@ -87,6 +87,7 @@ $ export ARCH=arm64;
 $ export CROSS_COMPILE=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
 $ git clone https://github.com/altera-fpga/linux-socfpga.git -b socfpga-6.12.19-lts-ethernet-sed
 $ cd linux-socfpga/
+$ git checkout <tag>
 $ make defconfig
 $ make menuconfig
 ```
@@ -123,6 +124,7 @@ Follow the steps below to build the ATF from source
 ``` bash
 $ git clone https://github.com/altera-fpga/arm-trusted-firmware.git
 $ cd arm-trusted-firmware
+$ git checkout <tag>
 $ make bl31 CROSS_COMPILE=$CROSS_COMPILE PLAT=agilex DEPRECATED=1
 ```
 
@@ -133,6 +135,7 @@ Follow the steps below to build UBoot
 ``` bash
 $ git clone https://github.com/altera-fpga/u-boot-socfpga.git
 $ cd u-boot-socfpga
+$ git checkout <tag>
 ```
 
 Copy the generated `bl31.bin` (generated during build from ATF source or Yocto build) to u-boot home folder.
