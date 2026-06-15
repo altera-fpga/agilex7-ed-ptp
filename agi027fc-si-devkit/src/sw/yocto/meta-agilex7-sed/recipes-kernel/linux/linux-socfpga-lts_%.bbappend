@@ -15,23 +15,6 @@ LINUX_VERSION_EXTENSION = "${SW_VERSION_STRING}"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-socfpga-lts:"
 
-python() {
-    # Retrieve the SRC_URI list and split it into individual items
-    src_uri_list = (d.getVar('SRC_URI') or "").split()
-
-    # Define a list of files that you want to remove from SRC_URI
-    files_to_remove = ['file://0001-Revert-net-stmmac-dwmac-sogfpga-use-the-lynx-pcs-dri.patch' ,
-        'file://0002-Revert-net-ethernet-altera-tse-Convert-to-mdio-regma.patch' ,
-        'file://0003-Revert-net-mdio-Introduce-a-regmap-based-mdio-driver.patch' ,
-        'file://0004-Revert-net-stmmac-make-the-pcs_lynx-cleanup-sequence.patch']
-
-    # Filter out the files to remove
-    filtered_src_uri_list = [item for item in src_uri_list if not any(file_to_remove in item for file_to_remove in files_to_remove)]
-
-    # Join the filtered list back into a string and set it as the new SRC_URI
-    d.setVar('SRC_URI', " ".join(filtered_src_uri_list))
-}
-
 SRC_URI:append:agilex7_dk_si_agi027fc = " file://fit_kernel_agilex7_dk_si_agi027fc_sed_PTP_2P10G_MCQ.its"
 SRC_URI:append:agilex7_dk_si_agi027fc = " file://fit_kernel_agilex7_dk_si_agi027fc_sed_PTP_2P25G_MCQ.its"
 SRC_URI:append:agilex7_dk_si_agi027fc = " file://fit_kernel_agilex7_dk_si_agi027fc_sed_PTP_2P50G_MCQ.its"
@@ -40,6 +23,7 @@ SRC_URI:append:agilex7_dk_si_agi027fc = " file://fit_kernel_agilex7_dk_si_agi027
 SRC_URI:append:agilex7_dk_si_agi027fc = " file://fit_kernel_agilex7_dk_si_agi027fc_sed_PTP_2P25G_MCQ_ANLT.its"
 SRC_URI:append:agilex7_dk_si_agi027fc = " file://fit_kernel_agilex7_dk_si_agi027fc_sed_PTP_2P50G_MCQ_ANLT.its"
 SRC_URI:append:agilex7_dk_si_agi027fc = " file://fit_kernel_agilex7_dk_si_agi027fc_sed_PTP_2P100G_MCQ_ANLT.its"
+SRC_URI:append:agilex7_dk_si_agi027fc = " file://fit_kernel_agilex7_dk_si_agi027fc_sed_PTP_2P_MCQ_DR.its"
 
 #SRC_URI:append = " file://ubifs.scc"
 
@@ -65,6 +49,8 @@ do_deploy:append() {
                                  cp ${DTBDEPLOYDIR}/socfpga_fm87_ftile_50g_2port_2conn_mcq_ptp_anlt.dtb ${B};
                          elif [[ ${SOLUTION} == "PTP_2P100G_MCQ_ANLT" ]]; then
                                  cp ${DTBDEPLOYDIR}/socfpga_fm87_ftile_100g_2port_2conn_mcq_ptp_anlt.dtb ${B};
+                         elif [[ ${SOLUTION} == "PTP_2P_MCQ_DR" ]]; then
+                                 cp ${DTBDEPLOYDIR}/socfpga_fm87_ftile_2port_2conn_mcq_ptp_dr.dtb ${B};
 			fi
 		fi
 		# core.rbf

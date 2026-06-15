@@ -1,14 +1,13 @@
-From 32dabcd1d41142c3f273fcd49dbe780f669c97cc Mon Sep 17 00:00:00 2001
+From 5154f960b947c52fd6b506d1bc88835494e01a08 Mon Sep 17 00:00:00 2001
 From: Krishna Kumar S R <simmadhari.ramadass.krishna.kumar@intel.com>
-Date: Fri, 20 Jun 2025 20:25:09 +0530
+Date: Fri, 12 Jun 2026 14:53:16 +0530
 Subject: [PATCH] UBoot: FTile PTP SED : Uboot changes for FM87 1588PTP SED
-
-Changes to support 1588PTP SED on FM87. Contains customized Zarlink microcode
-for 1588PTP clock bring up
+ Changes to support 1588PTP SED on FM87. Contains customized Zarlink microcode
+ for 1588PTP clock bring up
 
 Signed-off-by: Krishna Kumar S R <simmadhari.ramadass.krishna.kumar@intel.com>
 ---
- arch/arm/dts/socfpga_agilex.dtsi |    2 +-
+ arch/arm/dts/socfpga.dtsi        |    2 +-
  configs/socfpga_agilex_defconfig |    2 +
  drivers/fpga/fpga.c              |  155 +++
  drivers/fpga/zl30733.inc         | 1585 ++++++++++++++++++++++++++++++
@@ -17,36 +16,36 @@ Signed-off-by: Krishna Kumar S R <simmadhari.ramadass.krishna.kumar@intel.com>
  create mode 100644 drivers/fpga/zl30733.inc
  create mode 100644 drivers/fpga/zl30733_26mhz.inc
 
-diff --git a/arch/arm/dts/socfpga_agilex.dtsi b/arch/arm/dts/socfpga_agilex.dtsi
-index 88bd247d078..cdacaf541e0 100644
---- a/arch/arm/dts/socfpga_agilex.dtsi
-+++ b/arch/arm/dts/socfpga_agilex.dtsi
-@@ -248,7 +248,7 @@
- 			interrupts = <0 104 4>;
+diff --git a/arch/arm/dts/socfpga.dtsi b/arch/arm/dts/socfpga.dtsi
+index ff79d335ac7..d1f1ac0f67d 100644
+--- a/arch/arm/dts/socfpga.dtsi
++++ b/arch/arm/dts/socfpga.dtsi
+@@ -664,7 +664,7 @@
  			resets = <&rst I2C1_RESET>;
- 			clocks = <&clkmgr AGILEX_L4_SP_CLK>;
+ 			clocks = <&l4_sp_clk>;
+ 			interrupts = <0 159 0x4>;
 -			status = "disabled";
 +			status = "okay";
  		};
  
- 		i2c2: i2c@ffc02a00 {
+ 		i2c2: i2c@ffc06000 {
 diff --git a/configs/socfpga_agilex_defconfig b/configs/socfpga_agilex_defconfig
-index 834351a9ff6..7c709d4a484 100644
+index 1880cea25d7..bf847f8b09f 100644
 --- a/configs/socfpga_agilex_defconfig
 +++ b/configs/socfpga_agilex_defconfig
-@@ -118,3 +118,5 @@ CONFIG_WDT=y
- # CONFIG_SPL_USE_TINY_PRINTF is not set
+@@ -108,3 +108,5 @@ CONFIG_WDT=y
  CONFIG_PANIC_HANG=y
+ CONFIG_SPL_CRC32=y
  # CONFIG_TOOLS_MKEFICAPSULE is not set
-+CONFIG_FPGA_ALTERA=y
 +CONFIG_BOOTARGS="earlycon panic=-1 uio_pdrv_genirq.of_id=\"generic-uio\""
++CONFIG_FPGA_ALTERA=y
 diff --git a/drivers/fpga/fpga.c b/drivers/fpga/fpga.c
-index 81e6d8ffc0b..a36a356afbd 100644
+index b4e3896d2e8..d33b533ffa5 100644
 --- a/drivers/fpga/fpga.c
 +++ b/drivers/fpga/fpga.c
-@@ -12,6 +12,14 @@
+@@ -10,6 +10,14 @@
+ #include <xilinx.h>             /* xilinx specific definitions */
  #include <altera.h>             /* altera specific definitions */
- #include <lattice.h>
  #include <dm/device_compat.h>
 +#include <stdlib.h>
 +#include <linux/delay.h>
@@ -59,7 +58,7 @@ index 81e6d8ffc0b..a36a356afbd 100644
  
  /* Local static data */
  static int next_desc = FPGA_INVALID_DEVICE;
-@@ -259,6 +267,143 @@ static int fpga_load_event_notify(const void *buf, size_t bsize, int result)
+@@ -231,6 +239,143 @@ static int fpga_load_event_notify(const void *buf, size_t bsize, int result)
  	return 0;
  }
  
@@ -119,30 +118,30 @@ index 81e6d8ffc0b..a36a356afbd 100644
 +	const struct mfg_i2c_cmd *ptr_cmd_tbl;
 +	int  total_cmd_list = 0;
 +
-+	printf(" Initializing Clock Cleaner (ZL30733) via I2C ");
++	log_info("\nInitializing Clock Cleaner (ZL30733) via I2C ");
 +	ret_val = i2c_get_chip_for_busnum(0, 0x70, 1, &udev);
 +	if (ret_val || !udev) {
-+		printf("\n%s: Could not identify ZL30733 chip on I2C bus 0, "
-+		       "address 0x70\n", __func__);
++		log_err("\nCould not identify ZL30733 chip on I2C bus 0, "
++		       "address 0x70\n");
 +		return;
 +	}
 +	// select page 0:
 +	ret_val = dm_i2c_write(udev, 0x7f, &page, 1);
 +	if (ret_val) {
-+		printf("\n%s: ZL30733 I2C write bus 0, chip addr 0x70, "
-+		       "offset 0x7f failed\n", __func__);
++		log_err("\nZL30733 I2C write bus 0, chip addr 0x70, "
++		       "offset 0x7f failed\n");
 +		return;
 +	}
 +	// read ID register:
 +	ret_val = dm_i2c_read(udev, 1, id, 2);
 +	if (ret_val) {
-+		printf("\n%s: ZL30733 I2C read bus 0, chip addr 0x70, "
-+		       "offset 1 failed\n", __func__);
++		log_err("\nZL30733 I2C read bus 0, chip addr 0x70, "
++		       "offset 1 failed\n");
 +		return;
 +	}
 +	if (((id[0] << 8) | id[1]) != ZL30733_ID_VALUE) {
-+		printf("\n%s: ZL30733 I2C read id=%02x%02x, expected 0x%04x\n",
-+		       __func__, id[0], id[1], ZL30733_ID_VALUE);
++		log_err("\nZL30733 I2C read id=%02x%02x, expected 0x%04x\n",
++		       id[0], id[1], ZL30733_ID_VALUE);
 +		return;
 +	}
 +
@@ -153,17 +152,17 @@ index 81e6d8ffc0b..a36a356afbd 100644
 +	case PTP_SYS_ED_100G:
 +	case PTP_SYS_ED_200G:
 +	case PTP_SYS_ED_400G:
-+				printf("\n\r Target image speed: %dMbps. Using 26MHz configuration", design_info);
++				log_info("\n\r Target image speed: %dMbps. Using 26MHz configuration", design_info);
 +				ptr_cmd_tbl = &mfg_i2c_cmd_tbl_26MHZ[0];
 +				total_cmd_list = ARRAY_SIZE(mfg_i2c_cmd_tbl_26MHZ);
 +				break;
 +	case PTP_SYS_ED_25G:
-+				printf("\n\r Target image speed: %dMbps. Using 39MHz configuration", design_info);
++				log_info("\n\r Target image speed: %dMbps. Using 39MHz configuration", design_info);
 +				ptr_cmd_tbl = &mfg_i2c_cmd_tbl_39MHZ[0];
 +				total_cmd_list = ARRAY_SIZE(mfg_i2c_cmd_tbl_39MHZ);
 +				break;
 +	default:
-+				printf("\n\r Target image speed: Not known %dMbps. Using default 39MHZ PLL configuration", design_info);
++				log_info("\n\r Target image speed: Not known %dMbps. Using default 39MHZ PLL configuration", design_info);
 +				ptr_cmd_tbl = &mfg_i2c_cmd_tbl_39MHZ[0];
 +				total_cmd_list = ARRAY_SIZE(mfg_i2c_cmd_tbl_39MHZ);
 +				break;
@@ -177,15 +176,15 @@ index 81e6d8ffc0b..a36a356afbd 100644
 +				page = new_page;
 +				ret_val = dm_i2c_write(udev, 0x7f, &page, 1);
 +				if (ret_val)
-+					printf("\n%s: Page %u select failed\n",
-+					       __func__, page);
++					log_err("\nPage %u select failed\n",
++					       page);
 +			}
 +			addr = ptr_cmd_tbl->addr & 0x7f;
 +			ret_val = dm_i2c_write(udev, addr,
 +					       &ptr_cmd_tbl->val, 1);
 +			if (ret_val)
-+				printf("\n%s: i2c_write(0x%04x, 0x%02x) failed\n",
-+				       __func__, ptr_cmd_tbl->addr,
++				log_err("\ni2c_write(0x%04x, 0x%02x) failed\n",
++				       ptr_cmd_tbl->addr,
 +				       ptr_cmd_tbl->val);
 +		} else if (ptr_cmd_tbl->cmd == 'W') { // wait (delay)
 +			val = ptr_cmd_tbl->addr;
@@ -196,14 +195,14 @@ index 81e6d8ffc0b..a36a356afbd 100644
 +		}
 +		ptr_cmd_tbl++;
 +	}
-+	printf("\r\n...Configuring PLL Done!\n");
++	log_info("\r\n...Configuring PLL Done!\n");
 +}
 +#endif // CONFIG_FPGA_ALTERA
 +
  /*
   * Generic multiplexing code
   */
-@@ -283,6 +428,16 @@ int fpga_load(int devnum, const void *buf, size_t bsize, bitstream_type bstype,
+@@ -254,6 +399,16 @@ int fpga_load(int devnum, const void *buf, size_t bsize, bitstream_type bstype,
  		case fpga_altera:
  #if defined(CONFIG_FPGA_ALTERA)
  			ret_val = altera_load(desc->devdesc, buf, bsize);
@@ -218,7 +217,7 @@ index 81e6d8ffc0b..a36a356afbd 100644
 +				ret_val = altera_load(desc->devdesc, buf, bsize);
 +			}
  #else
- 			fpga_no_sup((char *)__func__, "Altera devices");
+ 			log_err("No support for Altera devices.\n");
  #endif
 diff --git a/drivers/fpga/zl30733.inc b/drivers/fpga/zl30733.inc
 new file mode 100644
