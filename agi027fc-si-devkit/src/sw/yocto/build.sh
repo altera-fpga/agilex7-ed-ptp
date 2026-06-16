@@ -35,7 +35,7 @@ if [ -n "${image}" -a "${image}" != "${filename}" ]; then
 fi
 
 if [[ "$IMAGE" != "gsrd" ]]; then
-	if [[ "$MACHINE" == "agilex7"* ]]; then
+	if [[ "$MACHINE" == *"dk_si_agi027fb"* || "$MACHINE" == *"dk_si_agi027fc"* ]]; then
 		if [[ "$IMAGE" == *"PTP_2P10G_MCQ_ANLT"* ]]; then
 			solution="PTP_2P10G_MCQ_ANLT"
 			SOLUTION=${solution}
@@ -59,6 +59,9 @@ if [[ "$IMAGE" != "gsrd" ]]; then
 			SOLUTION=${solution}
 		elif [[ "$IMAGE" == *"PTP_2P100G_MCQ"* ]]; then
 			solution="PTP_2P100G_MCQ"
+			SOLUTION=${solution}
+		elif [[ "$IMAGE" == *"PTP_2P_MCQ_DR"* ]]; then
+			solution="PTP_2P_MCQ_DR"
 			SOLUTION=${solution}
 		fi
 		image="gsrd"  # Set image here, as it's the same for all cases
@@ -94,28 +97,31 @@ fi
 PTP_SW_VERSION_STRING=""
 if [[ -n "${SOLUTION}" ]]; then
 	if [[ "$SOLUTION" == "PTP_2P10G_MCQ" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x10G-ptp-sed-Q25.3.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x10G-ptp-sed-Q26.1-R1.1"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P25G_MCQ" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x25G-ptp-sed-Q25.3.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x25G-ptp-sed-Q26.1-R1.1"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P50G_MCQ" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x50G-ptp-sed-Q25.3.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x50G-ptp-sed-Q26.1-R1.1"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P100G_MCQ" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x100G-ptp-sed-Q25.3.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x100G-ptp-sed-Q26.1-R1.1"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P10G_MCQ_ANLT" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x10G-ptp-anlt-sed-Q25.3.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x10G-ptp-anlt-sed-Q26.1-R1.1"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P25G_MCQ_ANLT" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x25G-ptp-anlt-sed-Q25.3.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x25G-ptp-anlt-sed-Q26.1-R1.1"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P50G_MCQ_ANLT" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x50G-ptp-anlt-sed-Q25.3.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x50G-ptp-anlt-sed-Q26.1-R1.1"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P100G_MCQ_ANLT" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x100G-ptp-anlt-sed-Q25.3.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x100G-ptp-anlt-sed-Q26.1-R1.1"
+		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
+	elif [[ "$SOLUTION" == "PTP_2P_MCQ_DR" ]]; then
+		ptp_sed_sw_version="-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	fi
 fi
@@ -128,7 +134,7 @@ fi
 #------------------------------------------------------------------------------------------#
 # Set default U-Boot Version
 #------------------------------------------------------------------------------------------#
-export UBOOT_VER=v2025.07
+export UBOOT_VER=v2026.01
 export UBOOT_REL=
 echo "UBOOT_VERSION        = $UBOOT_VER$UBOOT_REL"
 UBOOT_SOCFPGA_BRANCH=socfpga_$UBOOT_VER$UBOOT_REL
@@ -138,10 +144,8 @@ echo "UBOOT_SOCFPGA_BRANCH = $UBOOT_SOCFPGA_BRANCH"
 # Set UB_CONFIG for each of the configurations
 #------------------------------------------------------------------------------------------#
 if [[ "$MACHINE" == *"agilex"* || "$MACHINE" == *"stratix10"* ]]; then
-	if [[ "$MACHINE" == *"dk_si_agf014eb"* ]]; then
-		UB_CONFIG="agilex7_dk_si_agf014ea-socdk-atf"
-	elif [[ "$MACHINE" == *"dk_si_agi027f"* ]]; then
-		UB_CONFIG="agilex7_dk_si_agi027fb-socdk-atf"
+	if [[ "$MACHINE" == *"agilex7"* ]]; then
+		UB_CONFIG="agilex-socdk-atf"
 	elif [[ "$MACHINE" == "agilex5_dk_a5e"* ]]; then
 		if [[ "$IMAGE" == "nand" ]]; then
 			UB_CONFIG="$MACHINE-socdk-$IMAGE-atf"
@@ -161,11 +165,10 @@ elif [[ "$MACHINE" == "arria10" || "$MACHINE" == "cyclone5" ]]; then
 	fi
 fi
 echo "UBOOT_CONFIG         = $UB_CONFIG"
-
 #------------------------------------------------------------------------------------------#
 # Set Arm-Trusted-Firmware version
 #------------------------------------------------------------------------------------------#
-export ATF_VER=v2.13.0
+export ATF_VER=v2.14.0
 echo "ATF_VERSION          = $ATF_VER"
 ATF_BRANCH=socfpga_$ATF_VER
 echo "ATF_BRANCH           = $ATF_BRANCH"
@@ -215,7 +218,7 @@ build_setup() {
 		# Update submodules
 		git submodule update --init -r
 		if [[ "$MACHINE" == "agilex7"* && -n "${SOLUTION}" ]]; then
-			sed -i 's/kernel.itb/kernel_sed.itb/' meta-intel-fpga-refdes/conf/machine/agilex7_dk_si_agf014ea-gsrd.conf
+			sed -i 's/kernel.itb/kernel_sed.itb/' meta-intel-fpga-refdes/conf/machine/agilex7_dk_si_agf014eb-gsrd.conf
 		fi
 	popd > /dev/null
 
@@ -351,7 +354,6 @@ package() {
 		cp -vrL *-${MACHINE}.rootfs_nor.ubifs $STAGING_FOLDER/       	|| echo "[INFO] No nor ubifs found."
 		cp -vrL *-$MACHINE.rootfs.cpio* $STAGING_FOLDER/	|| echo "[INFO] No .cpio found."
 		cp -vrL *-$MACHINE.rootfs.manifest $STAGING_FOLDER/	|| echo "[INFO] No manifest found."
-		cp -vrL zImage $STAGING_FOLDER/			|| echo "[INFO] No zImage found."
 		cp -vrL Image $STAGING_FOLDER/			|| echo "[INFO] No Image found."
 		cp -vrL Image.lzma $STAGING_FOLDER/		|| echo "[INFO] No Image.lzma found."
 
@@ -536,6 +538,14 @@ package() {
 			mkdir -p $STAGING_FOLDER/esdk
 			cp -vL poky*.sh $STAGING_FOLDER/esdk/.
 		popd > /dev/null
+	fi
+
+	if [[ "$MACHINE" == *"agilex"* ]] ; then
+		if [[ -n "${SOLUTION}" ]]; then
+			pushd $WORKSPACE > /dev/null
+			git -C meta-intel-fpga-refdes restore conf/machine/agilex7_dk_si_agf014eb-gsrd.conf
+			popd
+		fi
 	fi
 
 	echo -e "\n[INFO] Completed: Binaries are store in $WORKSPACE/$MACHINE-$IMAGE-images"
