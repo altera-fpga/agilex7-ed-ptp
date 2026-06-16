@@ -1,0 +1,99 @@
+::drc::add_waiver \
+	-description {output delay waise} \
+	-rule_id {TMC-20012} \
+	-query_string {Port == 'qsfpdd_1_initmode'} \
+	-stages {{}} \
+	-tag {} \
+	-timestamp {2026-06-04*09:46:30} \
+	-owner {user} \
+	-no_warn
+
+
+
+::drc::add_waiver \
+	-description {src path1} \
+	-rule_id {CDC-50001} \
+	-query_string {From == 'inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[*].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y166_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg'} \
+	-stages {{}} \
+	-tag {} \
+	-timestamp {2026-06-04*22:38:35} \
+	-owner {user} \
+	-no_warn
+
+	
+::drc::add_waiver \
+	-description {src path2} \
+	-rule_id {CDC-50001} \
+	-query_string {From == 'inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[*].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y166_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg'} \
+	-stages {{}} \
+	-tag {} \
+	-timestamp {2026-06-04*22:38:35} \
+	-owner {user} \
+	-no_warn
+
+::drc::add_waiver \
+	-description {src violation waiver} \
+	-rule_id {CDC-50001} \
+	-query_string {From == 'inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[3].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[2].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[0].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[1].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y166_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg'} \
+	-stages {{}} \
+	-tag {} \
+	-timestamp {2026-06-05*05:09:47} \
+	-owner {user} \
+	-no_warn
+
+::drc::add_waiver \
+	-description {src violation 2nd } \
+	-rule_id {CDC-50001} \
+	-query_string {From == 'inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[3].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[2].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[0].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[1].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y166_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg'} \
+	-stages {{}} \
+	-tag {} \
+	-timestamp {2026-06-05*05:10:43} \
+	-owner {user} \
+	-no_warn
+
+::drc::add_waiver \
+	-description {sec violation 3} \
+	-rule_id {CDC-50001} \
+	-query_string {From == 'inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[3].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[2].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[0].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[1].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y0_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg'} \
+	-stages {analysis_final_quartus_sta} \
+	-tag {} \
+	-timestamp {2026-06-05*05:13:58} \
+	-owner {user} \
+	-no_warn
+
+::drc::add_waiver \
+	-description {src violation 4} \
+	-rule_id {CDC-50001} \
+	-query_string {From == 'inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[3].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[2].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[0].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[1].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y166_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg'} \
+	-stages {analysis_final_quartus_sta} \
+	-tag {} \
+	-timestamp {2026-06-05*05:14:44} \
+	-owner {user} \
+	-no_warn
+
+::drc::add_waiver \
+	-description {src violation 7} \
+	-rule_id {CDC-50001} \
+	-query_string {From == 'inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[3].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[2].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[0].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[1].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y0_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg' && "From Clock" == 'top_auto_tiles|z1577b_x393_y0_n0__reset_controller_src_divided_osc_clk' && "To Clock" == 'top_auto_tiles|z1577b_x393_y0_n0||tx_clkout|ch7' && Reason == 'Asynchronous transfer'} \
+	-stages {{}} \
+	-tag {} \
+	-timestamp {2026-06-05*06:53:27} \
+	-owner {user} \
+	-no_warn
+
+::drc::add_waiver \
+	-description {src violations 8} \
+	-rule_id {CDC-50001} \
+	-query_string {From == 'inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[3].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[2].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[0].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[1].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y166_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg' && "From Clock" == 'top_auto_tiles|z1577b_x393_y166_n0__reset_controller_src_divided_osc_clk' && "To Clock" == 'top_auto_tiles|z1577b_x393_y166_n0||tx_clkout|ch7' && Reason == 'Asynchronous transfer'} \
+	-stages {{}} \
+	-tag {} \
+	-timestamp {2026-06-05*06:54:57} \
+	-owner {user} \
+	-no_warn
+	
+::drc::add_waiver -description {src violation 7} -rule_id {CDC-50001} -query_string {From == 'inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[3].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[2].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[0].dr_synchronizer_nocut_inst|dreg[1]   inst_port2_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[1].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y0_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg' && "From Clock" == 'top_auto_tiles|z1577b_x393_y0_n0__reset_controller_src_divided_osc_clk' && "To Clock" == 'top_auto_tiles|z1577b_x393_y0_n0||tx_clkout|ch7' && Reason == 'Asynchronous transfer'} -stages [list {}] -tag {} -owner {user} -timestamp {2026-06-05*06:53:27} -no_warn
+waiver:8
+
+::drc::add_waiver -description {src violations 8} -rule_id {CDC-50001} -query_string {From == 'inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[3].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[2].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[0].dr_synchronizer_nocut_inst|dreg[1]   inst_port1_hssi_10G_25G_non_anlt_dr|hssi_ss_1|U_dr_dut|hssi_ss_f_dr_ctrl|dr_ctrl_sip_inst|dr_profile_1hot_sel_src_sync|sync[1].dr_synchronizer_nocut_inst|dreg[1]' && To == 'top_auto_tiles|z1577b_x393_y166_n0|hdpldadapt_tx_chnl_16~pld_tx_clk1_dcm.reg' && "From Clock" == 'top_auto_tiles|z1577b_x393_y166_n0__reset_controller_src_divided_osc_clk' && "To Clock" == 'top_auto_tiles|z1577b_x393_y166_n0||tx_clkout|ch7' && Reason == 'Asynchronous transfer'} -stages [list {}] -tag {} -owner {user} -timestamp {2026-06-05*06:54:57} -no_warn
+waiver:9
+

@@ -108,7 +108,7 @@ clean:    ## Cleans generated files.
 # Runs full compile
 all:      ## Runs a full Quartus compile including Assembler. 
           ## Specify the configuration using the optional argument CONFIG. 
-          ## Supported options are 10G_ANLT, 10G_NON_ANLT, 25G_ANLT, 25G_NON_ANLT, 50G_ANLT, 50G_NON_ANLT, 100G_ANLT and 100G_NON_ANLT. 
+          ## Supported options are 10G_ANLT, 10G_NON_ANLT, 25G_ANLT, 25G_NON_ANLT, 10G_25G_NON_ANLT_DR, 50G_ANLT, 50G_NON_ANLT, 100G_ANLT and 100G_NON_ANLT. 
                 ## For e.g. "make all CONFIG=10G_ANLT". 
           ## if the CONFIG argument is not specified, the value currently in config.txt will be built. 
 	@if [ "$(CONFIG)" != "default_value" ]; then \

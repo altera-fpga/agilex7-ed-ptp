@@ -5,9 +5,7 @@
 
 
 module tx_dma_fifo #(
-    parameter string DEVICE                = "s10" //must be "a10" or "s10"
-   ,parameter int    USE_RX_READY          = 1
-   ,parameter int    MEMORY_CAPACITY_WORDS = 512
+    parameter int    MEMORY_CAPACITY_WORDS = 512
    ,parameter int    AVST_DATA_WIDTH       = 128
    ,parameter int    AVST_ERROR_WIDTH      = 6
    ,parameter int    TS_FIFOS_ADDR_WIDTH   = 9
@@ -69,14 +67,11 @@ module tx_dma_fifo #(
    always_comb out_st_error = '0;
 
    cdc_packet_fifo #(
-       .USE_RX_READY          (USE_RX_READY)
-      ,.DEVICE                (DEVICE)
-      ,.MEMORY_CAPACITY_WORDS (MEMORY_CAPACITY_WORDS)
+      .MEMORY_CAPACITY_WORDS (MEMORY_CAPACITY_WORDS)
       ,.AVST_DATA_WIDTH       (AVST_DATA_WIDTH)
-      ,.RX_AVST_READY_LATENCY (RX_AVST_READY_LATENCY)
-      ,.AVST_USER_WIDTH       (CDC_FIFO_USR_WIDTH)
+      ,.AVST_USER_WIDTH       (TS_WIDTH)
       ,.AVST_ERROR_WIDTH      (FIFO_ERROR_WIDTH)
-   ) cdc_packet_fifo (
+    ) cdc_packet_fifo (
        .in_avst_clk           (in_st_clk)
       ,.in_avst_reset         (in_st_rst)
       ,.in_avst_ready         (in_st_ready)
@@ -98,18 +93,7 @@ module tx_dma_fifo #(
       ,.out_avst_data         (out_st_data)
       ,.out_avst_user         ()
 
-      ,.csr_mm_clk            (csr_clk)
-      ,.csr_mm_reset          (csr_rst)
-      ,.csr_mm_waitrequest    ()
-      ,.csr_mm_read           ('0)
-      ,.csr_mm_write          ('0)
-      ,.csr_mm_address        ()
-      ,.csr_mm_writedata      ()
-      ,.csr_mm_readdatavalid  ()
-      ,.csr_mm_readdata       ()
-
-      ,.fill_level_on_tx_clk  ()
-   );
+  );
 
    //always_comb out_ts_req_valid = '1;
    always_comb out_ts_req_valid = out_st_valid & out_st_sop & out_st_ready;
@@ -152,5 +136,17 @@ module tx_dma_fifo #(
       out_ts_resp_data[255:160] = resp_ts_data;
    end
 
-
+	// debug logic to count number of response packets
+// logic [31:0] out_ts_resp_dbg_cntr /* synthesis syn_keep = "true"  */;
+//
+// always_ff @(posedge in_st_clk) begin
+//     if(in_st_rst) begin
+//        out_ts_resp_dbg_cntr <= '0;
+//     end else begin
+//        if(in_ts_resp_valid && (!ts_fifo_empty)) begin
+//           out_ts_resp_dbg_cntr <= out_ts_resp_dbg_cntr + 1'b1;
+//        end
+//     end
+//  end
+	
 endmodule

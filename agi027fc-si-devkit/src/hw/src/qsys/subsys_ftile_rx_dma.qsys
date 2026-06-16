@@ -1,18 +1,16 @@
 <?xml version="1.0" ?>
-<!--Your use of Intel Corporation's design tools, logic functions 
+<!--Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Intel Program License 
-Subscription Agreement, the Intel Quartus Prime License Agreement,
-the Intel FPGA IP License Agreement, or other applicable license
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
-Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.-->
-<ipxact:design xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
+Altera and sold by Altera or its authorized distributors.-->
+<ipxact:design xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions">
   <ipxact:vendor>Altera Corporation</ipxact:vendor>
   <ipxact:library>subsys_ftile_rx_dma</ipxact:library>
   <ipxact:name>subsys_ftile_rx_dma</ipxact:name>
@@ -678,7 +676,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -1005,7 +1003,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -2561,7 +2559,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -4271,7 +4269,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -5755,23 +5753,19 @@ https://fpgasoftware.intel.com/eula.-->
               <ipxact:displayName>HDL Parameters</ipxact:displayName>
               <ipxact:value>&lt;hdlParameterDescriptorDefinitionList&gt;
     &lt;hdlParameterDescriptorDefinition&gt;
-        &lt;description&gt;&lt;/description&gt;
         &lt;enabled&gt;true&lt;/enabled&gt;
         &lt;exported&gt;false&lt;/exported&gt;
         &lt;parameterHdlType&gt;STRING&lt;/parameterHdlType&gt;
-        &lt;parameterHdlWidth&gt;&lt;/parameterHdlWidth&gt;
         &lt;parameterName&gt;DEVICE&lt;/parameterName&gt;
         &lt;parameterType&gt;java.lang.String&lt;/parameterType&gt;
         &lt;parameterValue&gt;s10&lt;/parameterValue&gt;
     &lt;/hdlParameterDescriptorDefinition&gt;
     &lt;hdlParameterDescriptorDefinition&gt;
-        &lt;description&gt;&lt;/description&gt;
         &lt;enabled&gt;true&lt;/enabled&gt;
         &lt;exported&gt;false&lt;/exported&gt;
-        &lt;parameterHdlType&gt;INTEGER&lt;/parameterHdlType&gt;
-        &lt;parameterHdlWidth&gt;&lt;/parameterHdlWidth&gt;
+        &lt;parameterHdlType&gt;STRING&lt;/parameterHdlType&gt;
         &lt;parameterName&gt;USE_RX_READY&lt;/parameterName&gt;
-        &lt;parameterType&gt;java.lang.Integer&lt;/parameterType&gt;
+        &lt;parameterType&gt;java.lang.String&lt;/parameterType&gt;
         &lt;parameterValue&gt;0&lt;/parameterValue&gt;
     &lt;/hdlParameterDescriptorDefinition&gt;
     &lt;hdlParameterDescriptorDefinition&gt;
@@ -5870,7 +5864,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -6197,7 +6191,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -8459,7 +8453,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -8829,7 +8823,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -10459,7 +10453,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -10473,7 +10467,7 @@ https://fpgasoftware.intel.com/eula.-->
       </altera:module>
     </altera:modules>
     <altera:connections>
-      <altera:connection altera:kind="avalon" altera:version="25.3" altera:start="rx_dma_csr.m0" altera:end="rx_dma_dispatcher.CSR">
+      <altera:connection altera:kind="avalon" altera:version="26.1" altera:start="rx_dma_csr.m0" altera:end="rx_dma_dispatcher.CSR">
         <altera:connection_parameter altera:parameter_name="arbitrationPriority" altera:parameter_value="1"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="baseAddress" altera:parameter_value="0x0020"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="defaultConnection" altera:parameter_value="false"></altera:connection_parameter>
@@ -10484,6 +10478,7 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -10495,7 +10490,7 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="TRUE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="avalon" altera:version="25.3" altera:start="rx_dma_csr.m0" altera:end="rx_dma_prefetcher.Csr">
+      <altera:connection altera:kind="avalon" altera:version="26.1" altera:start="rx_dma_csr.m0" altera:end="rx_dma_prefetcher.Csr">
         <altera:connection_parameter altera:parameter_name="arbitrationPriority" altera:parameter_value="1"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="baseAddress" altera:parameter_value="0x0000"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="defaultConnection" altera:parameter_value="false"></altera:connection_parameter>
@@ -10506,6 +10501,7 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -10517,13 +10513,14 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="TRUE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="avalon_streaming" altera:version="25.3" altera:start="rx_dma_prefetcher.Descriptor_Write_Dispatcher_Source" altera:end="rx_dma_dispatcher.Descriptor_Sink">
+      <altera:connection altera:kind="avalon_streaming" altera:version="26.1" altera:start="rx_dma_prefetcher.Descriptor_Write_Dispatcher_Source" altera:end="rx_dma_dispatcher.Descriptor_Sink">
         <altera:connection_parameter altera:parameter_name="qsys_mm.burstAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.clockCrossingAdapter" altera:parameter_value="HANDSHAKE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableAllPipelines" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -10535,13 +10532,14 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="avalon_streaming" altera:version="25.3" altera:start="rx_dma_write_master.Response_Source" altera:end="rx_dma_dispatcher.Write_Response_Sink">
+      <altera:connection altera:kind="avalon_streaming" altera:version="26.1" altera:start="rx_dma_write_master.Response_Source" altera:end="rx_dma_dispatcher.Write_Response_Sink">
         <altera:connection_parameter altera:parameter_name="qsys_mm.burstAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.clockCrossingAdapter" altera:parameter_value="HANDSHAKE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableAllPipelines" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -10553,13 +10551,14 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="avalon_streaming" altera:version="25.3" altera:start="rx_dma_dispatcher.Response_Source" altera:end="rx_dma_fifo_0.in_ts_resp">
+      <altera:connection altera:kind="avalon_streaming" altera:version="26.1" altera:start="rx_dma_dispatcher.Response_Source" altera:end="rx_dma_fifo_0.in_ts_resp">
         <altera:connection_parameter altera:parameter_name="qsys_mm.burstAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.clockCrossingAdapter" altera:parameter_value="HANDSHAKE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableAllPipelines" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -10571,13 +10570,14 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="avalon_streaming" altera:version="25.3" altera:start="rx_dma_dispatcher.Write_Command_Source" altera:end="rx_dma_write_master.Command_Sink">
+      <altera:connection altera:kind="avalon_streaming" altera:version="26.1" altera:start="rx_dma_dispatcher.Write_Command_Source" altera:end="rx_dma_write_master.Command_Sink">
         <altera:connection_parameter altera:parameter_name="qsys_mm.burstAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.clockCrossingAdapter" altera:parameter_value="HANDSHAKE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableAllPipelines" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -10589,13 +10589,14 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="avalon_streaming" altera:version="25.3" altera:start="rx_dma_fifo_0.out_avst" altera:end="rx_dma_write_master.Data_Sink">
+      <altera:connection altera:kind="avalon_streaming" altera:version="26.1" altera:start="rx_dma_fifo_0.out_avst" altera:end="rx_dma_write_master.Data_Sink">
         <altera:connection_parameter altera:parameter_name="qsys_mm.burstAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.clockCrossingAdapter" altera:parameter_value="HANDSHAKE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableAllPipelines" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -10607,13 +10608,14 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="avalon_streaming" altera:version="25.3" altera:start="rx_dma_fifo_0.out_ts_resp" altera:end="rx_dma_prefetcher.Response_Sink">
+      <altera:connection altera:kind="avalon_streaming" altera:version="26.1" altera:start="rx_dma_fifo_0.out_ts_resp" altera:end="rx_dma_prefetcher.Response_Sink">
         <altera:connection_parameter altera:parameter_name="qsys_mm.burstAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.clockCrossingAdapter" altera:parameter_value="HANDSHAKE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableAllPipelines" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -10625,23 +10627,23 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_prefetcher.Clock"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_write_master.Clock"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_reset.clk"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_csr.clk"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_ftile_clock.out_clk" altera:end="ftile_clk_reset.clk"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_dispatcher.clock"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_fifo_0.csr_clk"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_ftile_clock.out_clk" altera:end="rx_dma_fifo_0.in_st_clk"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_fifo_0.out_st_clk"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="25.3" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_prefetcher.Clock_reset"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="25.3" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_write_master.Clock_reset"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="25.3" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_dispatcher.clock_reset"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="25.3" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_fifo_0.csr_rst"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="25.3" altera:start="rx_dma_reset.out_reset" altera:end="ftile_clk_reset.in_reset"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="25.3" altera:start="ftile_clk_reset.out_reset" altera:end="rx_dma_fifo_0.in_st_rst"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="25.3" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_fifo_0.out_st_rst"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="25.3" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_csr.reset"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_prefetcher.Clock"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_write_master.Clock"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_reset.clk"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_csr.clk"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_ftile_clock.out_clk" altera:end="ftile_clk_reset.clk"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_dispatcher.clock"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_fifo_0.csr_clk"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_ftile_clock.out_clk" altera:end="rx_dma_fifo_0.in_st_clk"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="rx_dma_clock.out_clk" altera:end="rx_dma_fifo_0.out_st_clk"></altera:connection>
+      <altera:connection altera:kind="reset" altera:version="26.1" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_prefetcher.Clock_reset"></altera:connection>
+      <altera:connection altera:kind="reset" altera:version="26.1" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_write_master.Clock_reset"></altera:connection>
+      <altera:connection altera:kind="reset" altera:version="26.1" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_dispatcher.clock_reset"></altera:connection>
+      <altera:connection altera:kind="reset" altera:version="26.1" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_fifo_0.csr_rst"></altera:connection>
+      <altera:connection altera:kind="reset" altera:version="26.1" altera:start="rx_dma_reset.out_reset" altera:end="ftile_clk_reset.in_reset"></altera:connection>
+      <altera:connection altera:kind="reset" altera:version="26.1" altera:start="ftile_clk_reset.out_reset" altera:end="rx_dma_fifo_0.in_st_rst"></altera:connection>
+      <altera:connection altera:kind="reset" altera:version="26.1" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_fifo_0.out_st_rst"></altera:connection>
+      <altera:connection altera:kind="reset" altera:version="26.1" altera:start="rx_dma_reset.out_reset" altera:end="rx_dma_csr.reset"></altera:connection>
     </altera:connections>
     <altera:interconnect_requirements></altera:interconnect_requirements>
     <altera:wire_level_connections></altera:wire_level_connections>
@@ -10670,15 +10672,15 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:busInterfaces>
           <ipxact:busInterface>
             <ipxact:name>rx_dma_dispatcher.CSR</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="avalon" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="avalon" version="26.1"></ipxact:busType>
           </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>rx_dma_prefetcher.Csr</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="avalon" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="avalon" version="26.1"></ipxact:busType>
           </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>rx_dma_csr.m0</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="avalon" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="avalon" version="26.1"></ipxact:busType>
             <ipxact:master>
               <ipxact:addressSpaceRef addressSpaceRef="rx_dma_csr.m0">
                 <ipxact:baseAddress>0x0020</ipxact:baseAddress>
@@ -10687,17 +10689,17 @@ https://fpgasoftware.intel.com/eula.-->
           </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>rx_dma_prefetcher.Descriptor_Read_Master</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="avalon" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="avalon" version="26.1"></ipxact:busType>
             <ipxact:master></ipxact:master>
           </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>rx_dma_prefetcher.Descriptor_Write_Master</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="avalon" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="avalon" version="26.1"></ipxact:busType>
             <ipxact:master></ipxact:master>
           </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>rx_dma_write_master.Data_Write_Master</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="avalon" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="avalon" version="26.1"></ipxact:busType>
             <ipxact:master></ipxact:master>
           </ipxact:busInterface>
         </ipxact:busInterfaces>

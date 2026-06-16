@@ -1,17 +1,15 @@
 <?xml version="1.0" ?>
-<!--Your use of Intel Corporation's design tools, logic functions 
+<!--Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Intel Program License 
-Subscription Agreement, the Intel Quartus Prime License Agreement,
-the Intel FPGA IP License Agreement, or other applicable license
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
-Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.-->
+Altera and sold by Altera or its authorized distributors.-->
 <ipxact:design xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
   <ipxact:vendor>Altera Corporation</ipxact:vendor>
   <ipxact:library>sys_manager</ipxact:library>
@@ -52,7 +50,7 @@ https://fpgasoftware.intel.com/eula.-->
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "9";
          type = "int";
       }
    }
@@ -60,7 +58,7 @@ https://fpgasoftware.intel.com/eula.-->
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "10";
          type = "int";
       }
    }
@@ -68,7 +66,7 @@ https://fpgasoftware.intel.com/eula.-->
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "11";
          type = "int";
       }
    }
@@ -76,7 +74,7 @@ https://fpgasoftware.intel.com/eula.-->
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "12";
          type = "int";
       }
    }
@@ -84,7 +82,7 @@ https://fpgasoftware.intel.com/eula.-->
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "13";
          type = "int";
       }
    }
@@ -92,7 +90,7 @@ https://fpgasoftware.intel.com/eula.-->
    {
       datum _sortIndex
       {
-         value = "13";
+         value = "14";
          type = "int";
       }
    }
@@ -100,7 +98,7 @@ https://fpgasoftware.intel.com/eula.-->
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "7";
          type = "int";
       }
    }
@@ -108,7 +106,7 @@ https://fpgasoftware.intel.com/eula.-->
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "8";
          type = "int";
       }
    }
@@ -141,6 +139,14 @@ https://fpgasoftware.intel.com/eula.-->
       datum _sortIndex
       {
          value = "2";
+         type = "int";
+      }
+   }
+   element tod_sync_25g_iopll_0
+   {
+      datum _sortIndex
+      {
+         value = "6";
          type = "int";
       }
    }
@@ -429,7 +435,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;consumedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                        &lt;value&gt;266666667&lt;/value&gt;
+                        &lt;value&gt;106670673&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/consumedSystemInfos&gt;
             &lt;/value&gt;
@@ -496,6 +502,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
@@ -510,6 +517,19 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;entry&gt;
                         &lt;key&gt;MAX_SLAVE_DATA_WIDTH&lt;/key&gt;
                         &lt;value&gt;32&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/consumedSystemInfos&gt;
+            &lt;/value&gt;
+        &lt;/entry&gt;
+        &lt;entry&gt;
+            &lt;key&gt;tod_sync_25g_iopll_0_outclk0&lt;/key&gt;
+            &lt;value&gt;
+                &lt;connectionPointName&gt;tod_sync_25g_iopll_0_outclk0&lt;/connectionPointName&gt;
+                &lt;suppliedSystemInfos/&gt;
+                &lt;consumedSystemInfos&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;CLOCK_RATE&lt;/key&gt;
+                        &lt;value&gt;317382812&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/consumedSystemInfos&gt;
             &lt;/value&gt;
@@ -857,7 +877,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -1227,7 +1247,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -1597,7 +1617,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -1967,7 +1987,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -2337,7 +2357,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -2707,7 +2727,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -3077,7 +3097,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -3271,7 +3291,7 @@ https://fpgasoftware.intel.com/eula.-->
     &lt;/boundary&gt;
     &lt;originalModuleInfo&gt;
         &lt;className&gt;altera_iopll&lt;/className&gt;
-        &lt;version&gt;21.0.0&lt;/version&gt;
+        &lt;version&gt;21.1.0&lt;/version&gt;
         &lt;displayName&gt;IOPLL IP&lt;/displayName&gt;
     &lt;/originalModuleInfo&gt;
     &lt;systemInfoParameterDescriptors&gt;
@@ -3594,7 +3614,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -3788,7 +3808,7 @@ https://fpgasoftware.intel.com/eula.-->
     &lt;/boundary&gt;
     &lt;originalModuleInfo&gt;
         &lt;className&gt;altera_iopll&lt;/className&gt;
-        &lt;version&gt;21.0.0&lt;/version&gt;
+        &lt;version&gt;21.1.0&lt;/version&gt;
         &lt;displayName&gt;IOPLL IP&lt;/displayName&gt;
     &lt;/originalModuleInfo&gt;
     &lt;systemInfoParameterDescriptors&gt;
@@ -4111,7 +4131,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -4285,7 +4305,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;clockRate&lt;/key&gt;
-                            &lt;value&gt;266666667&lt;/value&gt;
+                            &lt;value&gt;106670673&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;clockRateKnown&lt;/key&gt;
@@ -4305,7 +4325,7 @@ https://fpgasoftware.intel.com/eula.-->
     &lt;/boundary&gt;
     &lt;originalModuleInfo&gt;
         &lt;className&gt;altera_iopll&lt;/className&gt;
-        &lt;version&gt;21.0.0&lt;/version&gt;
+        &lt;version&gt;21.1.0&lt;/version&gt;
         &lt;displayName&gt;IOPLL IP&lt;/displayName&gt;
     &lt;/originalModuleInfo&gt;
     &lt;systemInfoParameterDescriptors&gt;
@@ -4354,7 +4374,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;suppliedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                            &lt;value&gt;266666667&lt;/value&gt;
+                            &lt;value&gt;106670673&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/suppliedSystemInfos&gt;
                     &lt;consumedSystemInfos/&gt;
@@ -4523,7 +4543,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;clockRate&lt;/key&gt;
-                        &lt;value&gt;266666667&lt;/value&gt;
+                        &lt;value&gt;106670673&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;clockRateKnown&lt;/key&gt;
@@ -4628,7 +4648,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -4955,7 +4975,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -5325,7 +5345,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -6298,7 +6318,524 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
+              <ipxact:value></ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="transformParameters" type="string">
+              <ipxact:name>transformParameters</ipxact:name>
+              <ipxact:displayName>Transform Parameters</ipxact:displayName>
+              <ipxact:value>&lt;transformParameterDescriptorDefinitionList/&gt;</ipxact:value>
+            </ipxact:parameter>
+          </ipxact:parameters>
+        </altera:altera_module_parameters>
+        <altera:altera_ecc_parameter_mappings altera:parentModule=""></altera:altera_ecc_parameter_mappings>
+      </altera:module>
+      <altera:module altera:enabled="true" altera:auto_export="false">
+        <altera:entity_info>
+          <ipxact:vendor>Altera Corporation</ipxact:vendor>
+          <ipxact:library>tod_sync_25g_iopll_0</ipxact:library>
+          <ipxact:name>altera_generic_component</ipxact:name>
+          <ipxact:version>1.0</ipxact:version>
+        </altera:entity_info>
+        <altera:altera_module_parameters>
+          <ipxact:parameters>
+            <ipxact:parameter parameterId="bspCpu" type="bit">
+              <ipxact:name>bspCpu</ipxact:name>
+              <ipxact:displayName>BSP CPU</ipxact:displayName>
+              <ipxact:value>false</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="componentDefinition" type="string">
+              <ipxact:name>componentDefinition</ipxact:name>
+              <ipxact:displayName>Component definition</ipxact:displayName>
+              <ipxact:value>&lt;componentDefinition&gt;
+    &lt;boundary&gt;
+        &lt;interfaces&gt;
+            &lt;interface&gt;
+                &lt;name&gt;refclk&lt;/name&gt;
+                &lt;type&gt;clock&lt;/type&gt;
+                &lt;isStart&gt;false&lt;/isStart&gt;
+                &lt;ports&gt;
+                    &lt;port&gt;
+                        &lt;name&gt;refclk&lt;/name&gt;
+                        &lt;role&gt;clk&lt;/role&gt;
+                        &lt;direction&gt;Input&lt;/direction&gt;
+                        &lt;width&gt;1&lt;/width&gt;
+                        &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                        &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                        &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                    &lt;/port&gt;
+                &lt;/ports&gt;
+                &lt;assignments&gt;
+                    &lt;assignmentValueMap&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;ui.blockdiagram.direction&lt;/key&gt;
+                            &lt;value&gt;input&lt;/value&gt;
+                        &lt;/entry&gt;
+                    &lt;/assignmentValueMap&gt;
+                &lt;/assignments&gt;
+                &lt;parameters&gt;
+                    &lt;parameterValueMap&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;clockRate&lt;/key&gt;
+                            &lt;value&gt;156250000&lt;/value&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;externallyDriven&lt;/key&gt;
+                            &lt;value&gt;false&lt;/value&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;ptfSchematicName&lt;/key&gt;
+                        &lt;/entry&gt;
+                    &lt;/parameterValueMap&gt;
+                &lt;/parameters&gt;
+            &lt;/interface&gt;
+            &lt;interface&gt;
+                &lt;name&gt;locked&lt;/name&gt;
+                &lt;type&gt;conduit&lt;/type&gt;
+                &lt;isStart&gt;false&lt;/isStart&gt;
+                &lt;ports&gt;
+                    &lt;port&gt;
+                        &lt;name&gt;locked&lt;/name&gt;
+                        &lt;role&gt;lock&lt;/role&gt;
+                        &lt;direction&gt;Output&lt;/direction&gt;
+                        &lt;width&gt;1&lt;/width&gt;
+                        &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                        &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                        &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                    &lt;/port&gt;
+                &lt;/ports&gt;
+                &lt;assignments&gt;
+                    &lt;assignmentValueMap&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;ui.blockdiagram.direction&lt;/key&gt;
+                            &lt;value&gt;output&lt;/value&gt;
+                        &lt;/entry&gt;
+                    &lt;/assignmentValueMap&gt;
+                &lt;/assignments&gt;
+                &lt;parameters&gt;
+                    &lt;parameterValueMap&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;associatedClock&lt;/key&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;associatedReset&lt;/key&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;prSafe&lt;/key&gt;
+                            &lt;value&gt;false&lt;/value&gt;
+                        &lt;/entry&gt;
+                    &lt;/parameterValueMap&gt;
+                &lt;/parameters&gt;
+            &lt;/interface&gt;
+            &lt;interface&gt;
+                &lt;name&gt;reset&lt;/name&gt;
+                &lt;type&gt;reset&lt;/type&gt;
+                &lt;isStart&gt;false&lt;/isStart&gt;
+                &lt;ports&gt;
+                    &lt;port&gt;
+                        &lt;name&gt;rst&lt;/name&gt;
+                        &lt;role&gt;reset&lt;/role&gt;
+                        &lt;direction&gt;Input&lt;/direction&gt;
+                        &lt;width&gt;1&lt;/width&gt;
+                        &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                        &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                        &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                    &lt;/port&gt;
+                &lt;/ports&gt;
+                &lt;assignments&gt;
+                    &lt;assignmentValueMap&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;ui.blockdiagram.direction&lt;/key&gt;
+                            &lt;value&gt;input&lt;/value&gt;
+                        &lt;/entry&gt;
+                    &lt;/assignmentValueMap&gt;
+                &lt;/assignments&gt;
+                &lt;parameters&gt;
+                    &lt;parameterValueMap&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;associatedClock&lt;/key&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;synchronousEdges&lt;/key&gt;
+                            &lt;value&gt;NONE&lt;/value&gt;
+                        &lt;/entry&gt;
+                    &lt;/parameterValueMap&gt;
+                &lt;/parameters&gt;
+            &lt;/interface&gt;
+            &lt;interface&gt;
+                &lt;name&gt;outclk0&lt;/name&gt;
+                &lt;type&gt;clock&lt;/type&gt;
+                &lt;isStart&gt;true&lt;/isStart&gt;
+                &lt;ports&gt;
+                    &lt;port&gt;
+                        &lt;name&gt;outclk_0&lt;/name&gt;
+                        &lt;role&gt;clk&lt;/role&gt;
+                        &lt;direction&gt;Output&lt;/direction&gt;
+                        &lt;width&gt;1&lt;/width&gt;
+                        &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                        &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                        &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                    &lt;/port&gt;
+                &lt;/ports&gt;
+                &lt;assignments&gt;
+                    &lt;assignmentValueMap&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;ui.blockdiagram.direction&lt;/key&gt;
+                            &lt;value&gt;output&lt;/value&gt;
+                        &lt;/entry&gt;
+                    &lt;/assignmentValueMap&gt;
+                &lt;/assignments&gt;
+                &lt;parameters&gt;
+                    &lt;parameterValueMap&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;associatedDirectClock&lt;/key&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;clockRate&lt;/key&gt;
+                            &lt;value&gt;317382812&lt;/value&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;clockRateKnown&lt;/key&gt;
+                            &lt;value&gt;true&lt;/value&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;externallyDriven&lt;/key&gt;
+                            &lt;value&gt;false&lt;/value&gt;
+                        &lt;/entry&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;ptfSchematicName&lt;/key&gt;
+                        &lt;/entry&gt;
+                    &lt;/parameterValueMap&gt;
+                &lt;/parameters&gt;
+            &lt;/interface&gt;
+        &lt;/interfaces&gt;
+    &lt;/boundary&gt;
+    &lt;originalModuleInfo&gt;
+        &lt;className&gt;altera_iopll&lt;/className&gt;
+        &lt;version&gt;21.1.0&lt;/version&gt;
+        &lt;displayName&gt;IOPLL IP&lt;/displayName&gt;
+    &lt;/originalModuleInfo&gt;
+    &lt;systemInfoParameterDescriptors&gt;
+        &lt;descriptors&gt;
+            &lt;descriptor&gt;
+                &lt;parameterDefaultValue&gt;&lt;/parameterDefaultValue&gt;
+                &lt;parameterName&gt;system_info_device_component&lt;/parameterName&gt;
+                &lt;parameterType&gt;java.lang.String&lt;/parameterType&gt;
+                &lt;systemInfotype&gt;DEVICE&lt;/systemInfotype&gt;
+            &lt;/descriptor&gt;
+            &lt;descriptor&gt;
+                &lt;parameterDefaultValue&gt;&lt;/parameterDefaultValue&gt;
+                &lt;parameterName&gt;system_info_device_family&lt;/parameterName&gt;
+                &lt;parameterType&gt;java.lang.String&lt;/parameterType&gt;
+                &lt;systemInfotype&gt;DEVICE_FAMILY&lt;/systemInfotype&gt;
+            &lt;/descriptor&gt;
+            &lt;descriptor&gt;
+                &lt;parameterDefaultValue&gt;&lt;/parameterDefaultValue&gt;
+                &lt;parameterName&gt;system_info_device_speed_grade&lt;/parameterName&gt;
+                &lt;parameterType&gt;[Ljava.lang.String;&lt;/parameterType&gt;
+                &lt;systemInfoArgs&gt;REAL_SPEED_GRADE&lt;/systemInfoArgs&gt;
+                &lt;systemInfotype&gt;DEVICE_INFO&lt;/systemInfotype&gt;
+            &lt;/descriptor&gt;
+            &lt;descriptor&gt;
+                &lt;parameterDefaultValue&gt;&lt;/parameterDefaultValue&gt;
+                &lt;parameterName&gt;system_part_trait_iobank_rev&lt;/parameterName&gt;
+                &lt;parameterType&gt;java.lang.String&lt;/parameterType&gt;
+                &lt;systemInfoArgs&gt;DEVICE_IOBANK_REVISION&lt;/systemInfoArgs&gt;
+                &lt;systemInfotype&gt;PART_TRAIT&lt;/systemInfotype&gt;
+            &lt;/descriptor&gt;
+            &lt;descriptor&gt;
+                &lt;parameterDefaultValue&gt;&lt;/parameterDefaultValue&gt;
+                &lt;parameterName&gt;system_part_trait_speed_grade&lt;/parameterName&gt;
+                &lt;parameterType&gt;java.lang.String&lt;/parameterType&gt;
+                &lt;systemInfoArgs&gt;DEVICE_SPEEDGRADE&lt;/systemInfoArgs&gt;
+                &lt;systemInfotype&gt;PART_TRAIT&lt;/systemInfotype&gt;
+            &lt;/descriptor&gt;
+        &lt;/descriptors&gt;
+    &lt;/systemInfoParameterDescriptors&gt;
+    &lt;systemInfos&gt;
+        &lt;connPtSystemInfos&gt;
+            &lt;entry&gt;
+                &lt;key&gt;outclk0&lt;/key&gt;
+                &lt;value&gt;
+                    &lt;connectionPointName&gt;outclk0&lt;/connectionPointName&gt;
+                    &lt;suppliedSystemInfos&gt;
+                        &lt;entry&gt;
+                            &lt;key&gt;CLOCK_RATE&lt;/key&gt;
+                            &lt;value&gt;317382812&lt;/value&gt;
+                        &lt;/entry&gt;
+                    &lt;/suppliedSystemInfos&gt;
+                    &lt;consumedSystemInfos/&gt;
+                &lt;/value&gt;
+            &lt;/entry&gt;
+        &lt;/connPtSystemInfos&gt;
+    &lt;/systemInfos&gt;
+&lt;/componentDefinition&gt;</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="cpuHashInfo" type="string">
+              <ipxact:name>cpuHashInfo</ipxact:name>
+              <ipxact:displayName>CPU Hash Info</ipxact:displayName>
+              <ipxact:value>&lt;cpuHashInfoDefinition&gt;
+    &lt;cpuHashInfoMap/&gt;
+&lt;/cpuHashInfoDefinition&gt;</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="cpuInfo" type="string">
+              <ipxact:name>cpuInfo</ipxact:name>
+              <ipxact:displayName>Cpu Info</ipxact:displayName>
+              <ipxact:value></ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="defaultBoundary" type="string">
+              <ipxact:name>defaultBoundary</ipxact:name>
+              <ipxact:displayName>Default boundary</ipxact:displayName>
+              <ipxact:value>&lt;boundaryDefinition&gt;
+    &lt;interfaces&gt;
+        &lt;interface&gt;
+            &lt;name&gt;refclk&lt;/name&gt;
+            &lt;type&gt;clock&lt;/type&gt;
+            &lt;isStart&gt;false&lt;/isStart&gt;
+            &lt;ports&gt;
+                &lt;port&gt;
+                    &lt;name&gt;refclk&lt;/name&gt;
+                    &lt;role&gt;clk&lt;/role&gt;
+                    &lt;direction&gt;Input&lt;/direction&gt;
+                    &lt;width&gt;1&lt;/width&gt;
+                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                &lt;/port&gt;
+            &lt;/ports&gt;
+            &lt;assignments&gt;
+                &lt;assignmentValueMap&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;ui.blockdiagram.direction&lt;/key&gt;
+                        &lt;value&gt;input&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/assignmentValueMap&gt;
+            &lt;/assignments&gt;
+            &lt;parameters&gt;
+                &lt;parameterValueMap&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;clockRate&lt;/key&gt;
+                        &lt;value&gt;156250000&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;externallyDriven&lt;/key&gt;
+                        &lt;value&gt;false&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;ptfSchematicName&lt;/key&gt;
+                    &lt;/entry&gt;
+                &lt;/parameterValueMap&gt;
+            &lt;/parameters&gt;
+        &lt;/interface&gt;
+        &lt;interface&gt;
+            &lt;name&gt;locked&lt;/name&gt;
+            &lt;type&gt;conduit&lt;/type&gt;
+            &lt;isStart&gt;false&lt;/isStart&gt;
+            &lt;ports&gt;
+                &lt;port&gt;
+                    &lt;name&gt;locked&lt;/name&gt;
+                    &lt;role&gt;export&lt;/role&gt;
+                    &lt;direction&gt;Output&lt;/direction&gt;
+                    &lt;width&gt;1&lt;/width&gt;
+                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                &lt;/port&gt;
+            &lt;/ports&gt;
+            &lt;assignments&gt;
+                &lt;assignmentValueMap&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;ui.blockdiagram.direction&lt;/key&gt;
+                        &lt;value&gt;output&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/assignmentValueMap&gt;
+            &lt;/assignments&gt;
+            &lt;parameters&gt;
+                &lt;parameterValueMap&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;associatedClock&lt;/key&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;associatedReset&lt;/key&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;prSafe&lt;/key&gt;
+                        &lt;value&gt;false&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/parameterValueMap&gt;
+            &lt;/parameters&gt;
+        &lt;/interface&gt;
+        &lt;interface&gt;
+            &lt;name&gt;reset&lt;/name&gt;
+            &lt;type&gt;reset&lt;/type&gt;
+            &lt;isStart&gt;false&lt;/isStart&gt;
+            &lt;ports&gt;
+                &lt;port&gt;
+                    &lt;name&gt;rst&lt;/name&gt;
+                    &lt;role&gt;reset&lt;/role&gt;
+                    &lt;direction&gt;Input&lt;/direction&gt;
+                    &lt;width&gt;1&lt;/width&gt;
+                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                &lt;/port&gt;
+            &lt;/ports&gt;
+            &lt;assignments&gt;
+                &lt;assignmentValueMap&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;ui.blockdiagram.direction&lt;/key&gt;
+                        &lt;value&gt;input&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/assignmentValueMap&gt;
+            &lt;/assignments&gt;
+            &lt;parameters&gt;
+                &lt;parameterValueMap&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;associatedClock&lt;/key&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;synchronousEdges&lt;/key&gt;
+                        &lt;value&gt;NONE&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/parameterValueMap&gt;
+            &lt;/parameters&gt;
+        &lt;/interface&gt;
+        &lt;interface&gt;
+            &lt;name&gt;outclk0&lt;/name&gt;
+            &lt;type&gt;clock&lt;/type&gt;
+            &lt;isStart&gt;true&lt;/isStart&gt;
+            &lt;ports&gt;
+                &lt;port&gt;
+                    &lt;name&gt;outclk_0&lt;/name&gt;
+                    &lt;role&gt;clk&lt;/role&gt;
+                    &lt;direction&gt;Output&lt;/direction&gt;
+                    &lt;width&gt;1&lt;/width&gt;
+                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
+                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
+                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
+                &lt;/port&gt;
+            &lt;/ports&gt;
+            &lt;assignments&gt;
+                &lt;assignmentValueMap&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;ui.blockdiagram.direction&lt;/key&gt;
+                        &lt;value&gt;output&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/assignmentValueMap&gt;
+            &lt;/assignments&gt;
+            &lt;parameters&gt;
+                &lt;parameterValueMap&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;associatedDirectClock&lt;/key&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;clockRate&lt;/key&gt;
+                        &lt;value&gt;317382812&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;clockRateKnown&lt;/key&gt;
+                        &lt;value&gt;true&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;externallyDriven&lt;/key&gt;
+                        &lt;value&gt;false&lt;/value&gt;
+                    &lt;/entry&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;ptfSchematicName&lt;/key&gt;
+                    &lt;/entry&gt;
+                &lt;/parameterValueMap&gt;
+            &lt;/parameters&gt;
+        &lt;/interface&gt;
+    &lt;/interfaces&gt;
+&lt;/boundaryDefinition&gt;</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="generationInfoDefinition" type="string">
+              <ipxact:name>generationInfoDefinition</ipxact:name>
+              <ipxact:displayName>Generation Behavior</ipxact:displayName>
+              <ipxact:value>&lt;generationInfoDefinition&gt;
+    &lt;hdlLibraryName&gt;tod_sync_25g_iopll_0&lt;/hdlLibraryName&gt;
+    &lt;fileSets&gt;
+        &lt;fileSet&gt;
+            &lt;fileSetName&gt;tod_sync_25g_iopll_0&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;tod_sync_25g_iopll_0&lt;/fileSetFixedName&gt;
+            &lt;fileSetKind&gt;QUARTUS_SYNTH&lt;/fileSetKind&gt;
+            &lt;fileSetFiles/&gt;
+            &lt;fileSetFileChangeDefs/&gt;
+        &lt;/fileSet&gt;
+        &lt;fileSet&gt;
+            &lt;fileSetName&gt;tod_sync_25g_iopll_0&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;tod_sync_25g_iopll_0&lt;/fileSetFixedName&gt;
+            &lt;fileSetKind&gt;SIM_VERILOG&lt;/fileSetKind&gt;
+            &lt;fileSetFiles/&gt;
+            &lt;fileSetFileChangeDefs/&gt;
+        &lt;/fileSet&gt;
+        &lt;fileSet&gt;
+            &lt;fileSetName&gt;tod_sync_25g_iopll_0&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;tod_sync_25g_iopll_0&lt;/fileSetFixedName&gt;
+            &lt;fileSetKind&gt;SIM_VHDL&lt;/fileSetKind&gt;
+            &lt;fileSetFiles/&gt;
+            &lt;fileSetFileChangeDefs/&gt;
+        &lt;/fileSet&gt;
+        &lt;fileSet&gt;
+            &lt;fileSetName&gt;tod_sync_25g_iopll_0&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;tod_sync_25g_iopll_0&lt;/fileSetFixedName&gt;
+            &lt;fileSetKind&gt;CDC&lt;/fileSetKind&gt;
+            &lt;fileSetFiles/&gt;
+            &lt;fileSetFileChangeDefs/&gt;
+        &lt;/fileSet&gt;
+        &lt;fileSet&gt;
+            &lt;fileSetName&gt;tod_sync_25g_iopll_0&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;tod_sync_25g_iopll_0&lt;/fileSetFixedName&gt;
+            &lt;fileSetKind&gt;CDC_VHDL&lt;/fileSetKind&gt;
+            &lt;fileSetFiles/&gt;
+            &lt;fileSetFileChangeDefs/&gt;
+        &lt;/fileSet&gt;
+    &lt;/fileSets&gt;
+&lt;/generationInfoDefinition&gt;</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="hdlParameters" type="string">
+              <ipxact:name>hdlParameters</ipxact:name>
+              <ipxact:displayName>HDL Parameters</ipxact:displayName>
+              <ipxact:value>&lt;hdlParameterDescriptorDefinitionList/&gt;</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="hlsFile" type="string">
+              <ipxact:name>hlsFile</ipxact:name>
+              <ipxact:displayName>HLS file</ipxact:displayName>
+              <ipxact:value></ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="liveModuleName" type="string">
+              <ipxact:name>liveModuleName</ipxact:name>
+              <ipxact:displayName>Live Module Name</ipxact:displayName>
+              <ipxact:value>tod_sync_25g_iopll_0</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="logicalView" type="string">
+              <ipxact:name>logicalView</ipxact:name>
+              <ipxact:displayName>Logical view</ipxact:displayName>
+              <ipxact:value>../ip/sys_manager/tod_sync_25g_iopll_0.ip</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="moduleAssignmentDefinition" type="string">
+              <ipxact:name>moduleAssignmentDefinition</ipxact:name>
+              <ipxact:displayName>Module Assignments</ipxact:displayName>
+              <ipxact:value>&lt;assignmentDefinition&gt;
+    &lt;assignmentValueMap&gt;
+        &lt;entry&gt;
+            &lt;key&gt;embeddedsw.dts.compatible&lt;/key&gt;
+            &lt;value&gt;altr,pll&lt;/value&gt;
+        &lt;/entry&gt;
+        &lt;entry&gt;
+            &lt;key&gt;embeddedsw.dts.group&lt;/key&gt;
+            &lt;value&gt;clock&lt;/value&gt;
+        &lt;/entry&gt;
+        &lt;entry&gt;
+            &lt;key&gt;embeddedsw.dts.vendor&lt;/key&gt;
+            &lt;value&gt;altr&lt;/value&gt;
+        &lt;/entry&gt;
+    &lt;/assignmentValueMap&gt;
+&lt;/assignmentDefinition&gt;</ipxact:value>
+            </ipxact:parameter>
+            <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
+              <ipxact:name>svInterfaceDefinition</ipxact:name>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -6511,7 +7048,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -6570,6 +7107,10 @@ https://fpgasoftware.intel.com/eula.-->
       <altera:interface_mapping altera:name="sysid_clk" altera:internal="sysid.clk" altera:type="clock" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="sysid_control_slave" altera:internal="sysid.control_slave" altera:type="avalon" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="sysid_reset" altera:internal="sysid.reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="tod_sync_25g_iopll_0_locked" altera:internal="tod_sync_25g_iopll_0.locked" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="tod_sync_25g_iopll_0_outclk0" altera:internal="tod_sync_25g_iopll_0.outclk0" altera:type="clock" altera:dir="start"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="tod_sync_25g_iopll_0_refclk" altera:internal="tod_sync_25g_iopll_0.refclk" altera:type="clock" altera:dir="end"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="tod_sync_25g_iopll_0_reset" altera:internal="tod_sync_25g_iopll_0.reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="user_rst_clkgate_0_ninit_done" altera:internal="user_rst_clkgate_0.ninit_done" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
     </altera:altera_interface_boundary>
     <ipxact:components>

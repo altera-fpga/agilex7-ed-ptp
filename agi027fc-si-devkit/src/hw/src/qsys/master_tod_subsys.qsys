@@ -1,17 +1,15 @@
 <?xml version="1.0" ?>
-<!--Your use of Intel Corporation's design tools, logic functions 
+<!--Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Intel Program License 
-Subscription Agreement, the Intel Quartus Prime License Agreement,
-the Intel FPGA IP License Agreement, or other applicable license
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
-Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.-->
+Altera and sold by Altera or its authorized distributors.-->
 <ipxact:design xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
   <ipxact:vendor>Altera Corporation</ipxact:vendor>
   <ipxact:library>master_tod_subsys</ipxact:library>
@@ -179,7 +177,12 @@ https://fpgasoftware.intel.com/eula.-->
             &lt;key&gt;master_tod_top_0_csr&lt;/key&gt;
             &lt;value&gt;
                 &lt;connectionPointName&gt;master_tod_top_0_csr&lt;/connectionPointName&gt;
-                &lt;suppliedSystemInfos/&gt;
+                &lt;suppliedSystemInfos&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
@@ -221,7 +224,12 @@ https://fpgasoftware.intel.com/eula.-->
             &lt;key&gt;mtod_subsys_pps_load_tod_0_csr&lt;/key&gt;
             &lt;value&gt;
                 &lt;connectionPointName&gt;mtod_subsys_pps_load_tod_0_csr&lt;/connectionPointName&gt;
-                &lt;suppliedSystemInfos/&gt;
+                &lt;suppliedSystemInfos&gt;
+                    &lt;entry&gt;
+                        &lt;key&gt;CPU_INFO_ID&lt;/key&gt;
+                        &lt;value&gt;&lt;/value&gt;
+                    &lt;/entry&gt;
+                &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
@@ -1572,7 +1580,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -1899,7 +1907,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -3215,7 +3223,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -3585,7 +3593,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -3599,10 +3607,10 @@ https://fpgasoftware.intel.com/eula.-->
       </altera:module>
     </altera:modules>
     <altera:connections>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="mtod_subsys_clk100.out_clk" altera:end="mtod_subsys_rstn.clk"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="mtod_subsys_clk100.out_clk" altera:end="mtod_subsys_pps_load_tod_0.csr_clock"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="mtod_subsys_clk100.out_clk" altera:end="master_tod_top_0.i_clk_reconfig"></altera:connection>
-      <altera:connection altera:kind="conduit" altera:version="25.3" altera:start="mtod_subsys_pps_load_tod_0.time_of_data_96b_load" altera:end="master_tod_top_0.avst_tod_load_data">
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="mtod_subsys_clk100.out_clk" altera:end="mtod_subsys_rstn.clk"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="mtod_subsys_clk100.out_clk" altera:end="mtod_subsys_pps_load_tod_0.csr_clock"></altera:connection>
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="mtod_subsys_clk100.out_clk" altera:end="master_tod_top_0.i_clk_reconfig"></altera:connection>
+      <altera:connection altera:kind="conduit" altera:version="26.1" altera:start="mtod_subsys_pps_load_tod_0.time_of_data_96b_load" altera:end="master_tod_top_0.avst_tod_load_data">
         <altera:connection_parameter altera:parameter_name="endPort" altera:parameter_value=""></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="endPortLSB" altera:parameter_value="0"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="startPort" altera:parameter_value=""></altera:connection_parameter>
