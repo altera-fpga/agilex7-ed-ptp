@@ -3,7 +3,6 @@
 //# SPDX-License-Identifier: MIT
 //# ######################################################################## 
 
-
 module ts_chs_compl #(
     parameter int NUM_PORTS         = 1
    ,parameter int AVST_DATA_WIDTH   = 128
@@ -87,13 +86,13 @@ module ts_chs_compl #(
    for(genvar i = 0; i < NUM_PORTS; i++) begin : ts_ch_resp
       logic                         clk, rst, eth_clk, eth_rst;
       logic                         fifo_wr_req, fifo_wr_req_r, fifo_rd_req, fifo_empty;
-      logic                         ts_valid, ts_valid_f, incr_id, equal_id, ts_cntr_dec;
+      logic                         ts_valid, ts_valid_f, incr_id, miss_id, equal_id, ts_cntr_dec, latched_ts;
       logic [CHANNEL_WIDTH-1:0]     src_ch;
       logic [ID_WIDTH-1:0]          id, id_r, new_id, new_id_f, id_f;
       logic [DATA_WIDTH-1:0]        ts_data, ts_data_f;
       logic [TO_CNTR_WIDTH-1:0]     to_cntr;
       logic [ID_WIDTH-1:0]          cur_id;
-      logic [DATA_WIDTH-1:0]        new_ts_data_f, new_ts_data_fkeep;
+      logic [DATA_WIDTH-1:0]        new_ts_data_f,new_ts_data_latched, new_ts_data_fkeep;
       logic [TS_REQ_CNTR_WIDTH-1:0] ts_req_cntr;
 
       always_comb begin
@@ -112,22 +111,19 @@ module ts_chs_compl #(
       always_ff @(posedge eth_clk) begin
          if(eth_rst) begin
             new_id <= '1;
+			fifo_wr_req_r <= '0;
+			id_r <= '0;
+			ts_data <= '0;
          end else begin
             if(fifo_wr_req) begin
                new_id <= id;
             end
+			fifo_wr_req_r <= fifo_wr_req;
+			id_r <= id;
+			ts_data <= ts_a_data[i];
          end
       end
 
-      always_ff @(posedge eth_clk) begin
-         fifo_wr_req_r <= fifo_wr_req;
-         id_r <= id;
-         ts_data <= ts_a_data[i];
-
-         if(eth_rst) begin
-            fifo_wr_req_r <= '0;
-         end
-      end
 
       dc_fifo_param #(
           .ADDR_WIDTH     (TS_FIFO_ADDR_WIDTH)
@@ -150,10 +146,13 @@ module ts_chs_compl #(
 
 //      always_comb new_ts_data_fkeep = (fifo_rd_req) ? new_ts_data_f : new_ts_data_fkeep;
 
-      always_comb fifo_rd_req = ~fifo_empty && (cur_id[ID_WIDTH-2:0] >= new_id_f[ID_WIDTH-2:0] || cur_id[ID_WIDTH-1] != new_id_f[ID_WIDTH-1]);   
-      always_comb incr_id     = ~fifo_empty && (cur_id[ID_WIDTH-2:0] <= new_id_f[ID_WIDTH-2:0] || cur_id[ID_WIDTH-1] != new_id_f[ID_WIDTH-1]);  
+      always_comb fifo_rd_req = (~fifo_empty && ~latched_ts) && (((cur_id[ID_WIDTH-1:0] >=  new_id_f[ID_WIDTH-1:0]) && ~(new_id_f[ID_WIDTH-1:ID_WIDTH-3]==0 && cur_id[ID_WIDTH-1:ID_WIDTH-3] == ~new_id_f[ID_WIDTH-1:ID_WIDTH-3])) || ((cur_id[ID_WIDTH-1:0] <  new_id_f[ID_WIDTH-1:0]) && (cur_id[ID_WIDTH-1:ID_WIDTH-3] == 0) && (cur_id[ID_WIDTH-1:ID_WIDTH-3] == ~new_id_f[ID_WIDTH-1:ID_WIDTH-3])));  
+      always_comb incr_id     = (~fifo_empty || latched_ts) && (cur_id[ID_WIDTH-1:0] == new_id_f[ID_WIDTH-1:0]);  
+	  always_comb miss_id     = (~fifo_empty || latched_ts) && (((cur_id[ID_WIDTH-1:0] <  new_id_f[ID_WIDTH-1:0]) && ~(cur_id[ID_WIDTH-1:ID_WIDTH-3]==0 && cur_id[ID_WIDTH-1:ID_WIDTH-3] == ~new_id_f[ID_WIDTH-1:ID_WIDTH-3])) || ((cur_id[ID_WIDTH-1:0] >  new_id_f[ID_WIDTH-1:0]) && (new_id_f[ID_WIDTH-1:ID_WIDTH-3] == 0) && (cur_id[ID_WIDTH-1:ID_WIDTH-3] == ~new_id_f[ID_WIDTH-1:ID_WIDTH-3])));  
+																
 
-      always_comb ts_cntr_dec = (fifo_rd_req || &to_cntr) && ts_req_cntr;
+     // always_comb ts_cntr_dec = (fifo_rd_req || &to_cntr || latched_ts) && ts_req_cntr;
+	 always_comb ts_cntr_dec = cur_id_valid[i] && ts_req_cntr;
       always_ff @(posedge clk) begin
          if(rst) begin
             ts_req_cntr <= '0;
@@ -176,7 +175,7 @@ module ts_chs_compl #(
          if(rst) begin
             to_cntr <= '0;
          end else begin
-            if(!ts_req_cntr || fifo_rd_req) begin
+            if(!ts_req_cntr || fifo_rd_req || &to_cntr || latched_ts) begin
                to_cntr <= '0;
             end else if(~(&to_cntr)) begin
                to_cntr <= to_cntr + 1'b1;
@@ -188,13 +187,29 @@ module ts_chs_compl #(
          if(rst) begin
             cur_id <= '0;
             cur_id_valid[i] <= '0;
+			new_ts_data_latched <= '0;
+			latched_ts <= 0;
          end else begin
             cur_id_valid[i] <= '0;
             ts_p_fp[i] <= cur_id;
-            ts_p_data[i] <= new_ts_data_f;
-            if(incr_id) begin
+            ts_p_data[i] <= new_ts_data_f;	
+			if(miss_id) begin
                cur_id_valid[i] <= '1;
                cur_id <= cur_id + 1'b1;
+			   ts_p_data[i] <= 0; 
+			   if(~latched_ts) begin
+			   new_ts_data_latched <= new_ts_data_f;
+			   latched_ts <= 1;
+			   end
+            end else if(incr_id) begin
+               cur_id_valid[i] <= '1;
+               cur_id <= cur_id + 1'b1;
+			   ts_p_data[i] <= new_ts_data_f;
+			   if(latched_ts) begin
+			   ts_p_data[i] <= new_ts_data_latched;
+			   latched_ts <= 0;
+			   new_ts_data_latched <= '0;
+			   end
             end else if(&to_cntr && ts_req_cntr) begin
                cur_id_valid[i] <= '1;
                cur_id <= cur_id + 1'b1;

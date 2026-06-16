@@ -50,7 +50,7 @@ proc read_parameter {filename param_name {valid_values {}}} {
     return ""
 }
 
-set valid_configs {10G_NON_ANLT 25G_NON_ANLT 50G_NON_ANLT 100G_NON_ANLT 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT}
+set valid_configs {10G_NON_ANLT 25G_NON_ANLT 50G_NON_ANLT 100G_NON_ANLT 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT 10G_25G_NON_ANLT_DR}
 set code [catch {
     set config_file "config.txt"
     set param_value [read_parameter $config_file "Configuration" $valid_configs] 

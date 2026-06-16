@@ -58,12 +58,10 @@ module rx_dma_fifo #(
 
    always_comb out_st_error = '0;
 
+	 
    cdc_packet_fifo #(
-       .USE_RX_READY          (USE_RX_READY)
-      ,.DEVICE                (DEVICE)
-      ,.MEMORY_CAPACITY_WORDS (MEMORY_CAPACITY_WORDS)
+      .MEMORY_CAPACITY_WORDS (MEMORY_CAPACITY_WORDS)
       ,.AVST_DATA_WIDTH       (AVST_DATA_WIDTH)
-      ,.RX_AVST_READY_LATENCY (RX_AVST_READY_LATENCY)
       ,.AVST_USER_WIDTH       (TS_WIDTH)
       ,.AVST_ERROR_WIDTH      (FIFO_ERROR_WIDTH)
    ) cdc_packet_fifo (
@@ -88,18 +86,7 @@ module rx_dma_fifo #(
       ,.out_avst_data         (out_st_data)
       ,.out_avst_user         (ts_data)
 
-      ,.csr_mm_clk            (csr_clk)
-      ,.csr_mm_reset          (csr_rst)
-      ,.csr_mm_waitrequest    ()
-      ,.csr_mm_read           ('0)
-      ,.csr_mm_write          ('0)
-      ,.csr_mm_address        ()
-      ,.csr_mm_writedata      ()
-      ,.csr_mm_readdatavalid  ()
-      ,.csr_mm_readdata       ()
-
-      ,.fill_level_on_tx_clk  ()
-   );
+  );
 
    parameter_scfifo #(
        .ADDR_WIDTH        (4)

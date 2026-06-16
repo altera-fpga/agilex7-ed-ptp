@@ -1,17 +1,15 @@
 <?xml version="1.0" ?>
-<!--Your use of Intel Corporation's design tools, logic functions 
+<!--Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Intel Program License 
-Subscription Agreement, the Intel Quartus Prime License Agreement,
-the Intel FPGA IP License Agreement, or other applicable license
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
-Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.-->
+Altera and sold by Altera or its authorized distributors.-->
 <ipxact:design xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
   <ipxact:vendor>Altera Corporation</ipxact:vendor>
   <ipxact:library>hps_sub_sys</ipxact:library>
@@ -2568,7 +2566,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -8328,7 +8326,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -8756,7 +8754,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -9784,7 +9782,7 @@ https://fpgasoftware.intel.com/eula.-->
             </ipxact:parameter>
             <ipxact:parameter parameterId="svInterfaceDefinition" type="string">
               <ipxact:name>svInterfaceDefinition</ipxact:name>
-              <ipxact:displayName>System Verilog Interface definition</ipxact:displayName>
+              <ipxact:displayName>SystemVerilog Interface definition</ipxact:displayName>
               <ipxact:value></ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="transformParameters" type="string">
@@ -9798,7 +9796,7 @@ https://fpgasoftware.intel.com/eula.-->
       </altera:module>
     </altera:modules>
     <altera:connections>
-      <altera:connection altera:kind="avalon" altera:version="25.3" altera:start="agilex_axi_bridge_for_acp_0.m0" altera:end="agilex_hps.f2h_axi_slave">
+      <altera:connection altera:kind="avalon" altera:version="26.1" altera:start="agilex_axi_bridge_for_acp_0.m0" altera:end="agilex_hps.f2h_axi_slave">
         <altera:connection_parameter altera:parameter_name="arbitrationPriority" altera:parameter_value="1"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="baseAddress" altera:parameter_value="0x0000"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="defaultConnection" altera:parameter_value="false"></altera:connection_parameter>
@@ -9809,6 +9807,7 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableEccProtection" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableInstrumentation" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.enableOutOfOrderSupport" altera:parameter_value="FALSE"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="qsys_mm.fifoDepth" altera:parameter_value="8"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.insertDefaultSlave" altera:parameter_value="FALSE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectResetSource" altera:parameter_value="DEFAULT"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.interconnectType" altera:parameter_value="STANDARD"></altera:connection_parameter>
@@ -9820,15 +9819,15 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:connection_parameter altera:parameter_name="qsys_mm.syncResets" altera:parameter_value="TRUE"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.widthAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="clock" altera:version="25.3" altera:start="emif_calbus_0.emif_calbus_clk" altera:end="emif_hps.emif_calbus_clk"></altera:connection>
-      <altera:connection altera:kind="conduit" altera:version="25.3" altera:start="emif_hps.emif_calbus" altera:end="emif_calbus_0.emif_calbus_0">
+      <altera:connection altera:kind="clock" altera:version="26.1" altera:start="emif_calbus_0.emif_calbus_clk" altera:end="emif_hps.emif_calbus_clk"></altera:connection>
+      <altera:connection altera:kind="conduit" altera:version="26.1" altera:start="emif_hps.emif_calbus" altera:end="emif_calbus_0.emif_calbus_0">
         <altera:connection_parameter altera:parameter_name="endPort" altera:parameter_value=""></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="endPortLSB" altera:parameter_value="0"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="startPort" altera:parameter_value=""></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="startPortLSB" altera:parameter_value="0"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="width" altera:parameter_value="0"></altera:connection_parameter>
       </altera:connection>
-      <altera:connection altera:kind="conduit" altera:version="25.3" altera:start="emif_hps.hps_emif" altera:end="agilex_hps.hps_emif">
+      <altera:connection altera:kind="conduit" altera:version="26.1" altera:start="emif_hps.hps_emif" altera:end="agilex_hps.hps_emif">
         <altera:connection_parameter altera:parameter_name="endPort" altera:parameter_value=""></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="endPortLSB" altera:parameter_value="0"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="startPort" altera:parameter_value=""></altera:connection_parameter>
@@ -9844,20 +9843,15 @@ https://fpgasoftware.intel.com/eula.-->
     <altera:altera_group_hierarchy_contents></altera:altera_group_hierarchy_contents>
     <altera:altera_interface_boundary>
       <altera:interface_mapping altera:name="agilex_axi_bridge_for_acp_0_clock" altera:internal="agilex_axi_bridge_for_acp_0.clock" altera:type="clock" altera:dir="end"></altera:interface_mapping>
-      <altera:interface_mapping altera:name="agilex_axi_bridge_for_acp_0_csr" altera:internal="agilex_axi_bridge_for_acp_0.csr"></altera:interface_mapping>
-      <altera:interface_mapping altera:name="agilex_axi_bridge_for_acp_0_csr_clock" altera:internal="agilex_axi_bridge_for_acp_0.csr_clock"></altera:interface_mapping>
-      <altera:interface_mapping altera:name="agilex_axi_bridge_for_acp_0_csr_reset" altera:internal="agilex_axi_bridge_for_acp_0.csr_reset"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_axi_bridge_for_acp_0_reset" altera:internal="agilex_axi_bridge_for_acp_0.reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_axi_bridge_for_acp_0_s0" altera:internal="agilex_axi_bridge_for_acp_0.s0" altera:type="axi4" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_f2h_axi_clock" altera:internal="agilex_hps.f2h_axi_clock" altera:type="clock" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_f2h_axi_reset" altera:internal="agilex_hps.f2h_axi_reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_f2h_irq0" altera:internal="agilex_hps.f2h_irq0" altera:type="interrupt" altera:dir="start"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_f2h_irq1" altera:internal="agilex_hps.f2h_irq1" altera:type="interrupt" altera:dir="start"></altera:interface_mapping>
-      <altera:interface_mapping altera:name="agilex_hps_f2h_stm_hw_events" altera:internal="agilex_hps.f2h_stm_hw_events"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_h2f_axi_clock" altera:internal="agilex_hps.h2f_axi_clock" altera:type="clock" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_h2f_axi_master" altera:internal="agilex_hps.h2f_axi_master" altera:type="axi4" altera:dir="start"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_h2f_axi_reset" altera:internal="agilex_hps.h2f_axi_reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
-      <altera:interface_mapping altera:name="agilex_hps_h2f_cs" altera:internal="agilex_hps.h2f_cs"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_h2f_lw_axi_clock" altera:internal="agilex_hps.h2f_lw_axi_clock" altera:type="clock" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_h2f_lw_axi_master" altera:internal="agilex_hps.h2f_lw_axi_master" altera:type="axi4" altera:dir="start"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_h2f_lw_axi_reset" altera:internal="agilex_hps.h2f_lw_axi_reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
@@ -9870,8 +9864,6 @@ https://fpgasoftware.intel.com/eula.-->
       <altera:interface_mapping altera:name="agilex_hps_i2c1" altera:internal="agilex_hps.i2c1" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_i2c1_clk" altera:internal="agilex_hps.i2c1_clk" altera:type="clock" altera:dir="start"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_i2c1_scl_in" altera:internal="agilex_hps.i2c1_scl_in" altera:type="clock" altera:dir="end"></altera:interface_mapping>
-      <altera:interface_mapping altera:name="agilex_hps_spim1" altera:internal="agilex_hps.spim1"></altera:interface_mapping>
-      <altera:interface_mapping altera:name="agilex_hps_spim1_sclk_out" altera:internal="agilex_hps.spim1_sclk_out"></altera:interface_mapping>
       <altera:interface_mapping altera:name="agilex_hps_uart1" altera:internal="agilex_hps.uart1" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="emif_hps_mem" altera:internal="emif_hps.mem" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="emif_hps_oct" altera:internal="emif_hps.oct" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
@@ -9886,11 +9878,11 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:busInterfaces>
           <ipxact:busInterface>
             <ipxact:name>agilex_hps.f2h_axi_slave</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="acelite" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="acelite" version="26.1"></ipxact:busType>
           </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>agilex_axi_bridge_for_acp_0.m0</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="acelite" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="acelite" version="26.1"></ipxact:busType>
             <ipxact:master>
               <ipxact:addressSpaceRef addressSpaceRef="agilex_axi_bridge_for_acp_0.m0">
                 <ipxact:baseAddress>0x0000_0000_0000_0000</ipxact:baseAddress>
@@ -9899,12 +9891,12 @@ https://fpgasoftware.intel.com/eula.-->
           </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>agilex_hps.h2f_axi_master</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="axi4" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="axi4" version="26.1"></ipxact:busType>
             <ipxact:master></ipxact:master>
           </ipxact:busInterface>
           <ipxact:busInterface>
             <ipxact:name>agilex_hps.h2f_lw_axi_master</ipxact:name>
-            <ipxact:busType vendor="intel" library="intel" name="axi4" version="25.3"></ipxact:busType>
+            <ipxact:busType vendor="intel" library="intel" name="axi4" version="26.1"></ipxact:busType>
             <ipxact:master></ipxact:master>
           </ipxact:busInterface>
         </ipxact:busInterfaces>

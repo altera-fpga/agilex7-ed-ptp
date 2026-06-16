@@ -24,6 +24,7 @@ module pp_tod_stack #(
         input  wire [95:0]       i_ptp_master_tod,
         input  wire              i_ptp_master_tod_valid,
         input  wire              i_tx_pll_locked,
+        input  wire              rx_pcs_ready,
 
         output reg  [95:0]       ptp_tx_tod_muxed,
         output reg               ptp_tx_tod_valid_muxed,
@@ -52,7 +53,7 @@ module pp_tod_stack #(
     logic                        ptp_tx_tod_valid_10g;
     logic                        ptp_rx_tod_valid_10g;
 	
-    logic                        tx_pll_locked_sync;
+    logic                        tx_pll_locked_sync, rx_pcs_ready_sync;
     logic                        tx_todsync_sampling_clk_locked_sync;
     logic                        rx_todsync_sampling_clk_locked_sync;
     logic                        tx_todsync_sampling_clk_locked_sync_10g;
@@ -62,7 +63,7 @@ module pp_tod_stack #(
 //---------------------------------------------------------------
 
 
-logic tx_pll_locked_reconfig_sync;
+logic tx_pll_locked_reconfig_sync, rx_pcs_ready_reconfig_sync;
 
 
 eth_f_altera_std_synchronizer_nocut tx_pll_locked_reconfig_sync_inst (
@@ -72,15 +73,24 @@ eth_f_altera_std_synchronizer_nocut tx_pll_locked_reconfig_sync_inst (
     .dout       (tx_pll_locked_reconfig_sync)
 );
 
+eth_f_altera_std_synchronizer_nocut rx_pcs_ready_reconfig_sync_inst (
+    .clk        (i_reconfig_clk),
+    .reset_n    (1'b1),
+    .din        (rx_pcs_ready),
+    .dout       (rx_pcs_ready_reconfig_sync)
+);
 
     // PTP Timestamp Accuracy Mode = "1:Advanced"
     assign clk_tx_tod  = i_clk_tx_tod;
     assign clk_rx_tod  = i_clk_rx_tod;
 
-    logic tx_pll_locked_reg;
+    logic tx_pll_locked_reg, rx_pcs_ready_reg;
 
     always @(posedge i_reconfig_clk) begin
         tx_pll_locked_reg   <= tx_pll_locked_reconfig_sync;
+    end
+    always @(posedge i_reconfig_clk) begin
+        rx_pcs_ready_reg   <= rx_pcs_ready_reconfig_sync;
     end
 	
     eth_f_altera_std_synchronizer_nocut tx_pll_locked_sync_inst (
@@ -88,6 +98,12 @@ eth_f_altera_std_synchronizer_nocut tx_pll_locked_reconfig_sync_inst (
         .reset_n    (1'b1),
         .din        (tx_pll_locked_reg),
         .dout       (tx_pll_locked_sync)
+    );
+    eth_f_altera_std_synchronizer_nocut rx_pcs_ready_sync_inst (
+        .clk        (clk_tx_tod),
+        .reset_n    (1'b1),
+        .din        (rx_pcs_ready_reg),
+        .dout       (rx_pcs_ready_sync)
     );
 	
     //------------------------------------------------------------------------------------
@@ -110,7 +126,7 @@ eth_f_altera_std_synchronizer_nocut tx_pll_locked_reconfig_sync_inst (
     );
 
     assign tx_tod_rst_n_wire = tx_pll_locked_sync & tx_todsync_sampling_clk_locked_sync;
-    assign rx_tod_rst_n_wire = rx_todsync_sampling_clk_locked_sync;
+    assign rx_tod_rst_n_wire = rx_pcs_ready_sync & rx_todsync_sampling_clk_locked_sync;
     
     // flops to fix recovery time violation from tx_tod_rst_n to tod_sync inst
     always @(posedge clk_tx_tod) begin
@@ -169,7 +185,7 @@ eth_f_altera_std_synchronizer_nocut tx_pll_locked_reconfig_sync_inst (
     );
 
     assign tx_tod_rst_n_wire_10g = tx_pll_locked_sync & tx_todsync_sampling_clk_locked_sync_10g;
-    assign rx_tod_rst_n_wire_10g = rx_todsync_sampling_clk_locked_sync_10g;
+    assign rx_tod_rst_n_wire_10g = rx_pcs_ready_sync & rx_todsync_sampling_clk_locked_sync_10g;
     
     // flops to fix recovery time violation from tx_tod_rst_n to tod_sync inst
     always @(posedge clk_tx_tod) begin
@@ -186,7 +202,7 @@ eth_f_altera_std_synchronizer_nocut tx_pll_locked_reconfig_sync_inst (
         .i_reconfig_rst_n           (~i_reconfig_reset),
         .i_clk_mtod                 (i_clk_master_tod),
         .i_clk_stod                 (clk_tx_tod),
-        .i_clk_todsync_sampling     (i_clk_todsync_sample),
+        .i_clk_todsync_sampling     (i_clk_todsync_sample_10g), //(i_clk_todsync_sample),
         .i_mtod_rst_n               (i_ptp_master_tod_rst_n),
         .i_stod_rst_n               (tx_tod_rst_n_10g),
         .i_mtod_data                (i_ptp_master_tod),
@@ -199,7 +215,7 @@ eth_f_altera_std_synchronizer_nocut tx_pll_locked_reconfig_sync_inst (
         .i_reconfig_rst_n           (~i_reconfig_reset),
         .i_clk_mtod                 (i_clk_master_tod),
         .i_clk_stod                 (clk_rx_tod),
-        .i_clk_todsync_sampling     (i_clk_todsync_sample),
+        .i_clk_todsync_sampling     (i_clk_todsync_sample_10g), //(i_clk_todsync_sample),
         .i_mtod_rst_n               (i_ptp_master_tod_rst_n),
         .i_stod_rst_n               (rx_tod_rst_n_10g),
         .i_mtod_data                (i_ptp_master_tod),

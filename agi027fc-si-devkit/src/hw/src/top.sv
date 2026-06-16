@@ -33,6 +33,17 @@ import ptp_bridge_hdr_pkg::*;
       ,parameter RX_USER_STS_WIDTH            = 5  
       ,parameter WORDS                        = 1 //8 NOTE: WORDS = 1, DATA WIDTH = WORDS*64 = 64
       ,parameter EMPTY_WIDTH                  = 4 //6 NOTE: EMPTY_WIDTH = $clog2(DATA_WIDTH/8)+1;
+    `elsif FTILE_PTP_HSSI_10G_25G_NON_ANLT_DR
+      ,parameter ETHERNET_PORTS               = 2
+      ,parameter ETHERNET_RATE                = 25   // supports 10/25/50/100/200/400   
+      ,parameter DMA_TDATA_WIDTH              = 64   // supports only 64b
+      ,parameter HSSI_TDATA_WIDTH	          = 64   // supports 64/128/256/512/1024
+      ,parameter HSSI_NUM_OF_SEG              = 1    // supports 1/2/4/8/16
+      ,parameter TX_USER_CLIENT_WIDTH         = 2
+      ,parameter RX_USER_CLIENT_WIDTH         = 7
+      ,parameter RX_USER_STS_WIDTH            = 5  
+      ,parameter WORDS                        = 1 //8 NOTE: WORDS = 1, DATA WIDTH = WORDS*64 = 64
+      ,parameter EMPTY_WIDTH                  = 4 //6 NOTE: EMPTY_WIDTH = $clog2(DATA_WIDTH/8)+1;
     `elsif FTILE_PTP_HSSI_50G_AUI1_PAM4_ANLT 
       ,parameter ETHERNET_PORTS               = 2
       ,parameter ETHERNET_RATE                = 50   // supports 10/25/50/100/200/400   
@@ -247,7 +258,7 @@ import ptp_bridge_hdr_pkg::*;
   localparam EGR_DMA_BYTE_ROTATE = 1;
   localparam EGR_USER_BYTE_ROTATE = 1;
   localparam EGR_HSSI_BYTE_ROTATE = 0;
-  localparam DBG_CNTR_EN = 1;
+  localparam DBG_CNTR_EN = 0;
   
   logic [NUM_PORTS-1:0] tx_init_done, rx_init_done;
   localparam AWADDR_WIDTH = 32;
@@ -476,7 +487,9 @@ import ptp_bridge_hdr_pkg::*;
   wire  [1:0]           qsfpdd_status_pio;
   wire  [5:0]           qsfpdd_spi_ctrl_pio;
   wire  [1:0]           glitch_free_cmux_sel;
-
+  wire  [1:0]           dr_speed_10g_25g;
+  wire                  o_p8_clk_rec_div_clk;
+  
   // Traffic generator module instantiation
   wire  [NUM_PORTS-1:0]                              avst_tx_ready_int;
   wire  [NUM_PORTS-1:0]                              avst_tx_valid_int;
@@ -516,6 +529,68 @@ import ptp_bridge_hdr_pkg::*;
    defparam rd1.CNTR_BITS = 28;//TODO check 16bits
    alt_reset_delay rd1 (.clk(fpga_clk_100), .ready_in(~ninit_done), .ready_out(system_reset_n) );
 `endif
+
+  logic hssi_cdr_clk_out_sig;
+  assign hssi_cdr_clk_out = hssi_cdr_clk_out_sig;
+  //assign hssi_cdr_clk_out[0] = hssi_cdr_clk_out_sig;
+  //assign hssi_cdr_clk_out[1] = o_p8_clk_rec_div_clk;
+  
+  logic p8_tx_rst_n_eth_p0, p8_rx_rst_n_eth_p0, p8_tx_rst_n_eth_p1, p8_rx_rst_n_eth_p1;
+  logic [1:0] rst_n_eth_p, rst_n_eth_p_sync, reset_eth_p, reset_eth_p_sync;
+   
+always @(posedge fpga_clk_100 or negedge system_reset_n)
+  if(~system_reset_n) begin
+      rst_n_eth_p[0]  <= 1'b0;
+      rst_n_eth_p[1]  <= 1'b0;
+    end
+  else begin
+      rst_n_eth_p[0]  <= !reset_eth_p_sync[0];
+      rst_n_eth_p[1]  <= !reset_eth_p_sync[0];
+  end  
+	 
+
+for (genvar i=0; i < NUM_PORTS; i++) begin : rst_eth_port
+	   eth_f_altera_std_synchronizer_nocut rst_n_eth_port_100M (
+        .clk        (fpga_clk_100),
+        .reset_n    (1'b1),
+        .din        (reset_eth_p[i]),
+        .dout       (reset_eth_p_sync[i])
+    );
+end
+ 
+	
+always @(posedge o_clk_pll[0] or negedge rst_n_eth_p_sync[0])
+  if(~rst_n_eth_p_sync[0])
+    p8_tx_rst_n_eth_p0 <= 1'b0;
+  else
+    p8_tx_rst_n_eth_p0 <= 1'b1;
+	 
+always @(posedge o_clk_pll[0] or negedge rst_n_eth_p_sync[0])
+  if(~rst_n_eth_p_sync[0])
+    p8_rx_rst_n_eth_p0 <= 1'b0;
+  else
+    p8_rx_rst_n_eth_p0 <= 1'b1;
+	 
+always @(posedge o_clk_pll[1] or negedge rst_n_eth_p_sync[1])
+  if(~rst_n_eth_p_sync[1])
+    p8_tx_rst_n_eth_p1 <= 1'b0;
+  else 
+    p8_tx_rst_n_eth_p1 <= 1'b1;
+	 
+always @(posedge o_clk_pll[1] or negedge rst_n_eth_p_sync[1])
+  if(~rst_n_eth_p_sync[1])
+    p8_rx_rst_n_eth_p1 <= 1'b0;
+  else 
+    p8_rx_rst_n_eth_p1 <= 1'b1;
+
+for (genvar i=0; i < NUM_PORTS; i++) begin : rst_port
+	   eth_f_altera_std_synchronizer_nocut rst_n_eth_port (
+        .clk        (o_clk_pll[i]),
+        .reset_n    (1'b1),
+        .din        (rst_n_eth_p[i]),
+        .dout       (rst_n_eth_p_sync[i])
+    );
+end
 
 // cold boot reset logic
     eth_f_altera_std_synchronizer_nocut cold_boot_rstackn_sync_inst1 (
@@ -1212,8 +1287,10 @@ qsys_top #(
       .o_p3_clk_pll_clk                                                                       (o_clk_pll[1]),
       .o_p4_clk_pll_clk                                                                       (o_clk_pll[1]),
       .o_p5_clk_pll_clk                                                                       (o_clk_pll[1]),
-      .qsfpdd_status_pio_external_connection_export                                           (qsfpdd_status_pio),
-      .qsfpdd_ctrl_pio_0_econ_export                                                          (qsfpdd_spi_ctrl_pio),
+      .pio_subsystem_0_pio_subsystem_status_export                                            (qsfpdd_status_pio),
+      .pio_subsystem_0_sys_ctrl_pio_export                                                    (qsfpdd_spi_ctrl_pio),
+		.pio_subsystem_0_eth_speed_pio_p0_export                                                (dr_speed_10g_25g[0]),
+		.pio_subsystem_0_eth_speed_pio_p1_export                                                (dr_speed_10g_25g[1]),
       .clk_100_clk                                                                            (fpga_clk_100),
       .dma_subsys_port0_rx_dma_resetn_reset_n                                                 (system_reset_n),
       .dma_subsys_port1_rx_dma_resetn_reset_n                                                 (system_reset_n),
@@ -1237,30 +1314,38 @@ qsys_top #(
       .tod_slave_subsys_port_0_tod_stack_tx_tod_interface_tdata                               (hssi_ptp_tx_tod_tdata[0]),
       .tod_slave_subsys_port_0_tod_stack_rx_tod_interface_tvalid                              (hssi_ptp_rx_tod_tvalid[0]),
       .tod_slave_subsys_port_0_tod_stack_rx_tod_interface_tdata                               (hssi_ptp_rx_tod_tdata[0]),   
-      `ifdef FTILE_PTP_HSSI_10G
-      .tod_slave_subsys_port_0_tod_stack_todsync_sel_todsync_sel                              (1'b1),
-      `elsif FTILE_PTP_HSSI_10G_ANLT
-      .tod_slave_subsys_port_0_tod_stack_todsync_sel_todsync_sel                              (1'b1),
-      `else
-      .tod_slave_subsys_port_0_tod_stack_todsync_sel_todsync_sel                              (1'b0),
-      `endif
+//      `ifdef FTILE_PTP_HSSI_10G
+//      .tod_slave_subsys_port_0_tod_stack_todsync_sel_todsync_sel                              (1'b1),
+//      `elsif FTILE_PTP_HSSI_10G_ANLT
+//      .tod_slave_subsys_port_0_tod_stack_todsync_sel_todsync_sel                              (1'b1),
+//      `else
+//      .tod_slave_subsys_port_0_tod_stack_todsync_sel_todsync_sel                              (1'b0),
+//      `endif
+      .tod_slave_subsys_port_0_tod_stack_todsync_sel_todsync_sel                              (dr_speed_10g_25g[0]),
       
       .tod_slave_subsys_port_1_tod_stack_tx_pll_locked_lock                                   (status_vector[14]), 
       .tod_slave_subsys_port_1_tod_stack_tx_tod_interface_tvalid                              (hssi_ptp_tx_tod_tvalid[1]),
       .tod_slave_subsys_port_1_tod_stack_tx_tod_interface_tdata                               (hssi_ptp_tx_tod_tdata[1]),
       .tod_slave_subsys_port_1_tod_stack_rx_tod_interface_tvalid                              (hssi_ptp_rx_tod_tvalid[1]),
       .tod_slave_subsys_port_1_tod_stack_rx_tod_interface_tdata                               (hssi_ptp_rx_tod_tdata[1]), 
-      `ifdef FTILE_PTP_HSSI_10G 
-        .tod_slave_subsys_port_1_tod_stack_todsync_sel_todsync_sel                              (1'b1),
-      `elsif FTILE_PTP_HSSI_10G_ANLT 
-        .tod_slave_subsys_port_1_tod_stack_todsync_sel_todsync_sel                              (1'b1),
-      `else                                                                                   
-        .tod_slave_subsys_port_1_tod_stack_todsync_sel_todsync_sel                              (1'b0),
-      `endif
+//     `ifdef FTILE_PTP_HSSI_10G 
+//       .tod_slave_subsys_port_1_tod_stack_todsync_sel_todsync_sel                              (1'b1),
+//     `elsif FTILE_PTP_HSSI_10G_ANLT 
+//       .tod_slave_subsys_port_1_tod_stack_todsync_sel_todsync_sel                              (1'b1),
+//     `else                                                                                   
+//       .tod_slave_subsys_port_1_tod_stack_todsync_sel_todsync_sel                              (1'b0),
+//     `endif
+      .tod_slave_subsys_port_1_tod_stack_todsync_sel_todsync_sel                              (dr_speed_10g_25g[1]),
       
-      .ftile_debug_status_econ_export                                                         (ftile_debug_status),
+      .pio_subsystem_0_ftile_debug_status_pio_export                                          (ftile_debug_status),
       .dma_subsys_ninit_done_reset                                                            (ninit_done),
-      .wd_reset_reset_n                                                                       ()
+      .wd_reset_reset_n                                                                       (),
+		.pio_subsystem_0_eth_reset_pio_p0_export                                                (reset_eth_p[0]),
+		.pio_subsystem_0_eth_reset_pio_p1_export                                                (reset_eth_p[1]),
+		.tod_slave_subsys_tod_subsys_rst_100_p0_in_reset_reset_n                                (rst_n_eth_p[0]),
+		.tod_slave_subsys_tod_subsys_rst_100_p1_in_reset_reset_n                                (rst_n_eth_p[1]),
+		.tod_slave_subsys_port_0_tod_stack_rx_pcs_ready_beginbursttransfer                      (status_vector[5]),
+		.tod_slave_subsys_port_1_tod_stack_rx_pcs_ready_beginbursttransfer                      (status_vector[15])
 );
 
 // QSFP mem controller
@@ -1867,6 +1952,15 @@ end endgenerate
       `endif
       .SET_AXI_LITE_RESPONSE_TO_ZERO (1'b1)
      ) inst_port1_hssi_25G_anlt 	
+  `elsif  FTILE_PTP_HSSI_10G_25G_NON_ANLT_DR
+     hssi_ss_10G_25G_non_anlt_dr #( 
+      `ifdef SIM_MODE
+      .SIM_MODE                      (1'b1),
+      `else
+      .SIM_MODE                      (1'b0),
+      `endif
+      .SET_AXI_LITE_RESPONSE_TO_ZERO (1'b1)
+     ) inst_port1_hssi_10G_25G_non_anlt_dr 	
   `elsif FTILE_PTP_HSSI_10G 
      hssi_ss_10G #( 
       `ifdef SIM_MODE
@@ -1910,7 +2004,7 @@ end endgenerate
       .app_ss_lite_rready                 (axi4lite_hssi.rready),   
       .ss_app_lite_rresp                  (axi4lite_hssi.rresp),    
       .p8_app_ss_st_tx_clk                (o_clk_pll[0]),           
-      .p8_app_ss_st_tx_areset_n           (system_reset_n),                      
+      .p8_app_ss_st_tx_areset_n           (rst_n_eth_p[0]),                      
       .p8_app_ss_st_tx_tvalid             (hssi_ss_st_tx_tvalid[0] ),            
       .p8_ss_app_st_tx_tready             (hssi_ss_st_tx_tready[0] ),            
       .p8_app_ss_st_tx_tdata              (hssi_ss_st_tx_tdata[0] ),             
@@ -1921,7 +2015,7 @@ end endgenerate
       .p8_app_ss_st_tx_tuser_ptp_extended (hssi_ss_st_tx_tuser_ptp_extended[0]), 
       .p8_app_ss_st_tx_tuser_last_segment (hssi_ss_st_tx_tuser_last_segment[0]), 
       .p8_app_ss_st_rx_clk                (o_clk_pll[0]),                        
-      .p8_app_ss_st_rx_areset_n           (system_reset_n),                      
+      .p8_app_ss_st_rx_areset_n           (rst_n_eth_p[0]),                      
       .p8_ss_app_st_rx_tvalid             (hssi_ss_st_rx_tvalid[0]),             
       .p8_ss_app_st_rx_tdata              (hssi_ss_st_rx_tdata[0]),              
       .p8_ss_app_st_rx_tkeep              (hssi_ss_st_rx_tkeep[0]),              
@@ -1995,8 +2089,8 @@ end endgenerate
       .o_p8_tx_ptp_offset_data_valid      (status_vector[9]),      
       .subsystem_cold_rst_n               (hssi_cold_boot_reg[0]), 
       .subsystem_cold_rst_ack_n           (status_vector[0]),      
-      .i_p8_tx_rst_n                      (system_reset_n),        
-      .i_p8_rx_rst_n                      (system_reset_n),        
+      .i_p8_tx_rst_n                      (p8_tx_rst_n_eth_p0), //(system_reset_n & (!reset_eth_p0)),        
+      .i_p8_rx_rst_n                      (p8_rx_rst_n_eth_p0), //(system_reset_n & (!reset_eth_p0)),        
       .o_p8_rx_rst_ack_n                  (status_vector[1]),      
       .o_p8_tx_rst_ack_n                  (status_vector[2]),      
       .o_p8_ereset_n                      (),                      
@@ -2008,7 +2102,7 @@ end endgenerate
       .o_p8_clk_rec_div64                 (),                      
       .o_p8_clk_rec_div                   (o_p8_clk_rec_div_clk),  
       .i_p8_clk_ptp_sample                (clk_ptp_sample_clk),    
-      .o_p8_cdr_divclk                    (hssi_cdr_clk_out)       
+      .o_p8_cdr_divclk                    (hssi_cdr_clk_out_sig)       
     );
 
   `ifdef FTILE_PTP_HSSI_25G
@@ -2029,6 +2123,15 @@ end endgenerate
       `endif
       .SET_AXI_LITE_RESPONSE_TO_ZERO (1'b1)
     ) inst_port2_hssi_25G_anlt 	
+  `elsif  FTILE_PTP_HSSI_10G_25G_NON_ANLT_DR
+     hssi_ss_10G_25G_non_anlt_dr #( 
+      `ifdef SIM_MODE
+      .SIM_MODE                      (1'b1),
+      `else
+      .SIM_MODE                      (1'b0),
+      `endif
+      .SET_AXI_LITE_RESPONSE_TO_ZERO (1'b1)
+     ) inst_port2_hssi_10G_25G_non_anlt_dr 	
   `elsif FTILE_PTP_HSSI_10G 
      hssi_ss_10G #( 
       `ifdef SIM_MODE
@@ -2071,7 +2174,7 @@ end endgenerate
       .app_ss_lite_rready                 (axi4lite_hssi_1.rready),             
       .ss_app_lite_rresp                  (axi4lite_hssi_1.rresp),              
       .p8_app_ss_st_tx_clk                (o_clk_pll[1]),                       
-      .p8_app_ss_st_tx_areset_n           (system_reset_n),                     
+      .p8_app_ss_st_tx_areset_n           (rst_n_eth_p[1]),                     
       .p8_app_ss_st_tx_tvalid             (hssi_ss_st_tx_tvalid[1] ),           
       .p8_ss_app_st_tx_tready             (hssi_ss_st_tx_tready[1] ),           
       .p8_app_ss_st_tx_tdata              (hssi_ss_st_tx_tdata[1] ),            
@@ -2082,7 +2185,7 @@ end endgenerate
       .p8_app_ss_st_tx_tuser_ptp_extended (hssi_ss_st_tx_tuser_ptp_extended[1]),
       .p8_app_ss_st_tx_tuser_last_segment (hssi_ss_st_tx_tuser_last_segment[1]),
       .p8_app_ss_st_rx_clk                (o_clk_pll[1]),                       
-      .p8_app_ss_st_rx_areset_n           (system_reset_n),                     
+      .p8_app_ss_st_rx_areset_n           (rst_n_eth_p[1]),                     
       .p8_ss_app_st_rx_tvalid             (hssi_ss_st_rx_tvalid[1]),            
       .p8_ss_app_st_rx_tdata              (hssi_ss_st_rx_tdata[1]),             
       .p8_ss_app_st_rx_tkeep              (hssi_ss_st_rx_tkeep[1]),             
@@ -2156,8 +2259,8 @@ end endgenerate
       .o_p8_tx_ptp_offset_data_valid      (status_vector[19]),     
       .subsystem_cold_rst_n               (hssi_cold_boot_reg[1]), 
       .subsystem_cold_rst_ack_n           (status_vector[10]),     
-      .i_p8_tx_rst_n                      (system_reset_n),        
-      .i_p8_rx_rst_n                      (system_reset_n),        
+      .i_p8_tx_rst_n                      (p8_tx_rst_n_eth_p1), //(system_reset_n & (!reset_eth_p1)),        
+      .i_p8_rx_rst_n                      (p8_rx_rst_n_eth_p1), //(system_reset_n & (!reset_eth_p1))        
       .o_p8_rx_rst_ack_n                  (status_vector[11]),     
       .o_p8_tx_rst_ack_n                  (status_vector[12]),     
       .o_p8_ereset_n                      (),                      
@@ -2302,7 +2405,7 @@ end endgenerate
        .o_p8_clk_rec_div64                  (),                             
        .o_p8_clk_rec_div                    (o_p8_clk_rec_div_clk),         
        .i_p8_clk_ptp_sample                 (clk_ptp_sample_clk),           
-       .o_p8_cdr_divclk                     (hssi_cdr_clk_out)          
+       .o_p8_cdr_divclk                     (hssi_cdr_clk_out_sig)          
    );
 
   hssi_ss_50G_PAM4_anlt #(
@@ -2567,7 +2670,7 @@ end endgenerate
        .o_p8_clk_rec_div64                  (),                             
        .o_p8_clk_rec_div                    (o_p8_clk_rec_div_clk),         
        .i_p8_clk_ptp_sample                 (clk_ptp_sample_clk),           
-       .o_p8_cdr_divclk                     (hssi_cdr_clk_out)          
+       .o_p8_cdr_divclk                     (hssi_cdr_clk_out_sig)          
    );
 
   hssi_ss_50G_PAM4 #(
@@ -2831,7 +2934,7 @@ end endgenerate
         .o_p8_clk_rec_div64                  (),                             
         .o_p8_clk_rec_div                    (o_p8_clk_rec_div_clk),         
         .i_p8_clk_ptp_sample                 (clk_ptp_sample_clk),           
-        .o_p8_cdr_divclk                     (hssi_cdr_clk_out)          
+        .o_p8_cdr_divclk                     (hssi_cdr_clk_out_sig)          
    );
 
   hssi_ss_100G_PAM4_anlt #(
@@ -3095,7 +3198,7 @@ end endgenerate
         .o_p8_clk_rec_div64                  (),                             
         .o_p8_clk_rec_div                    (o_p8_clk_rec_div_clk),         
         .i_p8_clk_ptp_sample                 (clk_ptp_sample_clk),           
-        .o_p8_cdr_divclk                     (hssi_cdr_clk_out)          
+        .o_p8_cdr_divclk                     (hssi_cdr_clk_out_sig)          
    );
 
   hssi_ss_100G_PAM4 #(
