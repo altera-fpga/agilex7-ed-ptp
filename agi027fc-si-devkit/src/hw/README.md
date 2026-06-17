@@ -31,12 +31,12 @@ Configuration=10G_ANLT
 
 User needs to modify above text content with required option by replacing `10G_ANLT` with ant one of following options.
 
-`10G_NON_ANLT`, `25G_ANLT`, `25G_NON_ANLT`, `50G_ANLT`, `50G_NON_ANLT`, `100G_ANLT` and `100G_NON_ANLT`
+`10G_NON_ANLT`, `25G_ANLT`, `25G_NON_ANLT`, `50G_ANLT`, `50G_NON_ANLT`, `100G_ANLT`, `100G_NON_ANLT` and `10G_25G_NON_ANLT_DR`
 
 **Command Method:**
 
 - User can specify the configuration using the optional argument CONFIG. 
-- Supported options are `10G_ANLT`, `10G_NON_ANLT`, `25G_ANLT`, `25G_NON_ANLT`, `50G_ANLT`, `50G_NON_ANLT`, `100G_ANLT` and `100G_NON_ANLT`
+- Supported options are `10G_ANLT`, `10G_NON_ANLT`, `25G_ANLT`, `25G_NON_ANLT`, `50G_ANLT`, `50G_NON_ANLT`, `100G_ANLT`, `100G_NON_ANLT` and `10G_25G_NON_ANLT_DR`
    - For e.g. `make all CONFIG=10G_ANLT`. 
 - if the **CONFIG** argument is not specified, the value currently in `config.txt` will be built. 
 - Running <make> will print out all the options supported
