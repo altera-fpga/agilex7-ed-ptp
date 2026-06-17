@@ -77,7 +77,7 @@ You can use below scripts for other datarates for configuration specific compila
 - For 50GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P50G_MCQ-build.sh `
 - For 25GbE with ANLT : `agilex7_dk_si_agi027fc-PTP_2P25G_MCQ_ANLT-build.sh `
 - For 25GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P25G_MCQ-build.sh `
-- For 10G/25G DR supported image : 'agilex7_dk_si_agi027fc-PTP_2P_MCQ_DR-build.sh '
+- For 10G/25G DR supported image : 'agilex7_dk_si_agi027fc-PTP_2P_MCQ_DR-build.sh `
 
 ### Linux kernel build
 

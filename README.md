@@ -73,5 +73,5 @@ git checkout <tag>
 
 Follow the below procedure to build the HW and the Software artifacts.
 
-- [Building the hardware](https://github.com/altera-fpga/agilex7-ed-ptp/tree/main/agi027fc-si-devkit/src/hw)
-- [Building the software](https://github.com/altera-fpga/agilex7-ed-ptp/tree/main/agi027fc-si-devkit/src/sw)
+- [Building the hardware](https://github.com/altera-fpga/agilex7-ed-ptp/tree/main/agi027fd-si-devkit/src/hw)
+- [Building the software](https://github.com/altera-fpga/agilex7-ed-ptp/tree/main/agi027fd-si-devkit/src/sw)
