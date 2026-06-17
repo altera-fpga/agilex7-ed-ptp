@@ -31,6 +31,7 @@ Directory Structure used in this example design:
     ├── agilex7_dk_si_agi027fc-PTP_2P25G_MCQ-build.sh -> build.sh
     ├── agilex7_dk_si_agi027fc-PTP_2P50G_MCQ_ANLT-build.sh -> build.sh
     ├── agilex7_dk_si_agi027fc-PTP_2P50G_MCQ-build.sh -> build.sh
+    ├── agilex7_dk_si_agi027fc-PTP_2P_MCQ_DR-build.sh -> build.sh
     ├── build.sh
  ```
 
@@ -70,12 +71,13 @@ build_default
 After a successful build, all required images are stored in the `<BASEDIR>/src/sw/yocto/agilex7_dk_si_agi027fc-gsrd-image`s` directory. Build time varies depending on the host system's resource specifications.
 
 You can use below scripts for other datarates for configuration specific compilation.
-- For 100GbE with ANLT : `agilex7_dk_si_agi027fc-PTP_2P100G_MCQ_ANLT-build.sh `.
-- For 100GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P100G_MCQ-build.sh `.
+- For 100GbE with ANLT : `agilex7_dk_si_agi027fc-PTP_2P100G_MCQ_ANLT-build.sh `
+- For 100GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P100G_MCQ-build.sh `
 - For 50GbE with ANLT : `agilex7_dk_si_agi027fc-PTP_2P50G_MCQ_ANLT-build.sh `
 - For 50GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P50G_MCQ-build.sh `
 - For 25GbE with ANLT : `agilex7_dk_si_agi027fc-PTP_2P25G_MCQ_ANLT-build.sh `
 - For 25GbE with non-ANLT : `agilex7_dk_si_agi027fc-PTP_2P25G_MCQ-build.sh `
+- For 10G/25G DR supported image : 'agilex7_dk_si_agi027fc-PTP_2P_MCQ_DR-build.sh '
 
 ### Linux kernel build
 
