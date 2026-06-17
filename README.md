@@ -42,7 +42,7 @@ Directory Structure Used in This Example Design:
 ## Project Details
 
 - **Family**: Agilex&trade; 7 I-Series
-- **Quartus Version**: 25.3.1
+- **Quartus Version**: 26.1
 - **Development Kit**: Agilex&trade 7; I-Series Transceiver-SoC Development Kit (4x F-Tile) ([DK-SI-AGI027FC](https://www.altera.com/products/devkit/po-3013/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile))
 - **Device Part**: AGIB027R31B1E1VB
 - **Documentation**: [Agilex&trade; 7Precision Time Protocol System Example Design](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt/)
