@@ -1,9 +1,13 @@
 //************************************************************************
- How to setup UVM TB and run sumulation for UVM Testcase for FTILE PTP 
+// How to setup UVM TB and run sumulation for UVM Testcase for FTILE PTP
 //************************************************************************
+# How to setup UVM TB and run sumulation for UVM Testcase for FTILE PTP NON-ANLT
+# There are 4 variants in NON-ANLT DESIGN. 10G,25G,50G and 100G.
+# Below steps needs to be done for each variant in a separate xterm.
+# Two variants cannot be run in a single xterm. This needs to be taken care primarily.
 
 //************************************************************************
-1) Initial set all tool paths vcs, python etc as follow. 
+1) Initial set all tool paths vcs, python etc as follow.
 
       VCS     : vcsmx/T-2022.06-SP2-3
       Python  : python/3.7.7
@@ -23,7 +27,7 @@ Note: There is no hard rule to maintain the same version for tools like perl, cm
       DESIGN_DIR=$PTP_ROOTDIR/../../src
       QUARTUS_HOME=$QUARTUS_ROOTDIR
       QUARTUS_INSTALL_DIR=$QUARTUS_ROOTDIR
-      DESIGNWARE_HOME= <synopsys vip location> 
+      DESIGNWARE_HOME= <synopsys vip location>
       UVM_HOME=$VCS_HOME/etc/uvm-1.2
       SYNTH_DIR=$PTP_ROOTDIR/../../synth
 
@@ -34,11 +38,10 @@ Note: There is no hard rule to maintain the same version for tools like perl, cm
 3) Details about the Design and Testbench and tests/sequences.
 
 The main blocks of the design (DUT) are DMA Subsystem which has MSGDMA IP,PTP Bridge,Packet Client and HSSI Subsystem which has Ethernet IP which has 2 ports. Apart from this many quartus IPs are present in the design.
-In the testbench, two VIP instances are present. AXI4 instance for initiating CSR access ACE_LITE instance for data flow. 
-Data flows from ACE LITE VIP to HSSI SS. At the output of HSSI Subsystem serial lines are looped back at the Testbench level so that data gets routed back to ACE LITE VIP. Packet client data will also send toHSSI SS and gets looped back. 
+In the testbench, two VIP instances are present. AXI4 instance for initiating CSR access ACE_LITE instance for data flow.
+Data flows from ACE LITE VIP to HSSI SS. At the output of HSSI Subsystem serial lines are looped back at the Testbench level so that data gets routed back to ACE LITE VIP. Packet client data will also send toHSSI SS and gets looped back.
 Clock and reset are given from the testbench to the DUT.
 
-verification
 verification
     ├── README.txt
     ├── env
@@ -49,32 +52,32 @@ verification
     │   ├── generate_ip.sh        -> Script to generate IPs.
     │   ├── ip_script.pl          -> This perl script will convert the ip list tcl file to ip list.f
     │   ├── parser_for_PTP.pl     -> The perl script to edit the qsys top and move it to testbench folder
-    │   ├── rename_prev_testdir.sh-> This script will rename the previous test dir when the same test is re-run. 
+    │   ├── rename_prev_testdir.sh-> This script will rename the previous test dir when the same test is re-run.
     │   ├── rtl_script.pl         -> This script will convert the rtl list tcl file to rtl list.f file
     │   ├── support_logic_gen.sh  -> Scripts to generate the spd files
     │   ├── top_auto_tiles        -> Auto tiles will be generated and copied here
-    │   │   └── dummy.v         
+    │   │   └── dummy.v
     │   │   └── vpd_dump.key      -> vpd file for providing dump options.
     ├── testbench
     │   ├── cust_svt_axi_system_configuration.sv -> AXI Configuration file which details about the type of VIP, its address width, data width and instance
     │   │   ├── fptp_axi_reset_if.sv                 -> Reset interface file
     │   ├── fptp_defines.sv                      -> Contains the defines that are used in Test bench
     │   ├── fptp_env.sv                          -> Top level env which instantiates all tb components like axi vip,scoreboard.
-    │   ├── fptp_reset_sequencer.sv              -> Reset Sequencer 
+    │   ├── fptp_reset_sequencer.sv              -> Reset Sequencer
     │   ├── fptp_scoreboard.sv                   -> Scoreboard used for checking the dma data integrity.
     │   ├── fptp_tb_config.sv                    -> TB config file
     │   ├── fptp_tb_pkg.svh                      -> TB package file
-    │   ├── fptp_top_tb.sv                       -> Testbench top file which instantiate DUT, generates clocks, reset  
+    │   ├── fptp_top_tb.sv                       -> Testbench top file which instantiate DUT, generates clocks, reset
     │   └── svt_axi_user_defines.svi             -> SVT defines
     ├── tests
     │   ├── fptp_base_test.svh                   -> This is the base test which is needed for all tests to run
     │   ├── fptp_csr_test.svh                    -> CSR test. This test checks default value of all registers in MSGDMA, Packet client,PTP Bridge and HSSI. It also does  Write and Read and checks data integrity for R/W registers
     │   ├── fptp_dma_base_test.svh               -> DMA Base test which test the DMA path. There are 6 channels in the DMA Subsystem each having TX and RX. DMA data on Ch0,Ch1 and Ch2 are sent to PTP Bridge -> HSSI Port1 and gets looped back to PTP Bridge->Ch0,Ch1 and Ch2 of DMA Subsytem.MA data on Ch3,Ch4 and Ch5 are sent to PTP Bridge -> HSSI Port2 and gets looped back to PTP Bridge->Ch3,Ch4 and Ch5 of DMA Subsytem.
-    │   ├── fptp_qos_usr_test.svh                -> Same as above DMA base test. In addition it sends data from Packet client blocks. Packet client0 will send data to HSSI Port1 an gets looped back to Packet client0. Packet client1 will send data to HSSI Port2 an gets looped back to Packet client1 
+    │   ├── fptp_qos_usr_test.svh                -> Same as above DMA base test. In addition it sends data from Packet client blocks. Packet client0 will send data to HSSI Port1 an gets looped back to Packet client0. Packet client1 will send data to HSSI Port2 an gets looped back to Packet client1
     │   ├── fptp_test_pkg.svh                    -> Contains all Tests
     │   └── sequences
     │       ├── axi_base_sequence_pkg.sv         -> Contains user defined structs.
-    │       ├── axi_simple_reset_sequence.sv     -> Reset  sequence   
+    │       ├── axi_simple_reset_sequence.sv     -> Reset  sequence
     │       ├── fptp_axi_derived_base_seq.sv     -> AXI Derived sequence
     │       ├── fptp_axi_slave_host_response_seq.sv -> AXI Slave sequence to send reseponse to DUT Read requests. Also sends responds to DUT Write requests
     │       ├── fptp_base_seq.sv                    -> Base Sequence
@@ -94,39 +97,63 @@ verification
 //************************************************************************
 //************************************************************************
 
-4) Test Flow:
+4) Test Flow - How to Run UVM Testcases
+As mentioned above, there are 4 variants of the NON-ANLT DESIGN for DV Simulation
+10G NON-ANLT Design
+25G NON-ANLT Design
+50G NON-ANLT Design
+100G NON-ANLT Design
 
-1)  cd $PTP_ROOTDIR/scripts [Path to run all test commands]
+4.1)  cd $PTP_ROOTDIR/scripts [Path to run all test commands]
 
-2)  For Compiling IPs and Subsystems, execute: “gmake -f Makefile.mk cmplib | tee cmp.log”
-    Design consists of various IPs. When above command is executed, all IPs will be generated and its relevant libraries will also be generated and compiled. Additionally the testbench uses AXI VIP for initiating transactions and vip folder also will also be generated. This command has to be generated only once for the entire simulation.
+4.2)  For Compiling IPs and Subsystems,
+#   10G NON-ANLT Design
+execute: "gmake -f Makefile.mk cmplib  HSSI_10G=1 | tee cmp.log"
+#   25G NON-ANLT Design
+execute: "gmake -f Makefile.mk cmplib  HSSI_25G=1 | tee cmp.log"
+#   50G NON-ANLT Design
+execute: "gmake -f Makefile.mk cmplib  HSSI_50G=1 | tee cmp.log"
+#   100G NON-ANLT Design
+execute: "gmake -f Makefile.mk cmplib  HSSI_100G=1 | tee cmp.log"
 
-Note: 
-Cmplib command will take 30-40mts to execute.
-
-3)  For building RTL & TB QOS , execute: “gmake -f Makefile.mk build  HSSI_25G=1 <DUMP=1>" [DUMP is an option. If VPD is required,DUMP=1 option is used]
-    Once IPs are generated and relevant libraries are compiled, next step is compile and elaborate the design and testbench. The "build" command will do the same. 
-    This command is also required to be executed once. But if any design and testbench files updates are required, then this command needs to be executed accordingly as per the requirement before the test run. Mostly design files won't be updated.
-
-Note: 
-Build command will take 30-40mts to execute.
-
-4)  For tests run execute: “gmake -f Makefile.mk run TESTNAME=fptp_csr_test SEQNAME=fptp_csr_seq <SEED=<seed number>> [SEED is an option.To rerun the failure test, SEED=<seed number> is used]
 
 Note:
-Test run command will take 1-1.5 hrs of time. Once the test run starts, it will wait for the HSSI link up for both the ports to be ready. Once link is up, test flow starts. For dma base seq and qos usr seq, initial configuration needs to be done and then data traffic starts. 
+    Design consists of various IPs. When above command is executed, all IPs will be generated and its relevant libraries will also be generated and compiled. Additionally the testbench uses AXI VIP for initiating transactions and vip folder also will also be generated. This command has to be executed only once for the entire simulation.
+Cmplib command will take 30-40mts to execute.
 
-5)  Results are created in a sim directory ($PTP_ROOTDIR/sim/$TESTNAME).Check simulate_$TESTNAME.log for Simulation result. 
-              Whenever the test is run, a seed value is seen in the simulate_$TESTNAME.log. If there is a requirement for any testbench updates and want to see same result, then simulation can be run with same seed by providing the option [SEED=<seed number] in the run command.
+4.3)  For building RTL & TB QOS,
+#   10G NON-ANLT Design
+execute: �gmake -f Makefile.mk build  HSSI_10G=1 [DUMP=1]� [ DUMP is an option. If VPD is required, then use DUMP=1 else it is not required]
+#   25G NON-ANLT Design
+execute: �gmake -f Makefile.mk build  HSSI_25G=1 [DUMP=1]� [ DUMP is an option. If VPD is required, then use DUMP=1 else it is not required]
+#   50G NON-ANLT Design
+execute: �gmake -f Makefile.mk build  HSSI_50G=1 [DUMP=1]� [ DUMP is an option. If VPD is required, then use DUMP=1 else it is not required]
+#   100G NON-ANLT Design
+execute: �gmake -f Makefile.mk build  HSSI_100G=1 [DUMP=1]� [ DUMP is an option. If VPD is required, then use DUMP=1 else it is not required]
 
-6)  If same test is  re-run, then the previous test dir gets renamed and moved as $PTP_ROOTDIR/verification/sim/$TESTNAME.#. E.g.fptp_csr_test.1, fptp_csr_test.2 .... and the latest test run result is created as $PTP_ROOTDIR/sim/$TESTNAME. 
+Note:
+    Once IPs are generated and relevant libraries are compiled, next step is compile and elaborate the design and testbench. The "build" command will do the same.
+This command is also required to be executed once. But if any design and testbench files updates are required, then this command needs to be executed accordingly as per the requirement before the test run.Build command will take 30-40mts to execute.
+
+
+4.4)  For tests run, execute without SEED command : �gmake -f Makefile.mk run TESTNAME=fptp_csr_test SEQNAME=fptp_csr_seq
+
+Note:
+Test run command will take 1-1.5 hrs of time. Once the test run starts, it will wait for the HSSI link up for both the ports to be ready. Once link is up, test flow starts. For dma base seq and qos usr seq, initial configuration needs to be done and then data traffic starts.
+
+4.5)  Results are created in a sim directory ($PTP_ROOTDIR/sim/$TESTNAME).Check simulate_$TESTNAME.log for Simulation result.
+              Whenever the test is run, a seed value is seen in the simulate_$TESTNAME.log. If there is a requirement for any testbench updates and want to see same result, then simulation can be run with same seed by providing the option [SEED=<seed number>] in the run command.
+
+for tests run, with failing seed execute: �gmake -f Makefile.mk run TESTNAME=fptp_csr_test SEQNAME=fptp_csr_seq SEED=<seed number>
+
+4.6)  If same test is  re-run, then the previous test dir gets renamed and moved as $PTP_ROOTDIR/verification/sim/$TESTNAME.#. E.g.fptp_csr_test.1, fptp_csr_test.2 .... and the latest test run result is created as $PTP_ROOTDIR/sim/$TESTNAME.
 
 //************************************************************************
 //************************************************************************
 
-5) UVM TESTS 
+5) UVM TESTS
 # BASE TEST (Inculded as part of all tests as all tests are derived from base test only. Not part of the count)
-fptp_base_test.svh 
+fptp_base_test.svh
 
 # Total 3 tests
 
@@ -136,7 +163,7 @@ fptp_base_test.svh
 
 #  DATA PATH TESTS
 2.fptp_dma_base_test.svh
-  fptp_dma_base_seq.sv -> Extended from base seq. Has instances of fptp_data_traffic_cfg_seq, fptp_ptp_bridge_cfg_dma_seq which does initial configuration and fptp_axi_slave_host_response_seq. 
+  fptp_dma_base_seq.sv -> Extended from base seq. Has instances of fptp_data_traffic_cfg_seq, fptp_ptp_bridge_cfg_dma_seq which does initial configuration and fptp_axi_slave_host_response_seq.
 
 3.fptp_qos_usr_test.svh
   fptp_qos_usr_seq.sv  -> Extended from base seq.Has instances of fptp_data_traffic_cfg_seq,fptp_ptp_bridge_cfg_usr_seq, fptp_ptp_bridge_cfg_dma_seq which does initial configuratio,fptp_axi_slave_host_response_seq and fptp_user_traffic_check_seq

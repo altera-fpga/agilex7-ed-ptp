@@ -66,7 +66,7 @@ set_instance_assignment -name IO_STANDARD "1.2 V" -to ftile_master_todclk_ref -e
 set_location_assignment PIN_AA14 -to hssi_cdr_clk_out
 #set_location_assignment PIN_AA14 -to hssi_cdr_clk_out[0]
 #set_location_assignment PIN_DM55 -to hssi_cdr_clk_out[1]
-set_instance_assignment -name IO_STANDARD "1.2 V" -to hssi_cdr_clk_out -entity top
+#set_instance_assignment -name IO_STANDARD "1.2 V" -to hssi_cdr_clk_out -entity top
 
 # Resets
 #set_location_assignment PIN_G52 -to fpga_reset_n
