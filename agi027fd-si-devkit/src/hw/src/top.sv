@@ -545,7 +545,7 @@ always @(posedge fpga_clk_100 or negedge system_reset_n)
     end
   else begin
       rst_n_eth_p[0]  <= !reset_eth_p_sync[0];
-      rst_n_eth_p[1]  <= !reset_eth_p_sync[0];
+      rst_n_eth_p[1]  <= !reset_eth_p_sync[1];
   end  
 	 
 
