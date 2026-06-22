@@ -223,10 +223,10 @@ MAC1_ADDR="01:80:C2:00:00:0E"
 MAC1_HEX=$(echo $MAC1_ADDR | sed 's/://g' | tr 'a-f' 'A-F')
 MAC2_ADDR="01:1B:19:00:00:00"
 MAC2_HEX=$(echo $MAC2_ADDR | sed 's/://g' | tr 'a-f' 'A-F')
-tc filter add dev eth1 egress prio 0 u32 match ip dport 319 0xffff match ip protocol 17 0xff action skbedit priority 7
-tc filter add dev eth1 egress prio 1 u32 match ip dport 320 0xffff match ip protocol 17 0xff action skbedit priority 7
-tc filter add dev eth1 egress prio 2 u32 match u16 0x${MAC1_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC1_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
-tc filter add dev eth1 egress prio 3 u32 match u16 0x${MAC2_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC2_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
+tc filter add dev eth1 egress prio 1 u32 match ip dport 319 0xffff match ip protocol 17 0xff action skbedit priority 7
+tc filter add dev eth1 egress prio 2 u32 match ip dport 320 0xffff match ip protocol 17 0xff action skbedit priority 7
+tc filter add dev eth1 egress prio 3 u32 match u16 0x${MAC1_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC1_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
+tc filter add dev eth1 egress prio 4 u32 match u16 0x${MAC2_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC2_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
 
 tc filter add dev eth1 egress prio 14 protocol ip u32 match u16 0x0000 0xffc0 at 2 action skbedit priority 1
 echo -e "Create Filters - IPERF 540X packets to DMA0..."
@@ -251,10 +251,10 @@ echo -e "Traffic Class Egress QOS programming - Port - eth2"
 echo -e "Create QDisc..."
 tc qdisc add dev eth2 clsact
 echo -e "Create Filters - PTP packets to DMA0..."
-tc filter add dev eth2 egress prio 0 u32 match ip dport 319 0xffff match ip protocol 17 0xff action skbedit priority 7
-tc filter add dev eth2 egress prio 1 u32 match ip dport 320 0xffff match ip protocol 17 0xff action skbedit priority 7
-tc filter add dev eth2 egress prio 2 u32 match u16 0x${MAC1_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC1_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
-tc filter add dev eth2 egress prio 3 u32 match u16 0x${MAC2_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC2_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
+tc filter add dev eth2 egress prio 1 u32 match ip dport 319 0xffff match ip protocol 17 0xff action skbedit priority 7
+tc filter add dev eth2 egress prio 2 u32 match ip dport 320 0xffff match ip protocol 17 0xff action skbedit priority 7
+tc filter add dev eth2 egress prio 3 u32 match u16 0x${MAC1_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC1_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
+tc filter add dev eth2 egress prio 4 u32 match u16 0x${MAC2_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC2_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
 
 tc filter add dev eth2 egress prio 14 protocol ip u32 match u16 0x0000 0xffc0 at 2 action skbedit priority 1
 echo -e "Create Filters - IPERF 540X packets to DMA0..."
