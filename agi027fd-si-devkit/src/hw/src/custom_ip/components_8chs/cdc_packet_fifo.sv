@@ -43,9 +43,9 @@ module cdc_packet_fifo #(
 );
 
    localparam int    MEMORY_DATA_WIDTH       = AVST_DATA_WIDTH + 2 + AVST_EMPTY_WIDTH + AVST_USER_WIDTH;
-   logic [MEMORY_DATA_WIDTH-1:0]             write_data, read_data  /* synthesis syn_keep = "true"  */;
-   logic                                     wrfull, rdempty, pkt_wen, pkt_ren, pkt_full, pkt_empty, wrreq, rdreq  /* synthesis syn_keep = "true"  */;
-	logic [31:0]                              wr_pkt_cnt, rd_pkt_cnt /* synthesis syn_keep = "true"  */;
+   logic [MEMORY_DATA_WIDTH-1:0]             write_data, read_data ;
+   logic                                     wrfull, rdempty, pkt_wen, pkt_ren, pkt_full, pkt_empty, wrreq, rdreq ;
+	logic [31:0]                              wr_pkt_cnt, rd_pkt_cnt ;
 	
 		 
    always_comb begin
@@ -109,7 +109,7 @@ module cdc_packet_fifo #(
       ,.rdclk  (out_avst_clk)
       ,.aclr   (out_avst_reset)
       ,.rdreq  (pkt_ren)
-      ,.q      (rd_pkt_cnt)
+      ,.q      ()
       ,.rdempty(pkt_empty)
    );
 	
