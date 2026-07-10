@@ -6,7 +6,7 @@ The Agilex&trade; 7 Precision Time Protocol System Example Design includes two E
 
 The System Example Design (SED) provides the necessary drivers and user applications to support the Linux Network stack, the Linux PTP stack, and network Quality of Service (QoS) through the Linux kernel Traffic Control (TC) system.
 
-This System Example Design supports multiple Ethernet link data rates along with ANLT(Auto-Negotiation and Link Training) and DR(Dynamic Reconfiguration) feature.
+This System Example Design supports multiple Ethernet link data rates along with ANLT(Auto-Negotiation and Link Training) and DR(Dynamic Reconfiguration) for 10G/25G features.
 
 1. 10GbE.
 2. 25GbE.
@@ -68,7 +68,7 @@ Building the design is easy with the scripts provided in the repo. Clone the rep
 ``` bash
 git clone https://github.com/altera-fpga/agilex7-ed-ptp.git
 cd agilex7-ed-ptp
-git checkout <tag>
+git checkout SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1
 ```
 
 Follow the below procedure to build the HW and the Software artifacts.
