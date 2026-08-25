@@ -97,31 +97,31 @@ fi
 PTP_SW_VERSION_STRING=""
 if [[ -n "${SOLUTION}" ]]; then
 	if [[ "$SOLUTION" == "PTP_2P10G_MCQ" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x10G-ptp-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x10G-ptp-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P25G_MCQ" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x25G-ptp-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x25G-ptp-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P50G_MCQ" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x50G-ptp-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x50G-ptp-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P100G_MCQ" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x100G-ptp-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x100G-ptp-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P10G_MCQ_ANLT" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x10G-ptp-anlt-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x10G-ptp-anlt-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P25G_MCQ_ANLT" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x25G-ptp-anlt-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x25G-ptp-anlt-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P50G_MCQ_ANLT" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x50G-ptp-anlt-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x50G-ptp-anlt-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P100G_MCQ_ANLT" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2x100G-ptp-anlt-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2x100G-ptp-anlt-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	elif [[ "$SOLUTION" == "PTP_2P_MCQ_DR" ]]; then
-		ptp_sed_sw_version="-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1"
+		ptp_sed_sw_version="-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.2"
 		PTP_SW_VERSION_STRING=${ptp_sed_sw_version}
 	fi
 fi
