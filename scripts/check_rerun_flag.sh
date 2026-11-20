@@ -3,7 +3,11 @@
 set -x
 BUILD=false
 
-base_dir="/nfs/site/disks/pac_release_1/github/psgpac/sed/build/nightly/1588ptp/agx7/fm87/pdk"
+if [[ -z "${BUILD_PATH:-}" || ! -d "$BUILD_PATH" ]]; then
+  echo "ERROR: BUILD_PATH must point to an existing hardware build directory." >&2
+  exit 1
+fi
+base_dir="$BUILD_PATH"
 
 for dir in "$base_dir"/*; do
   [[ -d "$dir" ]] || continue

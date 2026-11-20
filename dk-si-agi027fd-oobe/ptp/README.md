@@ -14,17 +14,17 @@ The Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design demonstrat
 - **Development Kit**: Agilex 7 FPGA I-Series Transceiver-SoC Development Kit 4xF-Tile DK-SI-AGI027FD
 - **Device Part**: AGIB027R31B1E1V
 - **Category**: HPS, Ethernet
-- **URL**: https://github.com/altera-innersource/applications.fpga.system-example-designs.agilex7-ed-ptp
+- **URL**: https://github.com/altera-fpga/agilex7-ed-ptp
 - **Design Package**: dk-si-agi027fd-oobe-ptp.zip
 
 ## Documentations
 
 - **Title**: Design and Build Readme  
-  **URL**: https://github.com/altera-innersource/applications.fpga.system-example-designs.agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/README.md
+  **URL**: https://github.com/altera-fpga/agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/README.md
 - **Title**: Hardware Build (synth)  
-  **URL**: https://github.com/altera-innersource/applications.fpga.system-example-designs.agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/synth/README.md
+  **URL**: https://github.com/altera-fpga/agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/synth/README.md
 - **Title**: Software / Yocto Build Readme  
-  **URL**: https://github.com/altera-innersource/applications.fpga.system-example-designs.agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/software/yocto_linux/README.md
+  **URL**: https://github.com/altera-fpga/agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/software/yocto_linux/README.md
 
 ## Dependency
 

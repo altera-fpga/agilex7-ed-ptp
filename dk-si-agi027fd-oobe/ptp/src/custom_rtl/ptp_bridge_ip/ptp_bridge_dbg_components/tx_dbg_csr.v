@@ -7,7 +7,7 @@
 //  Verilog Register Bank
 // -----------------------------------------------------------------------------
 //  Component Name: tx_dbg_csr
-//  File Ref      : /nfs/site/disks/swuser_work_eloe/perforce_clients/ptp_bridge_ip/tmp_tx/tx_dbg/_workspace_mrv_gen_py_/xmlProject/_local_copy_Vendor_Library_tx_dbg_csr_1.0.xml
+//  File Ref      : Vendor Library XML
 //  Protocol      : AVALON
 //  Wait State    : WS1_OUTPUT
 // -----------------------------------------------------------------------------

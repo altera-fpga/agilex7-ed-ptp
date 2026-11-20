@@ -7,7 +7,7 @@
 //-----------------------------------------------------------------------------------------------//
 //   Verilog Register Bank
 //   Component Name: igr_wadj_csr
-//   File Ref: /nfs/site/disks/swuser_work_mmarabat/ptp_brdg/acds/prototype/ptp_bridge_ip/design/rdl/ing_wadj/_workspace_mrv_gen_py_/xmlProject/_local_copy_Vendor_Library_igr_wadj_csr_1.0.xml                                             
+//   File Ref: Vendor Library XML
 //   Magillem Version :   5.11.2.1                                                                         
 //-----------------------------------------------------------------------------------------------//
 // 

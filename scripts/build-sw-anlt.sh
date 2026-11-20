@@ -6,19 +6,16 @@ echo "RELEASE FLAG: $RELEASE"
 echo "NIGHTLY FLAG: $NIGHTLY"
 echo "QUARTUS FLAG: $QUARTUS"
 
-if [ "$RELEASE" == 1 ]; then
-  BUILD_PATH=/nfs/site/disks/pac_release_1/github/psgpac/sed/build/release/1588ptp/agx7/fm87/pdk
-elif [ "$NIGHTLY" == 1 ]; then
-  BUILD_PATH=/nfs/site/disks/pac_release_1/github/psgpac/sed/build/nightly/1588ptp/agx7/fm87/pdk
-elif [ "$QUARTUS" == 1 ]; then
-  BUILD_PATH=/nfs/site/disks/pac_release_1/github/psgpac/sed/quartus_upgrade/build/1588ptp/agx7/fm87/pdk
-else
-  # Manual CI / missing flags: default to nightly NFS tree (same as HW publish path)
-  echo "WARNING: NIGHTLY/RELEASE/QUARTUS unset; defaulting BUILD_PATH to nightly"
-  BUILD_PATH=/nfs/site/disks/pac_release_1/github/psgpac/sed/build/nightly/1588ptp/agx7/fm87/pdk
+if [ -z "${BUILD_PATH:-}" ]; then
+  echo "ERROR: BUILD_PATH must point to a hardware build artifact root." >&2
+  exit 1
+fi
+if [ ! -d "$BUILD_PATH" ]; then
+  echo "ERROR: BUILD_PATH does not exist: $BUILD_PATH" >&2
+  exit 1
 fi
 
-# NFS design folders (lowercase) parallel to weekly TEST matrix
+# Hardware design folders (lowercase) parallel to weekly TEST matrix
 folders=(
   "$BUILD_PATH/10g_anlt"
   "$BUILD_PATH/10g_non_anlt"
@@ -50,7 +47,7 @@ rbf_files=(
   "agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P_MCQ_DR.core.rbf"
 )
 
-# Publish names used by regression / NFS (legacy ITB names)
+# Published legacy ITB names
 itb_files=(
   "kernel_sed_PTP_2P10G_MCQ_ANLT.itb"
   "kernel_sed_PTP_2P10G_MCQ.itb"
@@ -69,13 +66,12 @@ start_time=$(date +%s)
 PTP_ROOT="dk-si-agi027fd-oobe/ptp"
 YOCTO_DIR="$PTP_ROOT/software/yocto_linux"
 RBF_DEST="$YOCTO_DIR/meta-custom/recipes-fpga/fpga-bitstream/files"
-# DEPLOY_DIR resolved after YOCTO_TMPDIR (OE forbids TMPDIR on NFS)
+# DEPLOY_DIR resolved after YOCTO_TMPDIR (OE requires node-local TMPDIR)
 
-# Hybrid: NFS sources + node-local BitBake TMPDIR (same as Eth — avoids ARC -1004 on /tmp full tree
-# and OE "TMPDIR can't be located on nfs")
+# Hybrid: shared sources + node-local BitBake TMPDIR (avoids ARC -1004 on /tmp full tree)
 if [ -n "${BUILD_ROOT:-}" ]; then
   WORKDIR="${BUILD_ROOT}/.yocto-build"
-  echo "Using NFS BUILD_ROOT workdir: $WORKDIR"
+  echo "Using BUILD_ROOT workdir: $WORKDIR"
   mkdir -vp "$WORKDIR"
 elif [ -d "dk-si-agi027fd-oobe/ptp/software/yocto_linux" ]; then
   WORKDIR="$(pwd)"

@@ -2,7 +2,7 @@
 
 set -x
 BUILD=false
-WORKDIR=/nfs/site/disks/pac_release_1/github/psgpac/altera-innersource/applications.fpga.system-example-designs.agilex7-ed-ptp/repo_check
+WORKDIR="${WORKDIR:-$(cd "$(dirname "$0")/.." && pwd)}"
 # Hardcoded .bb file paths - adjust these to your repo structure
 kernel_bb_file=$WORKDIR/dk-si-agi027fd-oobe/ptp/software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
 bb_files=(

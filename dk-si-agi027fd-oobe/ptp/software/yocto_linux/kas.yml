@@ -37,7 +37,7 @@ repos:
     url: https://github.com/kraj/meta-clang.git
     branch: wrynose
   meta-altera-fpga:
-    url: https://github.com/altera-innersource/applications.fpga.soc.meta-altera-fpga.git
+    url: https://github.com/altera-fpga/meta-altera-fpga.git
     branch: wrynose
     layers:
       meta-altera-bsp:
@@ -71,7 +71,7 @@ local_conf_header:
     PARALLEL_MAKE = "${@'-j 8' if d.getVar('GITHUB_ACTIONS') == 'true' else '-j 32'}"
     BB_NUMBER_THREADS = "${@'8' if d.getVar('GITHUB_ACTIONS') == 'true' else '32'}"
   ci-tmpdir: |
-    # CI sets YOCTO_TMPDIR to node-local scratch; OE sanity rejects NFS TMPDIR
+    # Keep YOCTO_TMPDIR on node-local storage.
     TMPDIR = "${@d.getVar('YOCTO_TMPDIR') or '${TOPDIR}/tmp'}"
   ci-disk: |
     # Shrink TMPDIR footprint (ARC local scratch); stop before disk-kill (-1004)

@@ -56,7 +56,7 @@ The design directory contains `src/`, `synth/`, and `software/` (see the design 
 Building the design is easy with the scripts provided in the repo. Clone the repository to get the source files.
 
 ```bash
-git clone https://github.com/altera-innersource/applications.fpga.system-example-designs.agilex7-ed-ptp.git
+git clone https://github.com/altera-fpga/agilex7-ed-ptp.git
 cd agilex7-ed-ptp
 git checkout <Release Tag>
 ```
