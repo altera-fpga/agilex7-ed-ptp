@@ -1,0 +1,64 @@
+name: Regression test
+on:
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+        PSGPAC_SSH_KEY:
+          required: true
+        SYS_TESTING_BA_SSH_KEY:
+          required: true
+        PNG_SSH_HOST_KEY:
+          required: true
+    inputs:
+      triggered_by_schedule:
+        type: boolean
+        required: false
+        default: false
+      triggered_by_tag_push:
+        type: boolean
+        required: false
+        default: false
+      release_tag:
+        type: string
+        required: false
+        default: ""
+  
+jobs:
+  regression_test:
+    runs-on: [self-hosted, psgpac]
+    timeout-minutes: 600
+    env:
+      PNG_SSH_HOST: sys_testing_ba@apgcp0d551103.png.altera.com
+      REPORT_PATH: /nfs/site/disks/pac_release_1/github/psgpac/sed/regression_test/tests/reports
+      TEST_DIR: /nfs/site/disks/swuser_work_sys_testing_ba/Nightly_Automation_Testing/regtest/1588ptp/agx7/fm87/2x25G_MCQOS
+      UTIL_DIR: /nfs/site/disks/swuser_work_sys_testing_ba/Nightly_Automation_Testing/utilities
+      EXEC_SCRIPT_DIR: /nfs/site/disks/swuser_work_sys_testing_ba/Nightly_Automation_Testing/scripts/Automation/2x25G_MCQOS
+      MCQOS_2x25G_SCRIPT_DIR: /nfs/site/disks/swuser_work_sys_testing_ba/Nightly_Automation_Testing/scripts/Testing/1588ptp/agx7/fm87/2x25G_MCQOS
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get date
+        run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
+      - name: Trigger Regression test
+        run: |
+          ssh "$PNG_SSH_HOST" "cd ${{ env.TEST_DIR }} && rm -rf * && \
+          cp -rf ${{ env.EXEC_SCRIPT_DIR }}/* . && \
+          cp -rf ${{ env.MCQOS_2x25G_SCRIPT_DIR }}/* . && \
+          cp -rf ${{env.UTIL_DIR }}/* . && \
+          perl Test_handling.pl --image="2x25G_MCQOS""
+
+      - name: check csv 
+        run: |
+          ssh -t "$PNG_SSH_HOST" << 'EOF'
+          cd ${{ env.TEST_DIR }}
+          if [ -f *.csv ];then
+            echo "CSV File Generated"
+            cat *.csv
+          else
+            echo "CSV File Not generated"
+            exit 1
+          fi
+          EOF

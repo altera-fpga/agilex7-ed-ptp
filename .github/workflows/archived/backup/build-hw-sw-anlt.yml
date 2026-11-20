@@ -1,0 +1,281 @@
+name: Build ANLT HW-SW and regression test
+on:
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      inherit: {}
+    inputs:
+      branch_name:
+        required: true
+        type: string
+  push:
+    # branches:
+    #   - build_anlt_support
+    tags:
+      - '*'
+    # paths:
+    #   - '.github/workflows/build_hw_sw.yml'
+
+  schedule:
+    - cron: '00 07 * * *'    # Daily at 12.30 AM UTC
+
+jobs:
+  check_changes:
+    # runs-on: altera-innersource.prod.amr.dind
+    # container: cache-registry.altera.com/cache/library/alpine:3.21
+    runs-on: self-hosted
+    outputs:
+      changes_detected: ${{ steps.changes_check.outputs.changed }}
+      test_run: ${{ steps.changes_check.outputs.test_run }}
+      resolved_branch: ${{ steps.branch.outputs.value }}
+    env:
+      SSH_HOST: psgpac@ascycron2.sc.altera.com
+      WORKDIR: /nfs/site/disks/pac_release_1/github/psgpac/${{ github.repository }}/repo_check
+      COMMIT_SHA: /nfs/site/disks/pac_release_1/github/psgpac/util/build/commit_sha
+      FORCE_BUILD_FILE: /nfs/site/disks/pac_release_1/github/psgpac/sed/build/1588ptp/agilex7/fm87/.last_anlt_forced_build
+
+    steps:
+      - name: Set branch 
+        id: branch
+        run: echo "value=${{ inputs.branch_name || github.ref_name || 'master' }}" >> $GITHUB_OUTPUT
+
+      # - name: Install packages 
+      #   run: |
+      #     apk update
+      #     apk add git openssh-client rsync
+
+      # - name: Setup ssh
+      #   run: |
+      #     umask 077
+      #     mkdir -p /root/.ssh
+      #     echo '${{ secrets.PSGPAC_SSH_KEY }}' > /root/.ssh/id_ed25519
+      #     echo '${{ env.SSH_HOST }} ${{ secrets.SSH_HOST_KEY }}' >> /root/.ssh/known_hosts
+      #     echo ServerAliveInterval 30 >> /root/.ssh/config
+      #     echo User psgpac >> /root/.ssh/config
+
+      - name: Create workdir
+        id: workdir
+        run: |
+          ssh "$SSH_HOST" "mkdir -pv $WORKDIR"
+     
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.branch.outputs.value }}
+          fetch-depth: 0
+
+      - name: Copy inputs
+        run: |
+          rsync -rl --exclude=.git "$GITHUB_WORKSPACE"/. "$SSH_HOST":"$WORKDIR"
+
+      - name: Check for changes since last build
+        id: changes_check
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            echo "Tag push detected, forcing build..."
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "test_run=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          # Check for changes in last 24 hrs
+          changed_1d=$(git log --since="1 day ago" --oneline | wc -l)
+          echo "Changed code since 1 day: $changed_1d"
+
+          # Check for changes in last 7 days
+          changed_7d=$(git log --since="6 days ago" --oneline | wc -l)
+          echo "Changed code since 7 days ago:  $changed_7d"
+
+          # Decide build flags
+          BUILD=false
+          TEST_RUN=true
+
+          # Force build flag creation
+          last_forced_ts=$(ssh "$SSH_HOST" "if [ -f ${{ env.FORCE_BUILD_FILE }} ]; then date -r ${{ env.FORCE_BUILD_FILE }} +%s; fi" 2>/dev/null)
+          echo "last_forced_ts :$last_forced_ts"
+          now_ts=$(date +%s)
+          
+          # Checking re-run flag status
+          check_rerun=$(ssh "$SSH_HOST" "cd $WORKDIR && ./scripts/check_rerun_flag.sh" | tail -n 1)
+          echo "Found re-run flag: $check_rerun"
+          if [ "$check_rerun" == true ]; then
+              BUILD=$check_rerun
+              echo "Last build failed - Force rerun builds"
+              ssh "$SSH_HOST" "rm -rf ${{ env.FORCE_BUILD_FILE }}"
+          fi
+
+          # Checking external repo changes
+          check_repo_out=$(ssh "$SSH_HOST" "cd $WORKDIR && ./scripts/check_repo.sh" | tail -n 1)
+          echo "Change in external repo: $check_repo_out"
+          if [ "$check_repo_out" == true ]; then
+              BUILD=$check_repo_out
+              echo " Changes in external repo (hps,ptpbridge or kernel) -- triggering build"
+              ssh "$SSH_HOST" "rm -rf ${{ env.FORCE_BUILD_FILE }}"
+          fi
+
+          # --- Determine if build is needed ---
+          if [ "$changed_1d" -gt 0 ]; then
+              echo " Changes in last 1 day — triggering build."
+              ssh "$SSH_HOST" "rm -rf ${{ env.FORCE_BUILD_FILE }}"
+              BUILD=true
+          elif [ "$changed_7d" -eq 0 ]; then
+              if [ -z "$last_forced_ts" ]; then
+                  echo " No record of forced build — forcing first inactivity build."
+                  ssh "$SSH_HOST" "touch ${{ env.FORCE_BUILD_FILE }}"
+                  BUILD=true
+              else
+                  diff_days=$(( (now_ts - last_forced_ts) / 86400 ))
+                  if [ "$diff_days" -ge 7 ]; then
+                      echo " No changes for $diff_days days — forcing recurring inactivity build."
+                      ssh "$SSH_HOST" "touch ${{ env.FORCE_BUILD_FILE }}"
+                      BUILD=true
+                  else
+                      echo "No changes, but only $diff_days days since last forced build — skipping."
+                  fi
+              fi
+          else
+              echo " No changes today, but not 7 days of inactivity — skipping build."
+          fi
+
+          if [ "$BUILD" == false ]; then TEST_RUN=false; fi
+
+          echo "changed=$BUILD" >> $GITHUB_OUTPUT
+          echo "test_run=$TEST_RUN" >> $GITHUB_OUTPUT
+          echo "BUILD FOR BRANCH: $GITHUB_REF"
+
+
+  HW_10G_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-anlt-2P10G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  HW_10G_NON_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P10G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  HW_25G_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-anlt-2P25G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  HW_25G_NON_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P25G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  HW_50G_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-anlt-2P50G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  HW_50G_NON_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P50G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  HW_100G_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-anlt-2P100G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  HW_100G_NON_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P100G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  build_software:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: [check_changes, HW_10G_ANLT, HW_10G_NON_ANLT, HW_25G_NON_ANLT, HW_25G_ANLT,  HW_50G_ANLT, HW_50G_NON_ANLT,  HW_100G_ANLT, HW_100G_NON_ANLT]
+    uses: ./.github/workflows/build-sw-anlt.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+
+  TEST:
+    if: always() && needs.check_changes.outputs.test_run == 'true'
+    needs: [check_changes, build_software]
+    strategy:
+      fail-fast: false
+      matrix:
+        designs: [10G_ANLT, 10G_NON_ANLT, 25G_ANLT, 25G_NON_ANLT, 50G_ANLT, 50G_NON_ANLT, 100G_ANLT, 100G_NON_ANLT]
+
+    uses: ./.github/workflows/test_anlt_regression.yml
+    with:
+       designs: ${{ matrix.designs }}
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SYS_TESTING_BA_SSH_KEY: ${{ secrets.SYS_TESTING_BA_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+      PNG_SSH_HOST_KEY: ${{ secrets.PNG_SSH_HOST_KEY }}

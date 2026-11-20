@@ -1,0 +1,267 @@
+name: Build ANLT/NON-ANLT HW-SW and regression test
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      branch_name:
+        required: true
+        type: string
+  push:
+    # branches:
+    #   - build_anlt_support
+    tags:
+      - '*'
+    # paths:
+    #   - '.github/workflows/build_hw_sw.yml'
+
+  #schedule:
+  #  - cron: '15 19 * * 0,1,2,3'    # Preserves nightly schedule while refreshing workflow ownership metadata
+
+jobs:
+  check_changes:
+    runs-on: [self-hosted, psgpac]
+    outputs:
+      changes_detected: ${{ steps.changes_check.outputs.changed }}
+      test_run: ${{ steps.changes_check.outputs.test_run }}
+      resolved_branch: ${{ steps.branch.outputs.value }}
+    env:
+      WORKDIR: /nfs/site/disks/pac_release_1/github/psgpac/${{ github.repository }}/repo_check
+      COMMIT_SHA: /nfs/site/disks/pac_release_1/github/psgpac/util/build/commit_sha
+      FORCE_BUILD_FILE: /nfs/site/disks/pac_release_1/github/psgpac/sed/build/nightly/1588ptp/agx7/fm87/pdk/.last_anlt_forced_build
+
+    steps:
+      - name: Set branch 
+        id: branch
+        # Default to GSRD2.0TestingBranch (not master) for this GSRD 2.0 PTP flow
+        run: echo "value=${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}" >> $GITHUB_OUTPUT
+
+      - name: Create workdir
+        id: workdir
+        run: |
+          mkdir -pv $WORKDIR
+     
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.branch.outputs.value }}
+          fetch-depth: 0
+
+      - name: Copy inputs
+        run: |
+          rsync -rl --exclude=.git "$GITHUB_WORKSPACE"/. "$WORKDIR"
+
+      - name: Check for changes since last build
+        id: changes_check
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            echo "Tag push detected, forcing build..."
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "test_run=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          # Manual dispatch: always run full ANLT + NON_ANLT + DR pipeline
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "workflow_dispatch detected, forcing full build..."
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "test_run=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          # Check for changes in last 24 hrs
+          changed_1d=$(git log --since="1 day ago" --oneline | wc -l)
+          echo "Changed code since 1 day: $changed_1d"
+
+          # Check for changes in last 7 days
+          changed_7d=$(git log --since="6 days ago" --oneline | wc -l)
+          echo "Changed code since 7 days ago:  $changed_7d"
+
+          # Decide build flags
+          BUILD=false
+          TEST_RUN=true
+
+          # Force build flag creation
+          last_forced_ts=$(if [ -f "${{ env.FORCE_BUILD_FILE }}" ]; then date -r "${{ env.FORCE_BUILD_FILE }}" +%s; fi 2>/dev/null)
+          echo "last_forced_ts :$last_forced_ts"
+          now_ts=$(date +%s)
+          
+          # Checking re-run flag status
+          check_rerun=$(cd $WORKDIR && ./scripts/check_rerun_flag.sh | tail -n 1)
+          echo "Found re-run flag: $check_rerun"
+          if [ "$check_rerun" == true ]; then
+              BUILD=$check_rerun
+              echo "Last build failed - Force rerun builds"
+              rm -rf ${{ env.FORCE_BUILD_FILE }}
+          fi
+
+          # Checking external repo changes
+          check_repo_out=$(cd $WORKDIR && ./scripts/check_repo.sh | tail -n 1)
+          echo "Change in external repo: $check_repo_out"
+          if [ "$check_repo_out" == true ]; then
+              BUILD=$check_repo_out
+              echo " Changes in external repo (hps,ptpbridge or kernel) -- triggering build"
+              rm -rf ${{ env.FORCE_BUILD_FILE }}
+          fi
+
+          # --- Determine if build is needed ---
+          if [ "$changed_1d" -gt 0 ]; then
+              echo " Changes in last 1 day — triggering build."
+              rm -rf ${{ env.FORCE_BUILD_FILE }}
+              BUILD=true
+          elif [ "$changed_7d" -eq 0 ]; then
+              if [ -z "$last_forced_ts" ]; then
+                  echo " No record of forced build — forcing first inactivity build."
+                  touch ${{ env.FORCE_BUILD_FILE }}
+                  BUILD=true
+              else
+                  diff_days=$(( (now_ts - last_forced_ts) / 86400 ))
+                  if [ "$diff_days" -ge 7 ]; then
+                      echo " No changes for $diff_days days — forcing recurring inactivity build."
+                      touch ${{ env.FORCE_BUILD_FILE }}
+                      BUILD=true
+                  else
+                      echo "No changes, but only $diff_days days since last forced build — skipping."
+                  fi
+              fi
+          else
+              echo " No changes today, but not 7 days of inactivity — skipping build."
+          fi
+
+          if [ "$BUILD" == false ]; then TEST_RUN=false; fi
+
+          echo "changed=$BUILD" >> $GITHUB_OUTPUT
+          echo "test_run=$TEST_RUN" >> $GITHUB_OUTPUT
+          echo "BUILD FOR BRANCH: $GITHUB_REF"
+
+
+  HW_10G_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-anlt-2P10G.yml
+    with:
+       # Treat manual dispatch like schedule so HW publishes to NFS and SW can find RBFs
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  HW_10G_NON_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P10G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  HW_25G_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-anlt-2P25G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  HW_25G_NON_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P25G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  HW_50G_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-anlt-2P50G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  HW_50G_NON_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P50G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  HW_100G_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-anlt-2P100G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  HW_100G_NON_ANLT:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P100G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  HW_10G_25G_NON_ANLT_DR:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: check_changes
+    uses: ./.github/workflows/build-hw-non-anlt-2P10G_25G_DR.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+
+  build_software:
+    if: always() && needs.check_changes.outputs.changes_detected == 'true'
+    needs: [check_changes, HW_10G_ANLT, HW_10G_NON_ANLT, HW_25G_NON_ANLT, HW_25G_ANLT,  HW_50G_ANLT, HW_50G_NON_ANLT,  HW_100G_ANLT, HW_100G_NON_ANLT, HW_10G_25G_NON_ANLT_DR]
+    uses: ./.github/workflows/build-sw-anlt.yml
+    secrets: inherit
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ needs.check_changes.outputs.resolved_branch }}
+
+  cleanup_temp_files:
+    runs-on: [self-hosted, psgpac]
+    env:
+      PNG_SSH_HOST: sys_testing_ba@apgcp0d551103.png.altera.com
+    steps:
+      - name: env set up
+        run: |
+          ssh -t "$PNG_SSH_HOST" << 'EOF' 
+          set -x
+          rm -rf /tmp/top_execution_semaphore
+          rm -rf /tmp/board_1
+          rm -rf /tmp/board_2
+          rm -rf /tmp/board_3
+          EOF
+
+  TEST:
+    if: always() && needs.check_changes.outputs.test_run == 'true'
+    needs: [check_changes, build_software]
+    strategy:
+      max-parallel: 3
+      fail-fast: false
+      matrix:
+        designs: [10g_25g_non_anlt_dr, 10g_anlt, 10g_non_anlt, 25g_anlt, 25g_non_anlt, 50g_anlt, 50g_non_anlt, 100g_anlt, 100g_non_anlt ]
+
+    uses: ./.github/workflows/regression_anlt_nightly_test.yml
+    with:
+       designs: ${{ matrix.designs }}
+       triggered_by_schedule: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}

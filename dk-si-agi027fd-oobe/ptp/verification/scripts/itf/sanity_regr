@@ -1,0 +1,14 @@
+testname=fptp_base_test
+testname=fptp_csr_test
+testname=fptp_csr_tcam_test
+testname=fptp_dma_base_test
+testname=fptp_qos_base_test
+testname=fptp_qos_usr_test
+testname=fptp_usr_base_test
+testname=fptp_qos_usr_rand_test
+testname=fptp_dma_base_priority0_test
+testname=fptp_dma_base_priority1_test
+testname=fptp_dma_base_randp0_test
+testname=fptp_dma_base_randp1_test
+testname=fptp_dma_base_randp2_test
+testname=fptp_usr_lpbk_test

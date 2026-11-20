@@ -1,0 +1,45 @@
+name: Regression only ANLT/NON-ANLT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup_temp_files:
+    runs-on: [self-hosted, psgpac]
+    env:
+      PNG_SSH_HOST: sys_testing_ba@apgcp0d551103.png.altera.com
+    steps:
+      - name: Clear board locks
+        run: |
+          ssh -t "$PNG_SSH_HOST" << 'EOF'
+          set -x
+          rm -rf /tmp/top_execution_semaphore
+          rm -rf /tmp/board_1
+          rm -rf /tmp/board_2
+          rm -rf /tmp/board_3
+          EOF
+
+  regression_test:
+    needs: [cleanup_temp_files]
+    strategy:
+      max-parallel: 3
+      fail-fast: false
+      matrix:
+        designs:
+          - 10g_25g_non_anlt_dr
+          - 10g_anlt
+          - 10g_non_anlt
+          - 25g_anlt
+          - 25g_non_anlt
+          - 50g_anlt
+          - 50g_non_anlt
+          - 100g_anlt
+          - 100g_non_anlt
+    uses: ./.github/workflows/regression_anlt_nightly_test.yml
+    with:
+      designs: ${{ matrix.designs }}
+      # Reuse the published nightly artifacts. Do not set build_type=nightly
+      # as well, or the called workflow would launch each design twice.
+      triggered_by_schedule: true
+      triggered_by_tag_push: false
+      release_tag: ""

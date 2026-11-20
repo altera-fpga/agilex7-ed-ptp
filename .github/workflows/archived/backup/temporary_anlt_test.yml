@@ -1,0 +1,64 @@
+name: ANLT/NON_ANLT Regression Trial Run
+on:
+  workflow_dispatch:
+    inputs:
+      designs:
+        description: 'Enter Single design to test(Ex:10G_ANLT/10G_NON_ANLT)'
+        required: false
+        default: " "
+        type: string
+        
+  workflow_call:
+    secrets:
+      inherit: {}
+    inputs:
+      branch_name:
+        required: true
+        type: string
+  # push:
+    # branches:
+    #   - temp_testing_anlt_branch
+    # tags:
+    #   - '*'
+    # paths:
+    #   - '.github/workflows/build_hw_sw.yml'
+
+  # schedule:
+  #   - cron: '0 0 * * *'
+
+jobs:
+  prepare-matrix:
+    # runs-on: altera-innersource.prod.amr.dind
+    runs-on: self-hosted
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: |
+          if [ -z "${{ github.event.inputs.designs }}" ]; then
+            MATRIX='["10G_ANLT","10G_NON_ANLT","25G_ANLT","25G_NON_ANLT", "50G_ANLT", "50G_NON_ANLT", "100G_ANLT", "100G_NON_ANLT"]'
+          else
+            MATRIX=$(echo '${{ github.event.inputs.designs }}' | tr -d ' ' | tr ',' '\n' | jq -R -s -c 'split("\n")[:-1]')
+          fi
+          echo "Running Desings: $MATRIX"
+          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
+          
+  TEST:
+    needs: prepare-matrix
+    strategy:
+      fail-fast: false
+      matrix:
+        designs: ${{ fromJson(needs.prepare-matrix.outputs.matrix) }}
+  
+    # if: ${{ github.event.inputs.designs == '' || github.event.inputs.designs == matrix.designs }}
+    uses: ./.github/workflows/test_anlt_regression.yml
+    with:
+       designs: ${{ matrix.designs }}
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+    secrets:
+      PSGPAC_SSH_KEY: ${{ secrets.PSGPAC_SSH_KEY }}
+      SYS_TESTING_BA_SSH_KEY: ${{ secrets.SYS_TESTING_BA_SSH_KEY }}
+      SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
+      PNG_SSH_HOST_KEY: ${{ secrets.PNG_SSH_HOST_KEY }}

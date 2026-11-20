@@ -1,0 +1,122 @@
+name: ANLT and NON-ANLT Regression test
+on:
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+        PSGPAC_SSH_KEY:
+          required: true
+        SYS_TESTING_BA_SSH_KEY:
+          required: true
+        PNG_SSH_HOST_KEY:
+          required: true
+        SSH_HOST_KEY:
+          required: true
+    inputs:
+      triggered_by_schedule:
+        type: boolean
+        required: false
+        default: false
+      triggered_by_tag_push:
+        type: boolean
+        required: false
+        default: false
+      release_tag:
+        type: string
+        required: false
+        default: ""
+      designs:
+        required: true
+        type: string
+  
+jobs:
+  regression_test:
+    # runs-on: altera-innersource.prod.amr.dind
+    timeout-minutes: 600
+    # container: cache-registry.altera.com/cache/library/alpine:3.21
+    runs-on: self-hosted
+    env:
+      PNG_SSH_HOST: sys_testing_ba@apgcp0d551103.png.altera.com
+      REPORT_PATH: /nfs/site/disks/pac_release_1/github/psgpac/sed/regression_test/tests/reports
+      TEST_DIR: /nfs/site/disks/swuser_work_sys_testing_ba/Nightly_Automation_Testing/regtest/1588ptp/agx7/fm87
+      UTIL_DIR: /nfs/site/disks/swuser_work_sys_testing_ba/Nightly_Automation_Testing/utilities
+      EXEC_SCRIPT_DIR: /nfs/site/disks/swuser_work_sys_testing_ba/Nightly_Automation_Testing/scripts/Automation/ANLT_NON_ANLT
+      TEST_CASES_DIR: /nfs/site/disks/swuser_work_sys_testing_ba/Nightly_Automation_Testing/scripts/Testing/1588ptp/agx7/fm87/ANLT_NON_ANLT
+
+    steps:
+      # - name: Install packages
+      #   run: |
+      #     apk update
+      #     apk add git openssh-client rsync
+
+      # - name: Setup ssh
+      #   run: |
+      #     umask 077
+      #     mkdir -p /root/.ssh
+      #     echo '${{ secrets.SYS_TESTING_BA_SSH_KEY }}' > /root/.ssh/id_ed25519
+      #     echo '${{ env.PNG_SSH_HOST }} ${{ secrets.PNG_SSH_HOST_KEY }}' >> /root/.ssh/known_hosts
+      #     echo ServerAliveInterval 30 >> /root/.ssh/config
+      #     echo User sys_testing_ba >> /root/.ssh/config
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: env set up
+        run: |
+            echo "TEST_DIR=${{ env.TEST_DIR }}/${{ inputs.designs }}" >> $GITHUB_ENV
+
+      - name: Run test for ${{ inputs.designs }}
+        run: |
+          ssh "$PNG_SSH_HOST" "cd ${{ env.TEST_DIR }} && rm -rf * && \
+          cp -rf ${{ env.EXEC_SCRIPT_DIR }}/* . && \
+          cp -rf ${{ env.TEST_CASES_DIR }}/* . && \
+          cp -rf ${{env.UTIL_DIR }}/* . && \
+          perl Test_handling.pl --image="${{ inputs.designs }}""
+
+      - name: check csv 
+        run: |
+           ssh -t "$PNG_SSH_HOST" << 'EOF'
+              cd ${{ env.TEST_DIR }}
+              if [ -f *.csv ];then
+                echo "CSV File Generated"
+                cat *.csv
+              else
+                echo "CSV File Not generated"
+                exit 1
+              fi
+           EOF
+
+  reporting:
+    if: ${{ inputs.triggered_by_schedule || inputs.triggered_by_tag_push }}
+    needs: [regression_test]
+    # runs-on: altera-innersource.prod.amr.dind
+    # container: cache-registry.altera.com/cache/library/alpine:3.21
+    runs-on: self-hosted
+    env:
+      SSH_HOST: psgpac@ascycron2.sc.altera.com
+      EMAIL_SCRIPT_PATH: /nfs/site/disks/pac_release_1/github/psgpac/sed/regression_test/tests/scripts/1588ptp/anlt_non_anlt
+    steps:
+      # - name: Install packages
+      #   run: |
+      #     apk update
+      #     apk add git openssh-client rsync
+
+      # - name: Setup ssh
+      #   run: |
+      #     umask 077
+      #     mkdir -p /root/.ssh
+      #     echo '${{ secrets.PSGPAC_SSH_KEY }}' > /root/.ssh/id_ed25519
+      #     echo '${{ env.SSH_HOST }} ${{ secrets.SSH_HOST_KEY }}' >> /root/.ssh/known_hosts
+      #     echo ServerAliveInterval 30 >> /root/.ssh/config
+      #     echo User psgpac >> /root/.ssh/config
+
+      - name: sending reports
+        if: ${{ inputs.triggered_by_schedule || inputs.triggered_by_tag_push }}
+        run: |
+          ssh -t "$SSH_HOST" << 'EOF'
+            set -x
+            cd ${{env.EMAIL_SCRIPT_PATH}}/${{ inputs.designs }}
+            var="${{ inputs.designs }}"
+            lower_str=$(echo "$var" | tr '[:upper:]' '[:lower:]')
+            echo "$lower_str"
+            python3 sed_1588ptp_agx7_fm87_${lower_str}_report.py
+          EOF

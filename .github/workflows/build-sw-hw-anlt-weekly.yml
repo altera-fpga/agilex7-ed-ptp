@@ -1,0 +1,139 @@
+name: Build weekly ANLT/NON-ANLT HW-SW and regression test 
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      branch_name:
+        required: true
+        type: string
+  # push:
+    # branches:
+    #   - build_anlt_support
+    # tags:
+    #   - '*'
+  schedule:
+    - cron: '0 19 * * 4-4'   # Preserves weekly schedule while refreshing workflow ownership metadata
+
+jobs:
+  HW_10G_ANLT:
+    if: always()
+    uses: ./.github/workflows/build-hw-anlt-2P10G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  HW_10G_NON_ANLT:
+    if: always()
+    uses: ./.github/workflows/build-hw-non-anlt-2P10G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  HW_25G_ANLT:
+    if: always()
+    uses: ./.github/workflows/build-hw-anlt-2P25G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  HW_25G_NON_ANLT:
+    if: always()
+    uses: ./.github/workflows/build-hw-non-anlt-2P25G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  HW_50G_ANLT:
+    if: always()
+    uses: ./.github/workflows/build-hw-anlt-2P50G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  HW_50G_NON_ANLT:
+    if: always()
+    uses: ./.github/workflows/build-hw-non-anlt-2P50G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  HW_100G_ANLT:
+    if: always()
+    uses: ./.github/workflows/build-hw-anlt-2P100G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  HW_100G_NON_ANLT:
+    if: always()
+    uses: ./.github/workflows/build-hw-non-anlt-2P100G.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  HW_10G_25G_NON_ANLT_DR:
+    if: always() 
+    uses: ./.github/workflows/build-hw-non-anlt-2P10G_25G_DR.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  build_software:
+    if: always()
+    needs: [ HW_10G_ANLT, HW_10G_NON_ANLT, HW_25G_NON_ANLT, HW_25G_ANLT,  HW_50G_ANLT, HW_50G_NON_ANLT,  HW_100G_ANLT, HW_100G_NON_ANLT, HW_10G_25G_NON_ANLT_DR]
+    uses: ./.github/workflows/build-sw-anlt.yml
+    with:
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
+       branch_name: ${{ inputs.branch_name || github.ref_name || 'GSRD2.0TestingBranch' }}
+
+  cleanup_temp_files:
+    needs: [ build_software ]
+    runs-on: [self-hosted, psgpac]
+    env:
+      PNG_SSH_HOST: sys_testing_ba@apgcp0d551103.png.altera.com
+    steps:
+      - name: env set up
+        run: |
+          ssh -t "$PNG_SSH_HOST" << 'EOF' 
+          set -x
+          rm -rf /tmp/top_execution_semaphore
+          rm -rf /tmp/board_1
+          rm -rf /tmp/board_2
+          rm -rf /tmp/board_3
+          EOF
+
+  TEST:
+    if: always()
+    needs: [ build_software, cleanup_temp_files ]
+    strategy:
+      max-parallel: 3
+      fail-fast: false
+      matrix:
+        designs: [10g_25g_non_anlt_dr, 10g_anlt, 10g_non_anlt, 25g_anlt, 25g_non_anlt, 50g_anlt, 50g_non_anlt, 100g_anlt, 100g_non_anlt ]
+
+    uses: ./.github/workflows/regression_anlt_weekly_test.yml
+    with:
+       designs: ${{ matrix.designs }}
+       triggered_by_schedule: ${{ github.event_name == 'schedule' }}
+       triggered_by_tag_push: ${{ startsWith(github.ref, 'refs/tags/') }}
+       release_tag: ${{ github.ref_name || '' }}
