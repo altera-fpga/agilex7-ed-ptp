@@ -36,7 +36,7 @@ The System Example Design supports the following design configuration on Altera 
 
 | SL No | Design configuration                                      | Data-rate options                                      | Development Kit Supported                                                                 | Device Family | Device Part       | Documentation                             |
 | ----- | --------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------- | ------------- | ----------------- | ----------------------------------------- |
-| 1.    | 2-port IEEE 1588v2 PTP with Multi-Channel QoS (F-Tile)    | 10G / 25G / 50G / 100G (with optional ANLT) and DR     | [DK-SI-AGI027FD](https://www.altera.com/products/development-boards-and-kits.html)         | Agilex™ 7     | AGIB027R31B1E1V   | [Build README](./dk-si-agi027fd-oobe/ptp) |
+| 1.    | 2-port IEEE 1588v2 PTP with Multi-Channel QoS (F-Tile)    | 10G / 25G / 50G / 100G (with optional ANLT) and DR     | [DK-SI-AGI027FD](https://www.altera.com/products/devkit/po-3248/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile) | Agilex™ 7     | AGIB027R31B1E1V   | [Build README](./dk-si-agi027fd-oobe/ptp/README.md) |
 
 ## Repository Structure
 
@@ -63,6 +63,6 @@ git checkout <Release Tag>
 
 Follow the links below to compile, build, and test the design solution.
 
-- [Building IEEE 1588 PTP MCQoS on DK-SI-AGI027FD](./dk-si-agi027fd-oobe/ptp)
+- [Building IEEE 1588 PTP MCQoS on DK-SI-AGI027FD](./dk-si-agi027fd-oobe/ptp/README.md)
 
 Run `make help` from the design directory for the full target list. Use `PTP_DESIGN=<rate>` to select the Ethernet rate variant (default `25G_ANLT`).

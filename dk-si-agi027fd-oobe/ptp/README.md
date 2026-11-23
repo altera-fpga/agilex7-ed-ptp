@@ -1,6 +1,6 @@
 # Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design
 
-The Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design targets the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SI-AGI027FD) with a 2-port F-Tile Ethernet / IEEE 1588v2 PTP design and Multi-Channel QoS (MCQoS) support.
+The Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design targets the [Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SI-AGI027FD)](https://www.altera.com/products/devkit/po-3248/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile) with a 2-port F-Tile Ethernet / IEEE 1588v2 PTP design and Multi-Channel QoS (MCQoS) support.
 
 ## Description
 
@@ -11,7 +11,7 @@ The Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design demonstrat
 - **Family**: Agilex 7
 - **Quartus Version**: 26.3
 - **Patch Number**: Unknown
-- **Development Kit**: Agilex 7 FPGA I-Series Transceiver-SoC Development Kit 4xF-Tile DK-SI-AGI027FD
+- **Development Kit**: [Agilex 7 FPGA I-Series Transceiver-SoC Development Kit 4xF-Tile DK-SI-AGI027FD](https://www.altera.com/products/devkit/po-3248/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile)
 - **Device Part**: AGIB027R31B1E1V
 - **Category**: HPS, Ethernet
 - **URL**: https://github.com/altera-fpga/agilex7-ed-ptp
@@ -20,11 +20,11 @@ The Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design demonstrat
 ## Documentations
 
 - **Title**: Design and Build Readme  
-  **URL**: https://github.com/altera-fpga/agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/README.md
+  **URL**: [README.md](./README.md)
 - **Title**: Hardware Build (synth)  
-  **URL**: https://github.com/altera-fpga/agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/synth/README.md
+  **URL**: [synth/README.md](./synth/README.md)
 - **Title**: Software / Yocto Build Readme  
-  **URL**: https://github.com/altera-fpga/agilex7-ed-ptp/blob/master/dk-si-agi027fd-oobe/ptp/software/yocto_linux/README.md
+  **URL**: [software/yocto_linux/README.md](./software/yocto_linux/README.md)
 
 ## Dependency
 
