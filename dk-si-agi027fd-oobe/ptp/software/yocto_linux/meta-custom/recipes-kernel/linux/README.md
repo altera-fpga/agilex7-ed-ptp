@@ -39,10 +39,11 @@ $ bitbake -c build linux-socfpga-lts
 Follow below steps to create the patch & build Linux Kernel.
 
 ### Clone Linux Kernel repo
+For this design, the bbappend uses the public Ethernet SED branch (see `linux-socfpga-lts_%.bbappend`). Example:
 ```
 $ git clone https://github.com/altera-fpga/linux-socfpga.git
 $ cd linux-socfpga
-$ git checkout <branch>
+$ git checkout socfpga-6.18.37-lts-ethernet-sed
 ```
 
 Do your source code changes.
@@ -71,13 +72,12 @@ $ bitbake -c build linux-socfpga-lts
 
 ## List of Linux binaries
 ```
-build/tmp/deploy/images/<Machine Id>/Image
-build/tmp/deploy/images/<Machine Id>/kernel.itb
-build/tmp/deploy/images/<Machine Id>/devicetree/socfpga_agilex5_socdk.dtb
-build/tmp/deploy/images/<Machine Id>/devicetree/socfpga_agilex5_vanilla.dtb
+build/tmp/deploy/images/agilex7/Image
+build/tmp/deploy/images/agilex7/kernel_fm87.itb
+build/tmp/deploy/images/agilex7/kernel_sed.itb
+build/tmp/deploy/images/agilex7/socfpga_agilex_socdk.dtb
+build/tmp/deploy/images/agilex7/socfpga_fm87_ftile_*_mcq_ptp*.dtb
 
-build/tmp/work/<Machine Id>-poky-linux/linux-socfpga-lts/<Linux version>/deploy-linux-socfpga-lts/Image
-build/tmp/work/<Machine Id>-poky-linux/linux-socfpga-lts/<Linux version>/deploy-linux-socfpga-lts/kernel.itb
-build/tmp/work/<Machine Id>-poky-linux/device-tree/1.0/image/boot/devicetree/socfpga_agilex5_socdk.dtb
-build/tmp/work/<Machine Id>-poky-linux/device-tree/1.0/image/boot/devicetree/socfpga_agilex5_vanilla.dtb
+build/tmp/work/agilex7-poky-linux/linux-socfpga-lts/<Linux version>/deploy-linux-socfpga-lts/Image
+build/tmp/work/agilex7-poky-linux/linux-socfpga-lts/<Linux version>/deploy-linux-socfpga-lts/kernel_fm87.itb
 ```

@@ -7,8 +7,8 @@
 - No additional Yocto configuration is required, by default `CUSTOM_UBOOT_DEVICE_TREE` variable is disabled in `kas.yml`.
 
 ### Custom device tree
-- Create the custom device tree by referring to https://github.com/altera-fpga/u-boot-socfpga.git - arch/arm/dts/socfpga_agilex5_socdk.dts.
-- Ensure required .dtsi file (e.g., socfpga_agilex5.dtsi) included in your custom .dts, similar to how it's done in the reference .dts.
+- Create the custom device tree by referring to https://github.com/altera-fpga/u-boot-socfpga.git - arch/arm/dts/socfpga_agilex_socdk.dts.
+- Ensure required .dtsi file (e.g., socfpga_agilex.dtsi) included in your custom .dts, similar to how it's done in the reference .dts.
 - Copy the complete custom .dts file in `meta-custom/recipes-bsp/u-boot/files/dts/`
 - Enable the `CUSTOM_UBOOT_DEVICE_TREE` variable in `kas.yml` to instruct the Yocto build system to build your custom .dts instead of the default in-tree one.
 
@@ -56,10 +56,11 @@ $ bitbake -c build u-boot-socfpga
 Follow below steps to create the patch, apply & build the U-Boot.
 
 ### Clone U-Boot source repo
+For this design, `kas/bsp.yml` pins branch `socfpga_v2026.07`. Example:
 ```
 $ git clone https://github.com/altera-fpga/u-boot-socfpga.git
 $ cd u-boot-socfpga
-$ git checkout <branch>
+$ git checkout socfpga_v2026.07
 ```
 Do your source code changes.
 
@@ -107,5 +108,5 @@ build/tmp/deploy/images/<Machine Id>/u-boot-spl.map
 build/tmp/deploy/images/<Machine Id>/u-boot.txt
 build/tmp/deploy/images/<Machine Id>/uboot.env
 build/tmp/deploy/images/<Machine Id>/boot.scr.uimg
-build/tmp/work/<Machine Id>-poky-linux/u-boot-socfpga/<u-boot version>/build/socfpga_agilex5_defconfig/arch/arm/dts/socfpga_agilex5_socdk.dtb
+build/tmp/work/agilex7-poky-linux/u-boot-socfpga/<u-boot version>/build/socfpga_agilex_defconfig/arch/arm/dts/socfpga_agilex_socdk.dtb
 ```
