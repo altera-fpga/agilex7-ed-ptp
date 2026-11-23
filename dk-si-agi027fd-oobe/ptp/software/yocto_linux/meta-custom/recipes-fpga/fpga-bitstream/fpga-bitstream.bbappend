@@ -4,10 +4,15 @@ SECTION = "bsp"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
+# Bridge SED kas.yml flag to the base recipe variable used by SRC_URI / tasks
+FPGA_CORE_PGM_ENABLE = "${FPGA_ENABLE_CORE_PGM}"
+
 python () {
     import os
     if not d.getVar('FPGA_ENABLE_CORE_PGM'):
         raise bb.parse.SkipRecipe("FPGA Enable Core Programming option is not set!")
+    if not d.getVar('FPGA_RBF_FILE'):
+        raise bb.parse.SkipRecipe("FPGA_RBF_FILE is not set (check ptp-solution.inc)")
 
     # PTP_ALL: stage each RBF that exists under FILESEXTRAPATHS (meta-custom .../files/).
     # Do NOT use THISDIR alone — for bbappends it often points at meta-altera-fpga's recipe dir.
@@ -43,6 +48,19 @@ python () {
                      "meta-custom/recipes-fpga/fpga-bitstream/files/ "
                      "(searched: %s)" % (" ".join(search_dirs) or "<none>"))
         d.setVar("FPGA_RBF_FILES", " ".join(present))
+}
+
+# Override meta-altera-fpga's hardcoded top.core.rbf deploy/install name.
+# Deploy as ${FPGA_RBF_FILE}; keep top.core.rbf as a symlink so FIT generation
+# (cp top.core.rbf -> ghrd.core.rbf) still works.
+do_install () {
+	install -D -m 0644 ${UNPACKDIR}/${FPGA_RBF_FILE} ${D}/boot/${FPGA_RBF_FILE}
+	ln -sfn ${FPGA_RBF_FILE} ${D}/boot/top.core.rbf
+}
+
+do_deploy () {
+	install -D -m 0644 ${UNPACKDIR}/${FPGA_RBF_FILE} ${DEPLOYDIR}/${FPGA_RBF_FILE}
+	ln -sfn ${FPGA_RBF_FILE} ${DEPLOYDIR}/top.core.rbf
 }
 
 # For PTP_ALL, also install RBFs under ${MACHINE}_${IMAGE_TYPE}_ghrd/ with

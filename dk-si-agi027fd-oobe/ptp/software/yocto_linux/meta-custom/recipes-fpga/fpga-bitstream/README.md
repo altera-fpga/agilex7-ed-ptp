@@ -49,8 +49,9 @@ PTP_DESIGN=25G_ANLT kas shell kas.yml -c "bitbake fpga-bitstream"
 
 ## What the recipe installs
 
-- Input: `${FPGA_RBF_FILE}` from `files/`
-- Deploy name: **`top.core.rbf`** under `build/tmp/deploy/images/agilex7/`
+- Input: `${FPGA_RBF_FILE}` from `files/` (name from `ptp-solution.inc`)
+- Deployed to `tmp/deploy/images/agilex7/` as `${FPGA_RBF_FILE}` when `FPGA_ENABLE_CORE_PGM` is enabled
+- Also creates a `top.core.rbf` symlink to that file so kernel FIT generation still works
 - Kernel FIT then stages it as **`ghrd.core.rbf`** inside the ITB
 
 This path is for **HPS boot first** with core RBF programming enabled (`FPGA_ENABLE_CORE_PGM`).

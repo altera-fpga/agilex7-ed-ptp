@@ -164,7 +164,7 @@ cp ../../synth/output_files/<generated>.core.rbf \
 
 Do **not** hard-code `FPGA_RBF_FILE` in `kas.yml` per rate. Use `PTP_DESIGN` / `./build.sh`; `ptp-solution.inc` sets `FPGA_RBF_FILE`, `FPGA_LINUX_DTB_FILE`, and `SOLUTION`.
 
-**Single-rate build:** the selected RBF is installed as `top.core.rbf` and included in the kernel FIT as `ghrd.core.rbf`. The matching DTB is built from the kernel and included in `kernel_fm87.itb`.
+**Single-rate build:** the selected RBF is deployed as `${FPGA_RBF_FILE}` (with a `top.core.rbf` symlink for FIT compatibility) and included in the kernel FIT as `ghrd.core.rbf`. The matching DTB is built from the kernel and included in `kernel_fm87.itb`.
 
 **`PTP_ALL` build:** one Yocto build stages every available `*.core.rbf` and produces per-design FIT images `kernel_fm87_PTP_*.itb` (skips a design if its RBF is missing).
 
@@ -265,7 +265,7 @@ After the build, binaries are under `build/tmp/deploy/images/agilex7/`.
 | `Image` | Linux kernel image |
 | `kernel_fm87.itb` / `kernel.itb` | FIT (Image + design DTB + RBF) for a single-rate build |
 | `kernel_fm87_PTP_*.itb` | Per-design FITs when `PTP_DESIGN=PTP_ALL` |
-| `top.core.rbf` | Selected design core RBF (`FPGA_RBF_FILE` staged by `fpga-bitstream`) |
+| `${FPGA_RBF_FILE}` / `top.core.rbf` | Selected design core RBF (long name + compatibility symlink from `fpga-bitstream`) |
 | `socfpga_fm87_ftile_*_mcq_ptp*.dtb` | Design-specific Linux DTBs |
 | `console-image-minimal-agilex7.rootfs.tar.gz` | Rootfs tarball |
 | `console-image-minimal-agilex7*.wic` | SD/MMC bootable disk image |
