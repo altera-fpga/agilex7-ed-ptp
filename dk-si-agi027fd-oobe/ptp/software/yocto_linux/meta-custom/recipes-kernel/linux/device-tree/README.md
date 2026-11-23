@@ -31,7 +31,15 @@ Place matching `.dts` / `.dtsi` sources here as well when you maintain them out-
 ls meta-custom/recipes-kernel/linux/device-tree/socfpga_fm87_ftile_100g_2port_2conn_mcq_ptp.dtb
 ```
 
-Reference base trees: [linux-socfpga](https://github.com/altera-fpga/linux-socfpga.git) under `arch/arm64/boot/dts/intel/` (FM87 F-Tile PTP MCQ names as above). Board base DTS in this BSP is typically `socfpga_agilex_socdk.dts` (`kas/machine.yml`).
+Reference kernel source for these DTS/DTB names:
+
+| | |
+|---|---|
+| Repo | `altera-fpga/linux-socfpga` |
+| Branch | `socfpga-6.18.37-lts-ethernet-sed` |
+| Path | `arch/arm64/boot/dts/intel/` |
+
+Board base DTS in this BSP is typically `socfpga_agilex_socdk.dts` (`kas/machine.yml`).
 
 ## Build
 
