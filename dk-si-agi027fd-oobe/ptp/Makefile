@@ -113,6 +113,10 @@ $(strip $(1))-package-design : $(INSTALL_ROOT_DESIGNS)/$(ARCHIVE_NAME).zip
 $(strip $(1))-build : synth-check-config
 	rm -f output_files/$(strip $(1)).synth-*.done
 	$(MAKE) --no-print-directory output_files/$(strip $(1)).sof
+	if [ -n "$$(PTP_CORE_SOF_FILENAME)" ]; then \
+		cp -f output_files/$(strip $(1)).sof output_files/$$(PTP_CORE_SOF_FILENAME) && \
+		$(MAKE) --no-print-directory output_files/$$(PTP_CORE_RBF_FILENAME); \
+	fi
 
 $(strip $(1))-build-sw :
 
@@ -168,6 +172,7 @@ build-all-ptp-hw:
 		echo "======== HW PTP_DESIGN=$$d ========"; \
 		$(MAKE) $(BASE_REVISION)-build PTP_DESIGN=$$d || exit 1; \
 		cp -f output_files/$(BASE_REVISION).sof output_files/$(BASE_REVISION)-$$d.sof; \
+		$(MAKE) $(BASE_REVISION)-install-core-rbf PTP_DESIGN=$$d || exit 1; \
 		echo "Saved output_files/$(BASE_REVISION)-$$d.sof"; \
 	done
 

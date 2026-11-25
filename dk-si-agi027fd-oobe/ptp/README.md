@@ -68,7 +68,7 @@ Valid: `10G`, `25G`, `50G`, `100G`, `10G_ANLT`, `25G_ANLT`, `50G_ANLT`, `100G_AN
 make dk-si-agi027fd-oobe-baseline-ptp-all PTP_DESIGN=100G
 ```
 
-This runs the hardware build, generates the core RBF from the SOF, then runs the Yocto SD software build for the selected `PTP_DESIGN`.
+This builds the selected design's `output_files/baseline.sof`, converts it to a core-only RBF named for `PTP_DESIGN` under `software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/`, then runs the Yocto SD software build.
 
 **Hardware build only:**
 
@@ -76,10 +76,11 @@ This runs the hardware build, generates the core RBF from the SOF, then runs the
 make dk-si-agi027fd-oobe-baseline-ptp-build PTP_DESIGN=100G
 ```
 
-This calls `synth/Makefile` (`make -C synth all PTP_DESIGN=...`) and then copies `synth/output_files/top.sof`
-to `output_files/baseline.sof` for the install and software targets.
+This calls `synth/Makefile` (`make -C synth all PTP_DESIGN=...`), keeps the revision SOF under
+`output_files/baseline.sof`, and also emits design-named SOF and core RBF files in `output_files/`
+for the software build.
 
-**Software build only**, after the hardware build generates the required SOF (core RBF is produced automatically):
+**Software build only** also builds the selected hardware design if needed, generates and stages its matching core RBF, then runs Yocto:
 
 ```bash
 make dk-si-agi027fd-oobe-baseline-ptp-software-yocto_linux_sd-build-sw PTP_DESIGN=100G
@@ -119,6 +120,24 @@ quartus_pfg -c -o hps=on \
 ```
 
 Or use the revision-named SOF produced by the top-level Makefile under `output_files/`.
+
+### Generate the SD/QSPI JIC and RBF artifacts
+
+After the SD software build completes, generate the JIC and HPS/core RBF files for the selected design with:
+
+```bash
+make sd-postprocess PTP_DESIGN=100G_ANLT
+```
+
+This uses the selected design-named SOF in `output_files/` (not the generic
+revision SOF), inserts the Yocto SPL, and creates the matching
+`<design>_yocto_linux_sd.sof`, `<design>.hps.jic`,
+`<design>.core.rbf`, and `<design>.hps.rbf`; `qspi_helper.hps.jic` remains
+design-independent. The FSBL-inserted SOF is in `output_files/`; the JIC/RBF files are staged under
+`install/binaries/software/yocto_linux_sd/`. The matching WIC image,
+`kernel_sed.itb`, and `u-boot-spl-dtb.hex` are available under
+`software/yocto_linux/build/tmp/deploy/images/agilex7/`; the software build also
+packages the WIC as `install/binaries/software/yocto_linux_sd/sdimage.tar.gz`.
 
 ## Software
 

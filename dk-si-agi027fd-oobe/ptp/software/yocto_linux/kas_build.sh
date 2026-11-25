@@ -91,4 +91,27 @@ elif [ "$BOOT_SOURCE" = "qspi" ]; then
     kas shell kas.yml:qspi_boot_src.yml -c "$CLEAN_CMD && bitbake console-image-minimal"
 fi
 
+if [ "$BOOT_SOURCE" = "sd" ] || [ "$BOOT_SOURCE" = "emmc" ]; then
+    MACHINE=$(sed -nE 's/^[[:space:]]*MACHINE[[:space:]]*=[[:space:]]*"([^"]+)".*/\1/p' kas/machine.yml | head -n 1)
+    PROJECT_DIR=$(cd ../.. && pwd)
+    YOCTO_TMPDIR=${YOCTO_TMPDIR:-"$PWD/build/tmp"}
+    YOCTO_IMAGE_DIR="$YOCTO_TMPDIR/deploy/images/$MACHINE"
+    YOCTO_SD_WIC="$YOCTO_IMAGE_DIR/gsrd-console-image-$MACHINE.rootfs.wic"
+    INSTALL_ROOT_BINARIES=${INSTALL_ROOT_BINARIES:-"$PROJECT_DIR/install/binaries"}
+
+    if [ -z "$MACHINE" ]; then
+        echo "Error: MACHINE not found in kas/machine.yml" >&2
+        exit 1
+    fi
+    if [ ! -f "$YOCTO_SD_WIC" ]; then
+        echo "Error: expected WIC image not found: $YOCTO_SD_WIC" >&2
+        exit 1
+    fi
+
+    SDIMAGE_DIR="$INSTALL_ROOT_BINARIES/software/yocto_linux_sd"
+    mkdir -p "$SDIMAGE_DIR"
+    tar -chzf "$SDIMAGE_DIR/sdimage.tar.gz" -C "$YOCTO_IMAGE_DIR" "$(basename "$YOCTO_SD_WIC")"
+    echo "Created $SDIMAGE_DIR/sdimage.tar.gz"
+fi
+
 echo "Build completed successfully."
