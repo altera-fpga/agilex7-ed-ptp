@@ -1,0 +1,16 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+Subject: [PATCH] configs: disable USB command on Agilex
+
+Disable the USB command in the Agilex defconfig.
+
+Upstream-Status: Inappropriate [configuration]
+---
+ configs/socfpga_agilex_defconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configs/socfpga_agilex_defconfig b/configs/socfpga_agilex_defconfig
+--- a/configs/socfpga_agilex_defconfig
++++ b/configs/socfpga_agilex_defconfig
+@@ -61 +61 @@
+-CONFIG_CMD_USB=y
++# CONFIG_CMD_USB is not set

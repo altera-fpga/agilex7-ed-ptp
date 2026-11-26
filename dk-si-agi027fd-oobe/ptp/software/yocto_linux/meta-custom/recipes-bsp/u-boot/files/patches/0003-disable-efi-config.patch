@@ -1,0 +1,18 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+Subject: [PATCH] configs: disable EFI boot support on Agilex
+
+Disable bootstd, EFI boot method, and the EFI loader.
+
+Upstream-Status: Inappropriate [configuration]
+---
+ configs/socfpga_agilex_defconfig | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/configs/socfpga_agilex_defconfig b/configs/socfpga_agilex_defconfig
+--- a/configs/socfpga_agilex_defconfig
++++ b/configs/socfpga_agilex_defconfig
+@@ -113,1 +113,4 @@
+ CONFIG_FPGA_ALTERA=y
++# CONFIG_BOOTSTD is not set
++# CONFIG_BOOTMETH_EFI is not set
++# CONFIG_EFI_LOADER is not set
