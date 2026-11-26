@@ -1,0 +1,99 @@
+# Standard Quartus generated directories
+/dni/
+/output_files/
+/qdb/
+/tmp-clearbox/
+
+# Log files created by Quartus
+quartus.log
+quartus.rec
+quartus.rec.log.flock
+quartus.log.save
+quartus.rec.save
+serv_req_info.txt
+*.qws
+*.qdf
+*.rpt
+
+# IP generated outputs; keep the .ip sources (and board.info) at any depth
+/src/ip/**
+!/src/ip/**/
+!/src/ip/**/*.ip
+!/src/ip/**/board.info
+
+# VDS subsystem generated outputs (keep source .vds and checked-in .ip)
+# Two-level pattern required: first un-ignore the ip/ dir, then exclude its contents except *.ip
+/src/vds/baseline_top/*
+!/src/vds/baseline_top/ip/
+/src/vds/baseline_top/ip/*
+!/src/vds/baseline_top/ip/*.ip
+!/src/vds/baseline_top/*.vds
+
+/src/vds/fabric_subsys/*
+!/src/vds/fabric_subsys/ip/
+/src/vds/fabric_subsys/ip/*
+!/src/vds/fabric_subsys/ip/*.ip
+!/src/vds/fabric_subsys/*.vds
+
+/src/vds/hps_subsys/*
+!/src/vds/hps_subsys/ip/
+/src/vds/hps_subsys/ip/*
+!/src/vds/hps_subsys/ip/*.ip
+!/src/vds/hps_subsys/*.vds
+
+/src/vds/niosv_subsys/*
+!/src/vds/niosv_subsys/ip/
+/src/vds/niosv_subsys/ip/*
+!/src/vds/niosv_subsys/ip/*.ip
+!/src/vds/niosv_subsys/*.vds
+
+/src/vds/shell_subsys/*
+!/src/vds/shell_subsys/ip/
+/src/vds/shell_subsys/ip/*
+!/src/vds/shell_subsys/ip/*.ip
+!/src/vds/shell_subsys/*.vds
+
+# Simscript directories
+/sim_setup_baseline*/
+
+# NiosV firmware
+niosv_fw/app/build/
+niosv_fw/bsp/*
+!niosv_fw/bsp/settings.bsp.orig
+
+# VDS generated directories
+/gen/
+
+# Quartus build outputs inside synth/
+/synth/dni/
+/synth/qdb/
+/synth/output_files/
+/synth/db/
+/synth/incremental_db/
+/synth/hc_output/
+/synth/tmp-clearbox/
+
+# Generated FPGA and Platform Designer outputs
+/install/
+/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/*.core.rbf
+/src/custom_ip/ftile_eth_tod_stack/common/eth_f_tod*/
+/src/custom_ip/ftile_eth_tod_stack/common/ghrd_f_master_tod/
+/src/custom_ip/ftile_eth_tod_stack/common/ghrd_f_mtod_*/
+/src/custom_rtl/ptp_bridge_ip/tcam/
+/src/custom_rtl/qsfp_controller/ip/qsfp_ctrl*/
+/src/ip/tod_slave_sub_system/port_0_tod_stack*/
+/src/qsys/dma_subsystem/
+/src/qsys/hps_sub_sys/
+/src/qsys/ip/pio_subsystem/
+/src/qsys/ip/qsys_top/
+/src/qsys/ip/sys_manager/
+/src/qsys/ip/tod_slave_sub_system/
+/src/qsys/master_tod_subsys/
+/src/qsys/pio_subsystem/
+/src/qsys/qsys_top/
+/src/qsys/subsys_ftile_*/
+/src/qsys/sys_manager/
+/src/qsys/tod_slave_sub_system/
+/synth/support_logic/
+/synth/top.qsf.backup
+/synth/top_ioaux_left_param_table.hex

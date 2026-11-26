@@ -139,9 +139,15 @@ Refer to ```scripts/README.md``` for detailed instructions on creating bootable 
 
 ## Prepare FPGA Bitstream (RBF) and device trees
 
-1. Build hardware from `../../synth/` (see [../../README.md](../../README.md)).
-2. Copy the **core** RBF into `meta-custom/recipes-fpga/fpga-bitstream/files/` using the **exact** name below.
-3. **DTB:** no manual copy. The kernel recipe builds `socfpga_fm87_*.dtb` from linux-socfpga `arch/arm64/boot/dts/intel/*.dts` using `PTP_DESIGN` / `FPGA_LINUX_DTB_FILE`. See `meta-custom/recipes-kernel/linux/device-tree/README.md`.
+For a single-rate build from `ptp/`, the top-level targets create design-named SOF and core RBF files in `output_files/`, then stage the RBF under the exact `PTP_DESIGN` filename below before starting Yocto:
+
+```bash
+make dk-si-agi027fd-oobe-baseline-ptp-software-yocto_linux_sd-build-sw PTP_DESIGN=100G
+```
+
+For a standalone Yocto build, first build hardware and copy its **core** RBF into `meta-custom/recipes-fpga/fpga-bitstream/files/` using the **exact** name below.
+
+**DTB:** no manual copy. The kernel recipe builds `socfpga_fm87_*.dtb` from linux-socfpga `arch/arm64/boot/dts/intel/*.dts` using `PTP_DESIGN` / `FPGA_LINUX_DTB_FILE`. See `meta-custom/recipes-kernel/linux/device-tree/README.md`.
 
 | Hardware `CONFIG` (`synth/`) | `PTP_DESIGN` | Core RBF filename under `fpga-bitstream/files/` |
 |------------------------------|--------------|--------------------------------------------------|
@@ -158,8 +164,8 @@ Refer to ```scripts/README.md``` for detailed instructions on creating bootable 
 
 ```bash
 # Example: 100G (non-ANLT) from ptp/
-cp ../../synth/output_files/<generated>.core.rbf \
-  meta-custom/recipes-fpga/fpga-bitstream/files/agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P100G_MCQ.core.rbf
+cp output_files/agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P100G_MCQ.core.rbf \
+  software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P100G_MCQ.core.rbf
 ```
 
 Do **not** hard-code `FPGA_RBF_FILE` in `kas.yml` per rate. Use `PTP_DESIGN` / `./build.sh`; `ptp-solution.inc` sets `FPGA_RBF_FILE`, `FPGA_LINUX_DTB_FILE`, and `SOLUTION`.
@@ -215,6 +221,8 @@ make dk-si-agi027fd-oobe-baseline-ptp-software-yocto_linux_sd-build-sw PTP_DESIG
 # All rates in one build:
 make dk-si-agi027fd-oobe-baseline-ptp-software-yocto_linux_sd-build-sw PTP_DESIGN=PTP_ALL
 ```
+
+The single-rate top-level make target generates and stages its RBF automatically. `PTP_ALL` software-only builds require all rate RBFs to be staged first; use the top-level `...-all PTP_DESIGN=ALL` target to build every rate's hardware and software together.
 
 ### Recommended — `build.sh`
 

@@ -58,7 +58,7 @@ endif
 ###############################################################################
 # Create the core RBF files from the SOF files
 output_files/%.core.rbf : output_files/%.sof
-	quartus_pfg -c $< output_files/$*.rbf -o hps=ON
+	quartus_pfg -c $< $@ -o hps=ON -o hps_core_only=ON
 
 ###############################################################################
 #                           SW Build Targets
@@ -67,6 +67,31 @@ output_files/%.core.rbf : output_files/%.sof
 # HPS Debug Software Build
 ###############################################################################
 RBF_NAME := ghrd
+PTP_CORE_RBF_FILENAME_10G       := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P10G_MCQ.core.rbf
+PTP_CORE_RBF_FILENAME_10G_ANLT  := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P10G_MCQ_ANLT.core.rbf
+PTP_CORE_RBF_FILENAME_25G       := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P25G_MCQ.core.rbf
+PTP_CORE_RBF_FILENAME_25G_ANLT  := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P25G_MCQ_ANLT.core.rbf
+PTP_CORE_RBF_FILENAME_50G       := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P50G_MCQ.core.rbf
+PTP_CORE_RBF_FILENAME_50G_ANLT  := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P50G_MCQ_ANLT.core.rbf
+PTP_CORE_RBF_FILENAME_100G      := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P100G_MCQ.core.rbf
+PTP_CORE_RBF_FILENAME_100G_ANLT := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P100G_MCQ_ANLT.core.rbf
+PTP_CORE_RBF_FILENAME_DR        := agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P_MCQ_DR.core.rbf
+PTP_CORE_RBF_FILENAME := $(PTP_CORE_RBF_FILENAME_$(PTP_DESIGN))
+PTP_ARTIFACT_STEM := $(patsubst %.core.rbf,%,$(PTP_CORE_RBF_FILENAME))
+ifeq ($(strip $(PTP_ARTIFACT_STEM)),)
+PTP_ARTIFACT_STEM := $(REVISION)
+endif
+PTP_CORE_SOF_FILENAME := $(patsubst %.core.rbf,%.sof,$(PTP_CORE_RBF_FILENAME))
+PTP_CORE_RBF_FILES_DIR := software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files
+
+ifneq ($(strip $(PTP_CORE_RBF_FILENAME)),)
+output_files/$(PTP_CORE_SOF_FILENAME):
+	$(MAKE) --no-print-directory output_files/$(REVISION).sof
+	cp -f output_files/$(REVISION).sof $@
+
+output_files/$(PTP_CORE_RBF_FILENAME): output_files/$(PTP_CORE_SOF_FILENAME)
+	quartus_pfg -c $< $@ -o hps=ON -o hps_core_only=ON
+endif
 
 # Only the full base revision(s) carry the HPS/SDM region. Exclude PR persona
 # revisions (alternate_persona), whose partial SOF cannot take an HPS image.
@@ -74,15 +99,21 @@ HPS_DEBUG_REVISIONS := $(filter-out alternate_persona,$(REVISION_NAMES))
 
 # Do not add HPS to the SW build target. Instead make it a part of the SOF install
 # target. This is because other SW builds require this SOF
+ifneq ($(strip $(PTP_CORE_RBF_FILENAME)),)
 define create_hps_debug_targets_on_revisions
 $(strip $(1))-install-sof : $(strip $(1))-install-core-rbf
 
 .PHONY: $(strip $(1))-install-core-rbf
-$(strip $(1))-install-core-rbf : output_files/$(strip $(1)).sof  | $(INSTALL_ROOT_BINARIES)
-	quartus_pfg -c output_files/$(strip $(1)).sof output_files/ghrd.rbf -o hps=ON -o hps_core_only=ON
-	cp -f output_files/ghrd.rbf $(INSTALL_ROOT_BINARIES)/$(RBF_NAME).core.rbf
+$(strip $(1))-install-core-rbf : output_files/$(PTP_CORE_RBF_FILENAME)  | $(INSTALL_ROOT_BINARIES)
+	cp -f $$< output_files/ghrd.rbf
+	cp -f $$< $(INSTALL_ROOT_BINARIES)/$(RBF_NAME).core.rbf
+	@if [ -n "$(PTP_CORE_RBF_FILENAME)" ]; then \
+		cp -f $$< $(INSTALL_ROOT_BINARIES)/$(PTP_CORE_RBF_FILENAME) && \
+		cp -f $$< $(PTP_CORE_RBF_FILES_DIR)/$(PTP_CORE_RBF_FILENAME); \
+	fi
 endef
 $(foreach revision,$(HPS_DEBUG_REVISIONS),$(eval $(call create_hps_debug_targets_on_revisions,$(revision))))
+endif
 
 # Yocto Linux Software Build for SD
 ###############################################################################
@@ -93,8 +124,20 @@ YOCTO_SD_IMAGE_DIR := $(KAS_YOCTO_IMAGE_DIR)
 YOCTO_SD_WIC       := $(YOCTO_SD_IMAGE_DIR)/gsrd-console-image-$(KAS_MACHINE).rootfs.wic
 YOCTO_SD_SPL_HEX   := $(YOCTO_SD_IMAGE_DIR)/u-boot-spl-dtb.hex
 
-# Build target — always run Yocto (do not require Quartus prep / top.qpf)
+ifneq ($(strip $(PTP_CORE_SOF_FILENAME)),)
+YOCTO_SD_INPUT_SOF := output_files/$(PTP_CORE_SOF_FILENAME)
+else
+YOCTO_SD_INPUT_SOF := output_files/$(REVISION).sof
+endif
+YOCTO_SD_POSTPROCESS_SOF := $(patsubst %.sof,%_yocto_linux_sd.sof,$(YOCTO_SD_INPUT_SOF))
+YOCTO_SD_POSTPROCESS_SOF_NAME := $(notdir $(YOCTO_SD_POSTPROCESS_SOF))
+
+# Single-design builds generate and stage selected core RBF before Yocto.
+# PTP_ALL uses the set of RBFs already staged under the mapped filenames.
 .PHONY: $(SW_YOCTO_LINUX_SD_TARGET)-build-sw
+ifneq ($(strip $(PTP_CORE_RBF_FILENAME)),)
+$(SW_YOCTO_LINUX_SD_TARGET)-build-sw : $(REVISION)-install-core-rbf
+endif
 $(SW_YOCTO_LINUX_SD_TARGET)-build-sw:
 	cd software/yocto_linux && ./build.sh $(PTP_DESIGN) sd
 
@@ -137,17 +180,17 @@ $(INSTALL_ROOT_ARTIFACTS)/software/yocto_linux_sd/%: $(YOCTO_SD_IMAGE_DIR)/% | $
 	cp -f $< $@
 
 .PHONY: sd-postprocess
-sd-postprocess: output_files/$(REVISION)_yocto_linux_sd.sof
+sd-postprocess: $(YOCTO_SD_POSTPROCESS_SOF)
 	cp -f software/yocto_linux/scripts/* $(YOCTO_SD_IMAGE_DIR)
-	cp -f output_files/$(REVISION)_yocto_linux_sd.sof $(YOCTO_SD_IMAGE_DIR)
+	cp -f $(YOCTO_SD_POSTPROCESS_SOF) $(YOCTO_SD_IMAGE_DIR)
 
 	# run uboot script and quartus_pfg to generate uboot only JIC
 	cd $(YOCTO_SD_IMAGE_DIR) && \
 		./uboot_bin.sh && \
-		cp $(REVISION)_yocto_linux_sd.sof ghrd.sof && \
+		cp $(YOCTO_SD_POSTPROCESS_SOF_NAME) ghrd.sof && \
 		quartus_pfg -c qspi_helper.pfg && \
-		quartus_pfg -c ghrd.sof ghrd.jic -o device=MT25QU02G -o flash_loader=AGIB027R31B1E1VC -o hps_path=u-boot-spl-dtb.hex -o mode=ASX4 -o hps=1 && \
-		quartus_pfg -o hps=ON -c -o hps_path=u-boot-spl-dtb.hex $(REVISION)_yocto_linux_sd.sof ghrd.rbf
+		quartus_pfg -c ghrd.sof $(PTP_ARTIFACT_STEM).jic -o device=MT25QU02G -o flash_loader=AGIB027R31B1E1VC -o hps_path=u-boot-spl-dtb.hex -o mode=ASX4 -o hps=1 && \
+		quartus_pfg -o hps=ON -c -o hps_path=u-boot-spl-dtb.hex $(YOCTO_SD_POSTPROCESS_SOF_NAME) $(PTP_ARTIFACT_STEM).rbf
 
 	mkdir -p $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd
 	cp -f $(YOCTO_SD_IMAGE_DIR)/qspi_helper.pfg $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
@@ -155,9 +198,9 @@ sd-postprocess: output_files/$(REVISION)_yocto_linux_sd.sof
 	cp -f $(YOCTO_SD_IMAGE_DIR)/u-boot.bin $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
 	cp -f $(YOCTO_SD_IMAGE_DIR)/u-boot-spl $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
 	cp -f $(YOCTO_SD_IMAGE_DIR)/qspi_helper.hps.jic $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
-	cp -f $(YOCTO_SD_IMAGE_DIR)/ghrd.hps.jic $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
-	cp -f $(YOCTO_SD_IMAGE_DIR)/ghrd.core.rbf $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
-	cp -f $(YOCTO_SD_IMAGE_DIR)/ghrd.hps.rbf $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
+	cp -f $(YOCTO_SD_IMAGE_DIR)/$(PTP_ARTIFACT_STEM).hps.jic $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
+	cp -f $(YOCTO_SD_IMAGE_DIR)/$(PTP_ARTIFACT_STEM).core.rbf $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
+	cp -f $(YOCTO_SD_IMAGE_DIR)/$(PTP_ARTIFACT_STEM).hps.rbf $(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/
 
 # Clean target
 .PHONY: $(SW_YOCTO_LINUX_SD_TARGET)-clean-sw
@@ -182,6 +225,6 @@ $(SW_YOCTO_LINUX_SD_TARGET)-install-sw : \
 	$(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/u-boot.itb \
 	$(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/u-boot.txt \
 	$(INSTALL_ROOT_BINARIES)/software/yocto_linux_sd/uboot.env \
-	$(INSTALL_ROOT_BINARIES)/$(REVISION)_yocto_linux_sd.sof \
+	$(INSTALL_ROOT_BINARIES)/$(YOCTO_SD_POSTPROCESS_SOF_NAME) \
 	sd-postprocess \
 	$(addprefix $(INSTALL_ROOT_ARTIFACTS)/software/yocto_linux_sd/, $(YOCTO_SD_ARTIFACT_FILES))

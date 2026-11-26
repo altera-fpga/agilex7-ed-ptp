@@ -12,7 +12,10 @@ SRC_URI += "${@bb.utils.contains('SSBL_BOOT_SRC', 'qspi', 'file://disable-fat-en
 
 SRC_URI:append = " \
              file://0001-UBoot-FTile-PTP-SED-Uboot-changes-for-FM87-1588PTP-SED.patch \
-             " 
+             file://0002-disable-usb-config.patch \
+             file://0003-disable-efi-config.patch \
+             "
+
 python () {
     import bb
 
