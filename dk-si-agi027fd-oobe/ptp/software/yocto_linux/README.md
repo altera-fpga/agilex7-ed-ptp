@@ -160,7 +160,6 @@ For a standalone Yocto build, first build hardware and copy its **core** RBF int
 | `100G_ANLT` | `100G_ANLT` | `agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P100G_MCQ_ANLT.core.rbf` |
 | `100G_NON_ANLT` | `100G` | `agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P100G_MCQ.core.rbf` |
 | `10G_25G_NON_ANLT_DR` | `DR` | `agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P_MCQ_DR.core.rbf` |
-| *(all rates above)* | `PTP_ALL` | Place **all** `*.core.rbf` names from the rows above under `fpga-bitstream/files/` |
 
 ```bash
 # Example: 100G (non-ANLT) from ptp/
@@ -171,8 +170,6 @@ cp output_files/agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P100G_MCQ.core.rbf \
 Do **not** hard-code `FPGA_RBF_FILE` in `kas.yml` per rate. Use `PTP_DESIGN` / `./build.sh`; `ptp-solution.inc` sets `FPGA_RBF_FILE`, `FPGA_LINUX_DTB_FILE`, and `SOLUTION`.
 
 **Single-rate build:** the selected RBF is deployed as `${FPGA_RBF_FILE}` (with a `top.core.rbf` symlink for FIT compatibility) and included in the kernel FIT as `ghrd.core.rbf`. The matching DTB is built from the kernel and included in `kernel_fm87.itb`.
-
-**`PTP_ALL` build:** one Yocto build stages every available `*.core.rbf` and produces per-design FIT images `kernel_fm87_PTP_*.itb` (skips a design if its RBF is missing).
 
 ## Build environment
 
@@ -205,30 +202,26 @@ Reference, https://kas.readthedocs.io/en/latest/userguide/getting-started.html#d
 
 ### PTP design selection (`PTP_DESIGN`)
 
-Valid values: `10G`, `25G`, `50G`, `100G`, `10G_ANLT`, `25G_ANLT`, `50G_ANLT`, `100G_ANLT`, `DR`, `PTP_ALL`  
+Valid values: `10G`, `25G`, `50G`, `100G`, `10G_ANLT`, `25G_ANLT`, `50G_ANLT`, `100G_ANLT`, `DR`
 Default: `25G_ANLT`
 
 | Value | Behavior |
 |-------|----------|
 | Single rate (e.g. `100G`, `25G_ANLT`) | One FIT (`kernel_fm87.itb`) for that design |
-| `PTP_ALL` | One Yocto build → all rate FIT ITBs (`kernel_fm87_PTP_*.itb`) |
 
 ### From design root (`ptp/`) — top-level make
 
 ```bash
 cd ../..   # ptp/
 make dk-si-agi027fd-oobe-baseline-ptp-software-yocto_linux_sd-build-sw PTP_DESIGN=100G
-# All rates in one build:
-make dk-si-agi027fd-oobe-baseline-ptp-software-yocto_linux_sd-build-sw PTP_DESIGN=PTP_ALL
 ```
 
-The single-rate top-level make target generates and stages its RBF automatically. `PTP_ALL` software-only builds require all rate RBFs to be staged first; use the top-level `...-all PTP_DESIGN=ALL` target to build every rate's hardware and software together.
+The top-level make target builds only the selected rate and stages its RBF automatically. Run it separately for each rate you need.
 
 ### Recommended — `build.sh`
 
 ```bash
 ./build.sh 100G sd
-./build.sh PTP_ALL sd    # one build, all ITBs
 # Usage: ./build.sh <PTP_DESIGN> <BOOT_SOURCE>
 # BOOT_SOURCE: sd | qspi | emmc | nand
 ```
@@ -237,7 +230,6 @@ The single-rate top-level make target generates and stages its RBF automatically
 
 ```bash
 PTP_DESIGN=100G kas shell kas.yml -c "bitbake console-image-minimal"
-PTP_DESIGN=PTP_ALL kas shell kas.yml -c "bitbake console-image-minimal"
 ```
 
 Or:
@@ -251,7 +243,7 @@ bitbake console-image-minimal
 ### Using Yocto GUI (`kas menu`)
 
 ```bash
-export PTP_DESIGN=25G_ANLT   # or PTP_ALL; default is 25G_ANLT
+export PTP_DESIGN=25G_ANLT   # default is 25G_ANLT
 kas menu
 # configure options, then Build — or Save & Exit and:
 kas shell .config.yaml
@@ -272,7 +264,6 @@ After the build, binaries are under `build/tmp/deploy/images/agilex7/`.
 | `bl31.bin` | Arm Trusted Firmware |
 | `Image` | Linux kernel image |
 | `kernel_fm87.itb` / `kernel.itb` | FIT (Image + design DTB + RBF) for a single-rate build |
-| `kernel_fm87_PTP_*.itb` | Per-design FITs when `PTP_DESIGN=PTP_ALL` |
 | `${FPGA_RBF_FILE}` / `top.core.rbf` | Selected design core RBF (long name + compatibility symlink from `fpga-bitstream`) |
 | `socfpga_fm87_ftile_*_mcq_ptp*.dtb` | Design-specific Linux DTBs |
 | `console-image-minimal-agilex7.rootfs.tar.gz` | Rootfs tarball |

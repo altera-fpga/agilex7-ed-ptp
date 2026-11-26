@@ -133,7 +133,6 @@ YOCTO_SD_POSTPROCESS_SOF := $(patsubst %.sof,%_yocto_linux_sd.sof,$(YOCTO_SD_INP
 YOCTO_SD_POSTPROCESS_SOF_NAME := $(notdir $(YOCTO_SD_POSTPROCESS_SOF))
 
 # Single-design builds generate and stage selected core RBF before Yocto.
-# PTP_ALL uses the set of RBFs already staged under the mapped filenames.
 .PHONY: $(SW_YOCTO_LINUX_SD_TARGET)-build-sw
 ifneq ($(strip $(PTP_CORE_RBF_FILENAME)),)
 $(SW_YOCTO_LINUX_SD_TARGET)-build-sw : $(REVISION)-install-core-rbf

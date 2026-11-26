@@ -50,9 +50,6 @@ SYNTH_DIR := $(PROJECT_DIR_ABS)/synth
 SYNTH_REVISION := top
 PTP_DESIGN ?= 25G_ANLT
 
-# All rate variants (NON_ANLT + ANLT + DR) for PTP_DESIGN=ALL
-PTP_DESIGN_LIST_ALL := 10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR
-
 SYNTH_CONFIG_10G       := 10G_NON_ANLT
 SYNTH_CONFIG_25G       := 25G_NON_ANLT
 SYNTH_CONFIG_50G       := 50G_NON_ANLT
@@ -149,42 +146,12 @@ $(foreach revision,$(REVISION_NAMES),$(eval $(call create_targets_on_revisions,$
 ifneq ($(MAKE_STEM),)
 .PHONY: $(MAKE_STEM)-all $(MAKE_STEM)-build $(MAKE_STEM)-software-yocto_linux_sd-build-sw \
 	$(MAKE_STEM)-install $(MAKE_STEM)-install-core-rbf
-ifeq ($(PTP_DESIGN),ALL)
-# Build every rate (HW and/or SW) when PTP_DESIGN=ALL
-$(MAKE_STEM)-build : build-all-ptp-hw
-$(MAKE_STEM)-software-yocto_linux_sd-build-sw : build-all-ptp-sw
-$(MAKE_STEM)-all : build-all-ptp-all
-$(MAKE_STEM)-install : $(BASE_REVISION)-install
-$(MAKE_STEM)-install-core-rbf : $(BASE_REVISION)-install-core-rbf
-else
 $(MAKE_STEM)-all : $(BASE_REVISION)-build software-yocto_linux_sd-build-sw
 $(MAKE_STEM)-build : $(BASE_REVISION)-build
 $(MAKE_STEM)-software-yocto_linux_sd-build-sw : software-yocto_linux_sd-build-sw
 $(MAKE_STEM)-install : $(BASE_REVISION)-install
 $(MAKE_STEM)-install-core-rbf : $(BASE_REVISION)-install-core-rbf
 endif
-endif
-
-# Iterate all PTP_DESIGN values (used by PTP_DESIGN=ALL)
-.PHONY: build-all-ptp-hw build-all-ptp-sw build-all-ptp-all
-build-all-ptp-hw:
-	@for d in $(PTP_DESIGN_LIST_ALL); do \
-		echo "======== HW PTP_DESIGN=$$d ========"; \
-		$(MAKE) $(BASE_REVISION)-build PTP_DESIGN=$$d || exit 1; \
-		cp -f output_files/$(BASE_REVISION).sof output_files/$(BASE_REVISION)-$$d.sof; \
-		$(MAKE) $(BASE_REVISION)-install-core-rbf PTP_DESIGN=$$d || exit 1; \
-		echo "Saved output_files/$(BASE_REVISION)-$$d.sof"; \
-	done
-
-# One Yocto build produces all kernel_sed_PTP_*.itb (SOLUTION=PTP_ALL in linux bbappend).
-# Do NOT loop per rate — that re-runs full bitbake ~9x.
-build-all-ptp-sw:
-	@echo "======== SW PTP_DESIGN=PTP_ALL (single Yocto build, all ITBs) ========"
-	$(MAKE) software-yocto_linux_sd-build-sw PTP_DESIGN=PTP_ALL
-
-build-all-ptp-all:
-	@$(MAKE) build-all-ptp-hw
-	@$(MAKE) build-all-ptp-sw
 
 ###############################################################################
 #                          UTILITY TARGETS
@@ -237,15 +204,9 @@ endif
 
 .PHONY: synth-check-config
 synth-check-config:
-ifeq ($(PTP_DESIGN),ALL)
-	@echo "Error: PTP_DESIGN=ALL is only valid on public targets:"
-	@echo "  make $(MAKE_STEM)-build PTP_DESIGN=ALL"
-	@echo "  make $(MAKE_STEM)-all PTP_DESIGN=ALL"
-	@echo "  make $(MAKE_STEM)-software-yocto_linux_sd-build-sw PTP_DESIGN=ALL   # -> one PTP_ALL Yocto build"
-	@exit 1
-else ifeq ($(SYNTH_CONFIG),)
+ifeq ($(SYNTH_CONFIG),)
 	@echo "Error: unsupported PTP_DESIGN='$(PTP_DESIGN)'"
-	@echo "Valid: 10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR ALL"
+	@echo "Valid: 10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR"
 	@exit 1
 else
 	@echo "PTP_DESIGN=$(PTP_DESIGN) -> Configuration=$(SYNTH_CONFIG)"
@@ -307,9 +268,8 @@ help:
 	@echo ""
 	@echo "PTP_DESIGN selects both hardware and software (same name in synth/ and Yocto)."
 	@echo "  Default: $(PTP_DESIGN)  ->  Configuration=$(SYNTH_CONFIG)"
-	@echo "  Valid:   10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR ALL"
+	@echo "  Valid:   10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR"
 	@echo "  Mapping: 10G/25G/50G/100G -> *_NON_ANLT; DR -> 10G_25G_NON_ANLT_DR"
-	@echo "  ALL:     $(PTP_DESIGN_LIST_ALL)"
 	@echo ""
 	@echo "Public targets:"
 	@echo "  $(MAKE_STEM)-build"
@@ -337,8 +297,6 @@ help:
 	@echo "  make $(MAKE_STEM)-build PTP_DESIGN=100G"
 	@echo "  make $(MAKE_STEM)-software-yocto_linux_sd-build-sw PTP_DESIGN=100G"
 	@echo "  make $(MAKE_STEM)-all PTP_DESIGN=25G_ANLT"
-	@echo "  make $(MAKE_STEM)-all PTP_DESIGN=ALL"
-	@echo "  make $(MAKE_STEM)-build PTP_DESIGN=ALL"
 	@echo "  make $(MAKE_STEM)-install-core-rbf PTP_DESIGN=100G"
 	@echo ""
 	@echo "Project directory : $(PROJECT_DIR_ABS)"

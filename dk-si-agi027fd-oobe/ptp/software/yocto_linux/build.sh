@@ -22,16 +22,12 @@ echo "PTP_DESIGN: $PTP_DESIGN"
 echo "Boot Source: $BOOT_SOURCE"
 echo "Gitconfig Creation Script: $GITCONFIG_CREATE_SCRIPT"
 echo "Container Command: $CONTAINER_COMMAND"
-# Normalize ALL -> PTP_ALL (single Yocto build, all ITBs)
 case "$PTP_DESIGN" in
-  ALL|PTP_ALL) PTP_DESIGN=PTP_ALL; export PTP_DESIGN ;;
-esac
-case "$PTP_DESIGN" in
-  10G|25G|50G|100G|10G_ANLT|25G_ANLT|50G_ANLT|100G_ANLT|DR|PTP_ALL) ;;
+  10G|25G|50G|100G|10G_ANLT|25G_ANLT|50G_ANLT|100G_ANLT|DR) ;;
   *)
     echo "Error: unsupported PTP_DESIGN='$PTP_DESIGN'"
     echo "Usage: $0 <PTP_DESIGN> <BOOT_SOURCE>"
-    echo "  PTP_DESIGN: 10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR PTP_ALL"
+    echo "  PTP_DESIGN: 10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR"
     echo "  BOOT_SOURCE: 'sd', 'qspi', 'emmc', or 'nand'"
     exit 1
     ;;
@@ -39,7 +35,7 @@ esac
 if [ "$BOOT_SOURCE" != "sd" ] && [ "$BOOT_SOURCE" != "qspi" ] && [ "$BOOT_SOURCE" != "emmc" ] && [ "$BOOT_SOURCE" != "nand" ]; then
     echo "Error: Boot source must be 'sd', 'qspi', 'emmc', or 'nand'"
     echo "Usage: $0 <PTP_DESIGN> <BOOT_SOURCE>"
-    echo "  PTP_DESIGN: 10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR PTP_ALL"
+    echo "  PTP_DESIGN: 10G 25G 50G 100G 10G_ANLT 25G_ANLT 50G_ANLT 100G_ANLT DR"
     echo "  BOOT_SOURCE: 'sd', 'qspi', 'emmc', or 'nand'"
     exit 1
 fi

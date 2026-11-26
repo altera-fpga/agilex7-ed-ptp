@@ -1,14 +1,9 @@
 # Map PTP_DESIGN -> RBF / DTB / SOLUTION
 # Usage: PTP_DESIGN=25G_ANLT kas shell kas.yml -c "bitbake console-image-minimal"
-#        PTP_DESIGN=PTP_ALL  -> one Yocto build, all FIT ITBs (see linux bbappend)
 #        ./build.sh 25G_ANLT sd
 PTP_DESIGN ??= "25G_ANLT"
 python () {
     design = (d.getVar("PTP_DESIGN") or "25G_ANLT").strip().upper()
-    # Makefile historically used ALL for a for-loop; treat as multi-ITB single build
-    if design in ("ALL", "PTP_ALL"):
-        design = "PTP_ALL"
-
     rbf_map = {
         "10G_ANLT":  "agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P10G_MCQ_ANLT.core.rbf",
         "10G":       "agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P10G_MCQ.core.rbf",
@@ -43,21 +38,8 @@ python () {
         "DR":        "PTP_2P_MCQ_DR",
     }
 
-    if design == "PTP_ALL":
-        d.setVar("PTP_DESIGN", "PTP_ALL")
-        d.setVar("SOLUTION", "PTP_ALL")
-        # Placeholder for recipes that require a single name; bitstream bbappend
-        # installs every RBF when SOLUTION=PTP_ALL.
-        d.setVar("FPGA_RBF_FILE", rbf_map["25G_ANLT"])
-        d.setVar("FPGA_RBF_FILES", " ".join(rbf_map[k] for k in sorted(rbf_map)))
-        dtb_list = [dtb_map[k] for k in sorted(dtb_map)]
-        d.setVar("FPGA_LINUX_DTB_FILE", dtb_list[0])
-        d.setVar("FPGA_LINUX_DTB_FILES", " ".join(dtb_list))
-        d.setVar("PTP_KERNEL_DEVICETREE", " ".join("intel/%s" % t for t in dtb_list))
-        return
-
     if design not in rbf_map:
-        bb.fatal("Unsupported PTP_DESIGN='%s'. Valid: %s PTP_ALL" %
+        bb.fatal("Unsupported PTP_DESIGN='%s'. Valid: %s" %
                  (design, " ".join(sorted(rbf_map))))
     rbf = rbf_map[design]
     dtb = dtb_map[design]
