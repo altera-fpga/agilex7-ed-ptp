@@ -2,6 +2,8 @@ KERNEL_REPO = "git://github.com/altera-fpga/linux-socfpga.git"
 SRCREV = "${AUTOREV}"
 LINUX_VERSION = "6.18.37"
 KBRANCH = "socfpga-6.18.37-lts-ethernet-sed"
+# Kernel CONFIG_LOCALVERSION
+LINUX_VERSION_EXTENSION = "-SED-Ethernet-PTP-Agilex7"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 # Append GSRD specific kernel config fragments and Patches.
@@ -17,10 +19,7 @@ SRC_URI:append = " file://ftile-mcq.scc"
 KERNEL_FEATURES:append = " ftile-mcq.scc"
 KERNEL_VERSION_SANITY_SKIP = "1"
 
-LINUX_VERSION_EXTENSION = "${SW_VERSION_STRING}"
-
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-socfpga-lts:"
-
 
 SRC_URI:append:agilex7 = " file://fit_kernel_sed_ftile_PTP_2P10G_MCQ.its"
 SRC_URI:append:agilex7 = " file://fit_kernel_sed_ftile_PTP_2P25G_MCQ.its"
