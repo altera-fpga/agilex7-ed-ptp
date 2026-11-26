@@ -1,35 +1,21 @@
-# Agilex&trade; 7 Precision Time Protocol System Example Design
+# Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design
 
 ## Description
 
-The Agilex&trade; 7 Precision Time Protocol System Example Design includes two Ethernet ports with built-in 2-step hardware PTP timestamping capabilities. The integrated Agilex&trade; 7 Hard Processor System (HPS) operates a PTP software stack that complements the hardware-based timestamping functionality.
+The Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design demonstrates Ethernet and IEEE 1588v2 PTP functionality of the Altera Agilex™ 7 FPGA supporting F-Tile transceivers. It provides a 2-port design leveraging the Ethernet Subsystem FPGA IP with Multi-Channel QoS (MCQoS) support.
 
-The System Example Design (SED) provides the necessary drivers and user applications to support the Linux Network stack, the Linux PTP stack, and network Quality of Service (QoS) through the Linux kernel Traffic Control (TC) system.
-
-This System Example Design supports multiple Ethernet link data rates along with ANLT(Auto-Negotiation and Link Training) and DR(Dynamic Reconfiguration) feature.
-
-1. 10GbE.
-2. 25GbE.
-3. 50GbE.
-4. 100GbE.
-
-Following are the design configurations.
-
-|SL No| Design configuration                        | _Rate_   | _Feature_         |
-|-----|---------------------------------------------|----------|:-----------------:|
-|1.   |2-port 10GbE with PTP1588                    | 10GbE    | PTP1588           |
-|2.   |2-port 10GbE with PTP1588 & ANLT             | 10GbE    | PTP1588+ANLT      |
-|3.   |2-port 25GbE with PTP1588                    | 25GbE    | PTP1588           |
-|4.   |2-port 25GbE with PTP1588 & ANLT             | 25GbE    | PTP1588+ANLT      |
-|5.   |2-port 50GbE with PTP1588                    | 50GbE    | PTP1588           |
-|6.   |2-port 50GbE with PTP1588 & ANLT             | 50GbE    | PTP1588+ANLT      |
-|7.   |2-port 100GbE with PTP1588                   | 100GbE   | PTP1588           |
-|8.   |2-port 100GbE with PTP1588 & ANLT            | 100GbE   | PTP1588+ANLT      |
-|9.   |2-port 10GbE/25GbE-DR with PTP1588           | 10/25GbE | PTP1588+DR        |
+The System Example Design (SED) provides the necessary drivers and user applications to support the Linux Network stack and the Linux PTP stack on the HPS.
 
 The system's primary components include:
 
-- Golden Hardware Reference Design (GHRD)
+- The Hardware Reference Design
+- Hard Processor Subsystem (HPS)
+- Channelized Modular Scatter-Gather Direct Memory Access (MSGDMA) Subsystem
+- Main Time of Day (ToD) Subsystem
+- Channelized Subordinate ToD Subsystem
+- PTP Bridge Subsystem
+- Packet Generator
+- High-Speed Serial Interface (HSSI) Subsystem
 - Reference HPS software including:
   - Arm Trusted Firmware
   - U-Boot
@@ -37,41 +23,46 @@ The system's primary components include:
   - Linux Drivers
   - User Space Applications
 
-The block diagram below illustrates the architecture for a 25G design. This architecture is also applicable to other data rates (10GbE, 50GbE, and 100GbE); the only notable change is that the Ethernet subsystem will be replaced with the corresponding IP modules for each data rate.
+![Agilex™ 7 IEEE 1588 PTP Multi-Channel QoS System Example Design block diagram](doc/mcqos_high_level_architecture.png)
 
-![](./ptp_sed_high_arch.png)
+Important features of the design include:
+
+- Support for both ordinary and boundary clock configurations
+- PTP software stack running on the HPS that handles generation of PTP messages and local Time of Day (ToD) adjustments
+- Programmable QoS and packet routing functionality handled within the PTP Bridge Subsystem
+- Multiple DMA engines to efficiently transfer data between the HPS and HSSI
+
+The System Example Design supports the following design configuration on Altera Development Kits.
+
+| SL No | Design configuration                                      | Data-rate options                                      | Development Kit Supported                                                                 | Device Family | Device Part       | Documentation                             |
+| ----- | --------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------- | ------------- | ----------------- | ----------------------------------------- |
+| 1.    | 2-port IEEE 1588v2 PTP with Multi-Channel QoS (F-Tile)    | 10G / 25G / 50G / 100G (with optional ANLT) and DR     | [DK-SI-AGI027FD](https://www.altera.com/products/devkit/po-3248/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile) | Agilex™ 7     | AGIB027R31B1E1V   | [Build README](./dk-si-agi027fd-oobe/ptp/README.md) |
 
 ## Repository Structure
 
 Directory Structure Used in This Example Design:
 
-``` bash
-|--- agi027fd-si-devkit
-  |   |--- src
-  |   |   |--- hw
-  |   |   |--- sw
-
+```bash
+agilex7-ed-ptp
+|--- doc/
+|--- dk-si-agi027fd-oobe/
+|   |--- ptp/                   # 2-port IEEE 1588 PTP MCQoS, I-Series F-Tile kit
 ```
 
-## Project Details
-
-- **Family**: Agilex&trade; 7 I-Series
-- **Quartus Version**: 26.1
-- **Development Kit**: Agilex&trade 7; I-Series Transceiver-SoC Development Kit (4x F-Tile) ([DK-SI-AGI027FD](https://www.altera.com/products/devkit/po-3248/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile))
-- **Device Part**: AGIB027R31B1E1V
-- **Documentation**: [Agilex&trade; 7Precision Time Protocol System Example Design](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt/)
+The design directory contains `src/`, `synth/`, and `software/` (see the design README for details).
 
 ## Getting Started
 
-Building the design is easy with the scripts provided in the repo. Clone the repository to get the source files
+Building the design is easy with the scripts provided in the repo. Clone the repository to get the source files.
 
-``` bash
+```bash
 git clone https://github.com/altera-fpga/agilex7-ed-ptp.git
 cd agilex7-ed-ptp
-git checkout <tag>
+git checkout <Release Tag>
 ```
 
-Follow the below procedure to build the HW and the Software artifacts.
+Follow the links below to compile, build, and test the design solution.
 
-- [Building the hardware](./agi027fd-si-devkit/src/hw)
-- [Building the software](./agi027fd-si-devkit/src/sw)
+- [Building IEEE 1588 PTP MCQoS on DK-SI-AGI027FD](./dk-si-agi027fd-oobe/ptp/README.md)
+
+Run `make help` from the design directory for the full target list. Use `PTP_DESIGN=<rate>` to select the Ethernet rate variant (default `25G_ANLT`).

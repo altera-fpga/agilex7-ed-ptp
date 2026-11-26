@@ -1,0 +1,10 @@
+/.gitconfig
+/.netrc
+/build/
+/venv/
+/meta-altera-fpga/
+/meta-openembedded/
+/bitbake/
+/meta-yocto/
+/openembedded-core/
+/meta-clang/
